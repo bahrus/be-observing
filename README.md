@@ -2,7 +2,7 @@
 
 Observe properties of peer elements or the host, mostly declaratively.
 
-*be-observing* takes less of a "top-down" approach to binding than traditional frameworks.  It places less emphasis (but certainly not none) on binding exclusively from the (custom element) component container.  Yes, it can do that, but it can also provide for "Democratic Web Component Organisms" where the host container acts as a very thin "Skin Layer" which can be passed a small number of "stimuli" values into.  Inside the body of the web component, we might have a non visible "brain" component that dispatches events.  *be-observing* allows other peer elements within the "body" to receive messages that the brain component emits, without forcing the outer "skin" layer to have to micromanage this all.
+*be-observing* takes less of a "top-down" approach to binding than traditional frameworks.  It places less emphasis (but certainly not none) on binding exclusively from the (custom element) component container host.  Yes, it can do that, but it can also provide for "Democratic Web Component Organisms" where the host container acts as a very thin "Skin Layer" which can be passed a small number of "stimuli" values into.  Inside the body of the web component, we might have a non visible "brain" component that dispatches events.  *be-observing* allows other peer elements within the "body" to receive messages that the brain component emits, without forcing the outer "skin" layer to have to micromanage this all.
 
 [![NPM version](https://badge.fury.io/js/be-observing.png)](http://badge.fury.io/js/be-observing)
 [![How big is this package in your project?](https://img.shields.io/bundlephobia/minzip/be-observing?style=for-the-badge)](https://bundlephobia.com/result?p=be-observing)
