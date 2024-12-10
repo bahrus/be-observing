@@ -296,8 +296,8 @@ This example works, where each observing statement is treated independently:
 <input name=someOtherCheckbox type=checkbox>
 
 <mood-stone
-    enh-🔭="of @someCheckbox and set isHappy.
-            Of @someOtherCheckbox and set isWealthy."
+    enh-🔭="@someCheckbox and set isHappy.
+            @someOtherCheckbox and set isWealthy."
 '>
     <template shadowrootmode=open>
         <div itemscope>
@@ -386,13 +386,11 @@ They are:
 
 ## Observing a single remote endpoint and applying a simple mapping to the value [TODO]
 
-```html
-<input type=checkbox name=isHappy>
 
 ```html
 <input type=checkbox name=isHappy>
 
-<div 🔭="of @isHappy and be joyous if true and be melancholy if false and be ¯\_(ツ)_/¯ if neither."></div>
+<div 🔭="@isHappy and be joyous if true and be melancholy if false and be ¯\_(ツ)_/¯ if neither."></div>
 ```
 
 The statement above uses toString on @isHappy if not null.  If it is null or doesn't match any of the other tests, sets to the else.
@@ -407,7 +405,7 @@ To use truthy checks:
 <input name=search>
 
 <div 
-    🔭="of @search and be Searching\.\.\. if truthy and otherwise be How can I help you today?." 
+    🔭="@search and be Searching\.\.\. if truthy and otherwise be How can I help you today?." 
 >
 </div>
 ```
@@ -422,7 +420,7 @@ So far we've seen 1-1 correspondences and many to 1.  The question is -- Is many
 <input type=checkbox name=feelingLucky>
 
 <div 
-    🔭="of @search and be Searching\.\.\. if truthy and otherwise be How can I help you today?." 
+    🔭="@search and be Searching\.\.\. if truthy and otherwise be How can I help you today?." 
 >
 </div>
 ```
@@ -436,7 +434,7 @@ We can write custom JS expressions, and integrate it with our observing statemen
 ## Locally defined
 
 ```html
-<div id="hZs4GGd8EWxoIxPYAnpQA">
+<div>
     <input id=searchString type=search>
 
     <div defer-🔭 🔭='#searchString and punt.'></div>
@@ -460,7 +458,7 @@ What this does:  It sets the div's textContent property to the value of searchSt
 </script>
 <input id=searchString type=search>
 
-<div 🔭='of #searchString and set to appendWorld.'></div>
+<div 🔭='#searchString and set to appendWorld.'></div>
 ```
 
 
@@ -487,10 +485,10 @@ The example above happens to refer to this [enhancement](https://github.com/bahr
 <tr itemscope>
     <td>
         <my-item-view-model></my-item-view-model>
-        <div 🔭="~myItemViewModel?.myProp1.">My First column information</div>
+        <div 🔭=~myItemViewModel?.myProp1>My First column information</div>
     </td>
     <td>
-        <div 🔭="of ~myItemViewModel?.myProp2."></div>
+        <div 🔭=~myItemViewModel?.myProp2></div>
     </td>
 </tr>
 ```
