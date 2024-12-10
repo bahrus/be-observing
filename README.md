@@ -68,7 +68,7 @@ If this assumption doesn't hold in some cases, then we can specify the name of t
     <input 
         type=checkbox 
         disabled 
-        be-observing='of /isHappy.'
+        be-observing=/isHappy.
     >
 </mood-stone>
 ```
