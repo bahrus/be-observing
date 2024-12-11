@@ -453,8 +453,9 @@ What this does:  It sets the div's textContent property to the value of searchSt
 
 ```html
 <script type=module>
-    import {register} from 'be-observing/🔭.js';
-    register('appendWorld', e => e.r = e.args[0] + ' World');
+    (await import('be-observing/🔭.js')
+        .register('appendWorld', e => e.r = e.args[0] + ' World')
+    );
 </script>
 <input id=searchString type=search>
 
