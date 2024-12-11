@@ -3,10 +3,10 @@ import { BE } from 'be-enhanced/BE.js';
 import { propInfo, resolved, rejected } from 'be-enhanced/cc.js';
 import { dispatchEvent as de } from 'trans-render/positractions/dispatchEvent.js';
 
-/** @import {BEConfig, IEnhancement, BEAllProps} from './ts-refs/be-enhanced/types.d.ts' */
+/** @import {BEConfig, IEnhancement, BEAllProps} from './ts-refs/be-enhanced/types' */
 /** @import {Actions, PAP, AP, BAP, ObservingParameters} from './ts-refs/be-observing/types' */
 /** @import {Specifier} from  './ts-refs/trans-render/dss/types' */
-/** @import {AbsorbingObject} from './ts-refs/trans-render/asmr/types.d.ts' */
+/** @import {AbsorbingObject} from './ts-refs/trans-render/asmr/types' */
 /**
  * @implements {Actions}
 

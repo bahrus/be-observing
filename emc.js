@@ -55,7 +55,7 @@ export const emc = {
             }
         }
     },
-    enhPropKey: 'beobserving',
+    enhPropKey: 'beObserving',
     importEnh: async () => {
         const {Beobserving} = await import('./be-observing.js');
         return Beobserving;
