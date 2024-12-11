@@ -12,7 +12,7 @@ Observe properties of peer elements or the host, mostly declaratively.
 # Alternatives
 
 > [!Note]
-> An extra thin layer can be applied on top of be-observing, so that the original HTML that is streamed from the server can provide the initial values of the property that *be-observing* observes, and then once that initial handshake is established, lean exclusively on *be-observing* for all subsequent updates.  This is handled by [be-entrusting](https://github.com/bahrus/be-entrusting).
+> An extra thin layer can be applied on top of be-observing, so that the original HTML that is streamed from the server can provide the initial values of the properties that *be-observing* observes, and then once that initial handshake is established, lean exclusively on *be-observing* for all subsequent updates.  This is handled by [be-entrusting](https://github.com/bahrus/be-entrusting).
 
 > [!Note]
 > *be-observing* is very close to [be-calculating](https://github.com/bahrus/be-calculating) as far as feature set.  The two share many common modules.  The significant differences are: 
@@ -50,9 +50,9 @@ be-observing is making a few inferences:
 
 
 > [!Note]
-> *be-observing* is a rather lengthy word to have to type over and over again, and this element enhancement would likely be sprinkled around quite a bit in a web application.  The name is registered in the optional file [emc.js](https://github.com/bahrus/be-observing/blob/baseline/emc.js) so to use whatever name makes sense to you (🔭, be-obs?) within your application, just don't reference that file, and instead create and reference your own registration file.  Names can also be overridden within a [Shadow scope](https://github.com/bahrus/be-hive) as well.  Throughout much of the rest of this document, we will use 🔭 instead of be-observing, and ask that you make a "mental map" of 🔭 to "be-observing".  In fact, this package does provide an alternative registration file, 🔭.js, that registers the enhancement via attribute "🔭".  The developer could easily copy/modify an additional registration file, to adopt their own preferred name.
+> *be-observing* is a rather lengthy word to have to type over and over again, and this element enhancement would likely be sprinkled around quite a bit in a web application.  The name is registered in the optional file [emc.js](https://github.com/bahrus/be-observing/blob/baseline/emc.js) so to use whatever name makes sense to you (🔭, be-obs?) within your application, just don't reference that file, and instead create and reference your own registration file.  Names can also be overridden within a [Shadow scope](https://github.com/bahrus/be-hive) as well.  Throughout much of the rest of this document, we will use 🔭 instead of be-observing, and ask that you make a "mental map" of 🔭 to "be-observing".  In fact, this package does provide an alternative registration file, 🔭.js, that registers the enhancement via attribute "🔭".  The developer could easily copy/modify an alternative additional registration file, to adopt their own preferred name.
 
-If you only use this enhancement once in a large application, spelling out the full name (and referencing the canonical emc.js file) would probably make the most sense, for "locality of behavior" reasons, and also tapping into google searches.  But I would strongly consider using a (custom) shortcut in any application that intends to rely on this enhancement in a heavy way.
+If you only use this enhancement once in a large application, spelling out the full name (and referencing the canonical emc.js file) would probably make the most sense, for "locality of behavior" reasons, and also tapping into google searches (some day in the distant future).  But I would strongly consider using a (custom) shortcut in any application that intends to rely on this enhancement in a heavy way.
 
 ## Back to our quintessential example
 
@@ -110,7 +110,7 @@ If Shadow DOM is not used, add the "itemscope" attribute so that *be-observing* 
 <mood-stone>
     <template shadowrootmode=open>
         <div itemscope>
-            <span 🔭 itemprop=isHappy ></span>
+            <span 🔭 itemprop=isHappy></span>
         </div>
 
         <xtal-element
@@ -123,7 +123,7 @@ If Shadow DOM is not used, add the "itemscope" attribute so that *be-observing* 
 </mood-stone>
 ```
 
-This sets the span's textContent to the .toString value of mood-stone's isHappy property, and monitors for changes, i.e. one-way binds.
+This sets the span's textContent to the .toString() value of mood-stone's isHappy property, and monitors for changes, i.e. it one-way binds.
 
 *xtal-element*, by the way, is a [userland implementation](https://github.com/bahrus/xtal-element) of declarative custom elements, so the example above is actually fully functional (after importing two generic js references).
 
