@@ -33,7 +33,7 @@
   "devDependencies": {
     "@playwright/test": "1.49.1",
     "ssi-server": "0.0.1",
-    "xtal-element": "0.0.619"
+    "xtal-element": "0.0.620"
   },
   "repository": {
     "type": "git",
