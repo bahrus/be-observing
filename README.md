@@ -505,18 +505,20 @@ This will one-way synchronize *my-item-view-model*'s myProp 1/2 values to the ad
 This also works: [TODO]
 
 ```html
-<tr itemscope>
+<tr itemscope=my-item-view-model>
     <td>
-        <my-item-view-model></my-item-view-model>
-        <div itemprop=myProp1 🔭="~myItemViewModel.">My First column information</div>
+        <div itemprop=myProp1 🔭>My First column information</div>
     </td>
     <td>
-        <div itemprop=myProp2 🔭="~myItemViewModel."></div>
+        <div itemprop=myProp2 🔭></div>
     </td>
 </tr>
 ```
 
-We can specify what property of the peer custom element to bind to as follows:
+What this does:
+
+1.  Note the "non-standard" [(for now?)](https://github.com/bahrus/custom-enhancements?tab=readme-ov-file#support-for-a-view-model-web-component--enhancement-tied-to-the-itemscope-attribute) use of the itemscope attribute.  It is specifying the name of a "custom element" (or custom enhancement) that the developer creates, that acts as a kind of non visual "view model / domain object" component, that may be full of methods that saves changes to that row / item to the back end, and/or can retrieve new refreshes of data -- the sky is the limit, except it isn't really focused on rendering anything, leaving that to other libraries, like *be-observing* or, for example, a tagged [template literal based looping library to finesse](https://github.com/bahrus/be-render-neutral).
+2.  The 🔭 indicates to pull the value(s) from the itemscope'd view model custom element / enhancement.
 
 
 
