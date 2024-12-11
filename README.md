@@ -500,7 +500,7 @@ This can be useful for scenarios where we want to display repeated data, and can
 
 This will one-way synchronize *my-item-view-model*'s myProp 1/2 values to the adorned element's textContent property.
 
-## Inferring the property to observe from a peer custom element
+## Attaching a "brain" component to the tr element.
 
 This also works: [TODO]
 
