@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set props > via conjunction</title>
+    <script type=importmap>
+        {
+            "imports": {
+                "be-enhanced/": "/node_modules/be-enhanced/",
+                "be-hive/": "/node_modules/be-hive/",
+                "blow-dry/": "/node_modules/blow-dry/",
+                "mount-observer/": "/node_modules/mount-observer/",
+                "trans-render/": "/node_modules/trans-render/",
+                "xtal-element/": "/node_modules/xtal-element/"
+            }
+        }
+    </script>
+    <script type=module>
+        import 'xtal-element/index.js';
+        import '/🔭.js';
+    </script>
+</head>
+<body>
+    <input name=someCheckbox type=checkbox>
+    <input name=someOtherCheckbox type=checkbox>
+
+    <mood-stone enh-🔭='of  @someCheckbox and @someOtherCheckbox and set isHappy.'>
+        <template shadowrootmode=open>
+            <div itemscope>
+                is happy
+                <div itemprop=isHappy></div>
+            </div>
+            <xtal-element 
+                prop-defaults='{
+                    "isHappy": true
+                }'
+                xform='{
+                    "| isHappy": 0
+                }'
+            ></xtal-element>
+            <be-hive></be-hive>
+        </template>
+    </mood-stone>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer Element Binding > By ID > input => plain div</title>
+    <script type=importmap>
+        {
+            "imports": {
+                "be-enhanced/": "/node_modules/be-enhanced/",
+                "be-hive/": "/node_modules/be-hive/",
+                "mount-observer/": "/node_modules/mount-observer/",
+                "trans-render/": "/node_modules/trans-render/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <script type=module>
+        (await import('/🔭.js'))
+        .w('#hZs4GGd8EWxoIxPYAnpQA *')
+        .r({
+            appendWorld:  e => e.r = e.args[0] + ', World'
+        });
+    </script>
+    <div id="hZs4GGd8EWxoIxPYAnpQA">
+        <input id=searchString type=search>
+    
+        <div 🔭='of #searchString and set to appendWorld.'></div>
+    </div>
+</body>
+</html>

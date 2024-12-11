@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer Element Binding => By marker</title>
+    <script type=importmap>
+        {
+            "imports": {
+                "be-enhanced/": "/node_modules/be-enhanced/",
+                "be-hive/": "/node_modules/be-hive/",
+                "blow-dry/": "/node_modules/blow-dry/",
+                "mount-observer/": "/node_modules/mount-observer/",
+                "trans-render/": "/node_modules/trans-render/",
+                "xtal-element/": "/node_modules/xtal-element/"
+            }
+        }
+    </script>
+    <script type=module>
+        import 'xtal-element/index.js';
+        import '/🔭.js';
+    </script>
+</head>
+<body>
+    <mood-stone>
+        <template shadowrootmode=open>
+            <peer-element itemscope -some-bool-prop>
+                <xtal-element prop-defaults='{
+                    "someBoolProp": true
+                }'>
+
+                </xtal-element>
+            </peer-element>
+
+            <input 
+                type=checkbox 
+                disabled 
+                🔭='of -some-bool-prop'
+            >
+            <xtal-element
+                prop-defaults='{
+                    "isHappy": true
+                }'
+                xform='{
+                    "| isHappy": 0
+                }'
+            ></xtal-element>
+            <be-hive></be-hive>
+        </template>
+    </mood-stone>
+</body>
+</html>

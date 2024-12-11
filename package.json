@@ -1,16 +1,45 @@
 {
   "name": "be-observing",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "custom-element",
+    "custom-elements",
+    "JSON",
+    "bind",
+    "observe"
+  ],
+  "description": "Glue DOM and custom elements together mostly declaratively.",
+  "main": "be-observing.js",
+  "module": "be-observint.js",
+  "exports": {
+    ".": "./be-observing.js",
+    "./be-observing.js": "./be-observing.js",
+    "./🔭.js": "./🔭.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "python3 ./node_modules/ssi-server/ssi_server.py",
+    "test": "playwright test",
+    "safari": "npx playwright wk http://localhost:8000",
+    "update": "ncu -u && npm install"
+  },
+  "types":"./ts-refs/be-observing/types.d.ts",
+  "dependencies": {
+    "be-enhanced": "0.0.147",
+    "be-hive": "0.0.226",
+    "trans-render": "0.0.848"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.48.0",
+    "ssi-server": "0.0.1",
+    "xtal-element": "0.0.619"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bahrus/be-observing.git"
   },
-  "author": "",
+  "author": "anderson.bruce.b@gmail.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bahrus/be-observing/issues"

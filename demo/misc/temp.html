@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <template id=myTemplate>
+        <div onclick="alert('iah')">i am here</div>
+    </template>
+    <div id=target></div>
+    <script>
+        const clone = myTemplate.content.cloneNode(true);
+        target.appendChild(clone);
+    </script>
+</body>
+</html>
