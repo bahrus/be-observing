@@ -4,21 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peer Element Binding > By CE Name > Infer Property > table</title>
-    <script type=importmap>
-        {
-            "imports": {
-                "be-enhanced/": "/node_modules/be-enhanced/",
-                "be-hive/": "/node_modules/be-hive/",
-                "be-linked/": "/node_modules/be-linked/",
-                "be-propagating/": "/node_modules/be-propagating/",
-                "be-value-added/": "/node_modules/be-value-added/",
-                "blow-dry/": "/node_modules/blow-dry/",
-                "mount-observer/": "/node_modules/mount-observer/",
-                "trans-render/": "/node_modules/trans-render/",
-                "xtal-element/": "/node_modules/xtal-element/"
-            }
-        }
-    </script>
+    <!-- #include virtual="/imports.html" -->
     <script type=module>
         import 'xtal-element/index.js';
         import '/🔭.js';
@@ -33,22 +19,20 @@
     </my-item>
 
     <table>
-        <tr itemscope>
+        <tr itemscope=my-item data-ish='{"prop1": "val1", "prop2": "val2"}'>
             <td>
-                <my-item prop1="val 1" prop2="val 2"></my-item>
-                <div itemprop=prop1 🔭="of ~myItem"></div>
+                <div itemprop=prop1 🔭></div>
             </td>
             <td>
-                <div itemprop=prop2 🔭="of ~myItem"></div>
+                <div itemprop=prop2 🔭></div>
             </td>
         </tr>
-        <tr itemscope>
+        <tr itemscope=my-item data-ish='{"prop1": "val3", "prop2": "val4"}'>
             <td>
-                <my-item prop1="val 3" prop2 = "val 4"></my-item>
-                <div itemprop=prop1 🔭="of ~myItem"></div>
+                <div itemprop=prop1 🔭></div>
             </td>
             <td>
-                <div itemprop=prop2 🔭="of ~myItem"></div>
+                <div itemprop=prop2 🔭></div>
             </td>
         </tr>
     </table>
