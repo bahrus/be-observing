@@ -9,7 +9,7 @@ import { w as bw } from 'be-hive/w.js';
 
 const dependencyPart = String.raw `(?<dependencyPart>.*)`;
 //const ofDependencyPart = String.raw `of ${dependencyPart}`;
-const ofDependencies = String.raw `^(o|O)f ${dependencyPart}`;
+const ofDependencies = String.raw `^${dependencyPart}`;
 
 const ofDependenciesAndSetProp = String.raw `${ofDependencies} and set (?<localPropToSet>.*)`;
 
@@ -57,8 +57,8 @@ export const emc = {
     },
     enhPropKey: 'beObserving',
     importEnh: async () => {
-        const {Beobserving} = await import('./be-observing.js');
-        return Beobserving;
+        const {BeObserving} = await import('./be-observing.js');
+        return BeObserving;
     },
     ws:[],
     mapWSTo: 'ws'

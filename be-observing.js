@@ -12,7 +12,7 @@ import { dispatchEvent as de } from 'trans-render/positractions/dispatchEvent.js
 
  * 
  */
-class Beobserving extends BE {
+class BeObserving extends BE {
     de = de;
     /**
      * @type {BEConfig<BAP, Actions & IEnhancement, any>}
@@ -143,7 +143,7 @@ class Beobserving extends BE {
 
 }
 
-await Beobserving.bootUp();
-export {Beobserving}
+await BeObserving.bootUp();
+export {BeObserving}
 
 
