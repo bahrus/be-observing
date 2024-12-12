@@ -502,17 +502,34 @@ This will one-way synchronize *my-item-view-model*'s myProp 1/2 values to the ad
 
 ## Attaching a "brain" component to the tr element.
 
-This also works: [Untested]
+This also works:
 
 ```html
-<tr itemscope=my-item-view-model>
-    <td>
-        <div itemprop=myProp1 🔭>My First column information</div>
-    </td>
-    <td>
-        <div itemprop=myProp2 🔭></div>
-    </td>
-</tr>
+<my-item hidden>
+    <xtal-element prop-defaults='{
+        "prop1": "",
+        "prop2": ""
+    }'></xtal-element>
+</my-item>
+
+<table>
+    <tr itemscope=my-item data-ish='{"prop1": "val1", "prop2": "val2"}'>
+        <td>
+            <div itemprop=prop1 🔭></div>
+        </td>
+        <td>
+            <div itemprop=prop2 🔭></div>
+        </td>
+    </tr>
+    <tr itemscope=my-item data-ish='{"prop1": "val3", "prop2": "val4"}'>
+        <td>
+            <div itemprop=prop1 🔭></div>
+        </td>
+        <td>
+            <div itemprop=prop2 🔭></div>
+        </td>
+    </tr>
+</table>
 ```
 
 What this does:
