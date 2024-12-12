@@ -502,7 +502,7 @@ This will one-way synchronize *my-item-view-model*'s myProp 1/2 values to the ad
 
 ## Attaching a "brain" component to the tr element.
 
-This also works: [TODO]
+This also works: [Untested]
 
 ```html
 <tr itemscope=my-item-view-model>
@@ -517,11 +517,15 @@ This also works: [TODO]
 
 What this does:
 
-1.  Note the "non-standard" [(for now?)](https://github.com/bahrus/custom-enhancements?tab=readme-ov-file#support-for-a-view-model-web-component--enhancement-tied-to-the-itemscope-attribute) use of the itemscope attribute.  It is specifying the name of a "custom element" (or custom enhancement) that the developer creates, that acts as a kind of non visual "view model / domain object" component, that may be full of methods that saves changes to that row / item to the back end, and/or can retrieve new refreshes of data -- the sky is the limit, except it isn't really focused on rendering anything, leaving that to other libraries, like *be-observing* or, for example, a tagged [template literal based looping library to finesse](https://github.com/bahrus/be-render-neutral).
+1.  Note the "non-standard" [(for now?)](https://github.com/bahrus/custom-enhancements?tab=readme-ov-file#support-for-a-view-model-web-component--enhancement-tied-to-the-itemscope-attribute) use of the itemscope attribute.  It is specifying the name of a custom element (or custom enhancement) that the developer creates, that acts as a kind of non visual "view model / domain object" component, that may be full of methods that saves changes to that row / item to the back end, and/or can retrieve new refreshes of data -- the sky is the limit, except it isn't really focused on rendering anything, leaving that to other libraries, like *be-observing* or, for example, a tagged [template literal based looping library to finesse](https://github.com/bahrus/be-render-neutral).
 2.  The 🔭 indicates to pull the value(s) from the itemscope'd view model custom element / enhancement.
 
 
+The mechanics of 1 is already handled via the underlying infrastructure that supports *be-observing*.  It has settled on adding the non standard "ish" property to the element it adorns ("tr") in this case.
 
+*be-observing* utilizes a DSS protocol helper function as far as "getting" the host from the ish property.
+
+All of which is to say the example above works thanks to code reuse from the supporting packages.
 
 
 ## Toggle [TODO]
