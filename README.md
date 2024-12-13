@@ -429,7 +429,7 @@ So far we've seen 1-1 correspondences and many to 1.  The question is -- Is many
 
 
 
-# For the power hungry JS-firsters [TODO]
+# For the power hungry JS-firsters
 
 We can write custom JS expressions, and integrate it with our observing statements.
 
