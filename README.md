@@ -341,27 +341,27 @@ They are:
 1.  Union
 
 ```html
-<mood-stone enh-🔭='of @someCheckbox and @someOtherCheckbox and set isHappy to ||.'>
+<mood-stone enh-🔭='@someCheckbox and @someOtherCheckbox and set isHappy to ||.'>
 ```
 
 2.  Sum [Untested]
 
 ```html
-<mood-stone enh-🔭='of @someNumericInput and @someOtherNumericInput and set mySum to +.'>
+<mood-stone enh-🔭='@someNumericInput and @someOtherNumericInput and set mySum to +.'>
 ```
 
 3.  Product [Untested]
 
-<mood-stone enh-🔭='of @someNumericInput and @someOtherNumericInput and set myProduct to *.'>
+<mood-stone enh-🔭='@someNumericInput and @someOtherNumericInput and set myProduct to *.'>
 
 4.  Interpolation [TODO -- wait for sanitizer api or whatever it is called these days to finally land in all the browsers]
 
-<mood-stone enh-🔭='of @name and @food and set sentenceProp to `${0} eats ${1}`.'>
+<mood-stone enh-🔭='@name and @food and set sentenceProp to `${0} eats ${1}`.'>
 
 5.  Object Assignment [Untested]
 
 <mood-stone 
-    enh-🔭='of @name and @food and set myObjectProp to {}.'>
+    enh-🔭='@name and @food and set myObjectProp to {}.'>
 
 ## Observing a single remote endpoint and applying a simple mapping to the value [TODO]
 
