@@ -13,6 +13,8 @@ const dependencies = String.raw `^${dependencyPart}`;
 
 const dependenciesAndSetPropToAgg = String.raw `${dependencies} and set (?<localPropToSet>.*) to (?<aggKey>.*)`;
 
+const dependenciesAndPunt = String.raw `${dependencies} and punt`;
+
 const dependenciesAndSetProp = String.raw `${dependencies} and set (?<localPropToSet>.*)`;
 
 const toAggregator = String.raw `${dependencies} and set to (?<aggKey>.*)`;
@@ -35,6 +37,13 @@ export const emc = {
                     {
                         regExp: dependenciesAndSetPropToAgg,
                         defaultVals:{},
+                        dssArrayKeys
+                    },
+                    {
+                        regExp: dependenciesAndPunt,
+                        defaultVals:{
+                            punt: true
+                        },
                         dssArrayKeys
                     },
                     {

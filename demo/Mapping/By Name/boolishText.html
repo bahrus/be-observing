@@ -4,18 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>With Slash</title>
-    <script type=importmap>
-        {
-            "imports": {
-                "be-enhanced/": "/node_modules/be-enhanced/",
-                "be-hive/": "/node_modules/be-hive/",
-                "be-linked/": "/node_modules/be-linked/",
-                "be-value-added/": "/node_modules/be-value-added/",
-                "mount-observer/": "/node_modules/mount-observer/",
-                "trans-render/": "/trans-render/"
-            }
-        }
-    </script>
+    <!-- #include virtual="/imports.html" -->
+
     <script type=module>
         import '/🔭.js';
     </script>
@@ -23,6 +13,6 @@
 <body>
     <input name=search type=search>
 
-    <div 🔭='only of @search and if truthy pass Searching and otherwise pass How can I help you today?.'></div>
+    <div 🔭='@search and if truthy pass Searching and otherwise pass How can I help you today?.'></div>
 </body>
 </html>

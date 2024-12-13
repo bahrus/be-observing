@@ -104,10 +104,22 @@ class BeObserving extends BE {
     async seek(self){
         const {parsedStatements, enhancedElement} = self;
         const {find} = await import('trans-render/dss/find.js');
-        const {ASMR} = await import('trans-render/asmr/asmr.js');
-        const {ASMRHandler} = await import('./ASMRHandler.js');
-        const {customHandlers} = self;
+        
         for(const statement of parsedStatements){
+            const {punt} = statement;
+            if(punt){
+                const {remoteSpecifiers} = statement;
+                for(const remoteSpecifier of remoteSpecifiers){
+                    const remoteEl = await find(enhancedElement, remoteSpecifier);
+                    if(!(remoteEl instanceof Element)) throw 404;
+                }
+                continue;
+            }
+
+
+            const {ASMR} = await import('trans-render/asmr/asmr.js');
+            const {ASMRHandler} = await import('./ASMRHandler.js');
+            const {customHandlers} = self;
             /**
              * @type {{[key: string]: AbsorbingObject}}
              */
