@@ -9,7 +9,6 @@ import { dispatchEvent as de } from 'trans-render/positractions/dispatchEvent.js
 /** @import {AbsorbingObject} from './ts-refs/trans-render/asmr/types' */
 /**
  * @implements {Actions}
-
  * 
  */
 class BeObserving extends BE {
@@ -51,6 +50,11 @@ class BeObserving extends BE {
 
     warn = console.warn;
 
+    async attach(el, enhancementInfo){
+        this.enhancementInfo = enhancementInfo;
+        await super.attach(el, enhancementInfo);
+    }
+
     /**
      * 
      * @param {BAP} self 
@@ -63,6 +67,7 @@ class BeObserving extends BE {
             didInferring: true,
         });
     }
+
 
     /**
      * 
@@ -98,39 +103,35 @@ class BeObserving extends BE {
     }
 
     /**
+     * @type {AbortController | undefined}
+     */
+    #ac;
+
+    /**
      * 
      * @param {BAP} self 
      */
     async seek(self){
         const {parsedStatements, enhancedElement} = self;
         const {find} = await import('trans-render/dss/find.js');
-        
+        const {ASMR} = await import('trans-render/asmr/asmr.js');
+        const {ASMRHandler} = await import('./ASMRHandler.js');
+        const {customHandlers} = self;
         for(const statement of parsedStatements){
-            const {punt} = statement;
-            if(punt){
-                const {remoteSpecifiers} = statement;
-                for(const remoteSpecifier of remoteSpecifiers){
-                    const remoteEl = await find(enhancedElement, remoteSpecifier);
-                    if(!(remoteEl instanceof Element)) throw 404;
-                }
-                continue;
-            }
 
 
-            const {ASMR} = await import('trans-render/asmr/asmr.js');
-            const {ASMRHandler} = await import('./ASMRHandler.js');
-            const {customHandlers} = self;
+
             /**
              * @type {{[key: string]: AbsorbingObject}}
              */
             const propToAO = {};
-            const {remoteSpecifiers, localPropToSet, aggKey} = statement;
+            const {remoteSpecifiers, localPropToSet, aggKey, punt} = statement;
             for(const remoteSpecifier of remoteSpecifiers){
                 const remoteEl = await find(enhancedElement, remoteSpecifier);
                 if(!(remoteEl instanceof Element)) throw 404;
+                let remoteProp;
                 const {prop} = remoteSpecifier;
                 if(prop === undefined) throw 'NI';
-                let remoteProp;
                 const {s} = remoteSpecifier;
                 switch(s){
                     case '/':
@@ -138,6 +139,7 @@ class BeObserving extends BE {
                         remoteProp = prop;
                         break;
                 }
+
                 const ao = await ASMR.getAO(remoteEl, {
                     evt: remoteSpecifier.evt || 'input',
                     selfIsVal: remoteSpecifier.path === '$0',
@@ -147,10 +149,17 @@ class BeObserving extends BE {
             }
             const so = await ASMR.getSO(enhancedElement, {valueProp: localPropToSet});
             //TODO: store asmrh for cleanup purposes
-            const asmrh = new ASMRHandler(self, aggKey, so, propToAO);
+            const asmrh = new ASMRHandler(self, aggKey, so, propToAO, punt);
         }
         return /** @type {PAP} */({
         });
+    }
+
+    async detach(el){
+        if(this.#ac !== undefined){
+            this.#ac.abort();
+        }
+        super.detach(el);
     }
 
 }
