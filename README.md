@@ -169,27 +169,6 @@ This is documented in (increasingly) painstaking detail where the [DSS parser li
 
 
 
-## Example 1d  Negation [TODO]
-
-```html
-<mood-stone>
-    #shadow
-    <input type=checkbox disabled 🔭='isVegetarian and set to !.'>
-</mood-stone>
-```
-<!--
-## Example 1e Translation 
-
-```html
-<mood-stone>
-    #shadow
-    <input type=readonly be-observing-of='age - 20.'>
-</mood-stone>
-```
-
-Can also use addition (+), multiplication (*), division (/) [Untested].
-
--->
 
 ## Binding to peer elements
 
@@ -359,7 +338,7 @@ The number of things we can observe is limited only by when the developer tires 
 
 They are:
 
-1.  Union [Untested]
+1.  Union
 
 ```html
 <mood-stone enh-🔭='of @someCheckbox and @someOtherCheckbox and set isHappy to ||.'>
@@ -396,6 +375,29 @@ They are:
 The statement above uses toString on @isHappy if not null.  If it is null or doesn't match any of the other tests, sets to the else.
 
 *-be is kind of like the map function of JS.  If *-of is observing more than one 
+
+
+## Example 1d  Negation [TODO]
+
+```html
+<mood-stone>
+    #shadow
+    <input type=checkbox disabled 🔭='isVegetarian and set to !.'>
+</mood-stone>
+```
+<!--
+## Example 1e Translation 
+
+```html
+<mood-stone>
+    #shadow
+    <input type=readonly be-observing-of='age - 20.'>
+</mood-stone>
+```
+
+Can also use addition (+), multiplication (*), division (/) [Untested].
+
+-->
 
 ## Being boolish [TODO]
 

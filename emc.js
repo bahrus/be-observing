@@ -9,11 +9,13 @@ import { w as bw } from 'be-hive/w.js';
 
 const dependencyPart = String.raw `(?<dependencyPart>.*)`;
 //const ofDependencyPart = String.raw `of ${dependencyPart}`;
-const ofDependencies = String.raw `^${dependencyPart}`;
+const dependencies = String.raw `^${dependencyPart}`;
 
-const ofDependenciesAndSetProp = String.raw `${ofDependencies} and set (?<localPropToSet>.*)`;
+const dependenciesAndSetPropToAgg = String.raw `${dependencies} and set (?<localPropToSet>.*) to (?<aggKey>.*)`;
 
-const toAggregator = String.raw `${ofDependencies} and set to (?<aggKey>.*)`;
+const dependenciesAndSetProp = String.raw `${dependencies} and set (?<localPropToSet>.*)`;
+
+const toAggregator = String.raw `${dependencies} and set to (?<aggKey>.*)`;
 
 /**
  * @type {Array<[string, string]>}
@@ -31,20 +33,25 @@ export const emc = {
             regExpExts: {
                 parsedStatements: [
                     {
+                        regExp: dependenciesAndSetPropToAgg,
+                        defaultVals:{},
+                        dssArrayKeys
+                    },
+                    {
                         regExp: toAggregator,
                         defaultVals: {
                         },
                         dssArrayKeys
                     },
                     {
-                        regExp: ofDependenciesAndSetProp,
+                        regExp: dependenciesAndSetProp,
                         defaultVals: {
                             aggKey: '&&'
                         },
                         dssArrayKeys
                     },
                     {
-                        regExp: ofDependencies,
+                        regExp: dependencies,
                         defaultVals:{
                             aggKey: '&&'
                         },
