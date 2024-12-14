@@ -52,6 +52,8 @@ be-observing is making a few inferences:
 > [!Note]
 > *be-observing* is a rather lengthy word to have to type over and over again, and this element enhancement would likely be sprinkled around quite a bit in a web application.  The name is registered in the optional file [emc.js](https://github.com/bahrus/be-observing/blob/baseline/emc.js) so to use whatever name makes sense to you (🔭, be-obs?) within your application, just don't reference that file, and instead create and reference your own registration file.  Names can also be overridden within a [Shadow scope](https://github.com/bahrus/be-hive) as well.  Throughout much of the rest of this document, we will use 🔭 instead of be-observing, and ask that you make a "mental map" of 🔭 to "be-observing".  In fact, this package does provide an alternative registration file, 🔭.js, that registers the enhancement via attribute "🔭".  The developer could easily copy/modify an alternative additional registration file, to adopt their own preferred name.
 
+This package also supports a third alternative name suggestion: "o-o" for the emoji phobic. [TODO]
+
 If you only use this enhancement once in a large application, spelling out the full name (and referencing the canonical emc.js file) would probably make the most sense, for "locality of behavior" reasons, and also tapping into google searches (some day in the distant future).  But I would strongly consider using a (custom) shortcut in any application that intends to rely on this enhancement in a heavy way.
 
 ## Back to our quintessential example
