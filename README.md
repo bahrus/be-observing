@@ -450,18 +450,18 @@ The advantage of this approach compared to the example below:
 
 1.  You get syntax highlighting inside the expression without a plugin.
 2.  Is more "honest" about possible side effects, easier to filter out with trusted types, server-side xss prevention (maybe).
-3.  Can freely use ', ", and ` without breaking anything.
+3.  Can freely use ', ", `, "." without breaking anything.  Must used chained accessors for dot access.
 
 This is utilizing the [be-eventing](https://github.com/bahrus/be-eventing) fellow enhancement.
 
-## CSP "safe", inline expression [TODO]
+## CSP "safe", inline expression
 
 ```html
 <div>
     <input id=searchString type=search>
 
     <div 🔭='#searchString then js```
-        textContent = searchString + " world"
+        textContent = e?.f?.searchString + " world"
     ```'></div>
 </div>
 ```
