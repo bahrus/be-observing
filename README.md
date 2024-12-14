@@ -435,7 +435,7 @@ So far we've seen 1-1 correspondences and many to 1.  The question is -- Is many
 
 We can write custom JS expressions, and integrate it with our observing statements.
 
-## Locally defined, inside script element [TODO]
+## CSP "safe", locally defined, inside script element [TODO]
 
 ```html
 <div>
@@ -449,7 +449,7 @@ We can write custom JS expressions, and integrate it with our observing statemen
 The advantage of this approach compared to the example below:
 
 1.  You get syntax highlighting inside the expression without a plugin.
-2.  Is more "honest" about possible side effects, easier to filter out with trusted types (maybe).
+2.  Is more "honest" about possible side effects, easier to filter out with trusted types, server-side xss prevention (maybe).
 3.  Can freely use ', "", and ` without breaking anything.
 
 ## CSP "safe", inline expression [TODO]
