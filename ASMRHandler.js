@@ -129,20 +129,6 @@ export class ASMRHandler extends EventTarget{
             if(self === undefined) return;
             const {activate} = await import('trans-render/lib/activate.js');
             const handler = activate(this.#jsExpr);
-//             const guid = `a_${crypto.randomUUID()}`;
-
-//         const JSExpr = `
-// document.currentScript['${guid}'] = e => {
-//     with(e.target){
-//         ${this.#jsExpr}
-//     }
-// }
-// `
-//         console.log({JSExpr});
-//             const script = document.createElement('script');
-//             script.innerHTML = JSExpr;
-//             document.head.appendChild(script);
-//             const handler = script[guid];
             const se = new SelfEvent(self, args, obj, self.enhancedElement)
             handler(se);
             
