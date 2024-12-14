@@ -435,7 +435,7 @@ So far we've seen 1-1 correspondences and many to 1.  The question is -- Is many
 
 We can write custom JS expressions, and integrate it with our observing statements.
 
-## CSP "safe", locally defined, inside script element [TODO]
+## CSP "safe", locally defined, inside script element
 
 
 By CSP "safe", I mean these solutions should still work if you are patient enough to add hashes to your headers or meta tag.
