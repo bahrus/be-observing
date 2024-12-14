@@ -437,6 +437,10 @@ We can write custom JS expressions, and integrate it with our observing statemen
 
 ## CSP "safe", locally defined, inside script element [TODO]
 
+
+By CSP "safe", I mean these solutions should still work if you are patient enough to add hashes to your headers or meta tag.
+
+
 ```html
 <div>
     <input id=searchString type=search>

@@ -123,20 +123,11 @@ export class ASMRHandler extends EventTarget{
             const self = this.#selfRef.deref();
             if(self === undefined) return;
             self.channelEvent(new SelfEvent(self, args, obj, self.enhancedElement));
-            //console.log({obj, args, self: });
         } else if(this.#jsExpr){
             const self = this.#selfRef.deref();
             if(self === undefined) return;
             const guid = `a_${crypto.randomUUID()}`;
-//             const withs = ['f', 'target']
-//             const JSExpr = `
-// document.currentScript['${guid}'] = e => {
-//     const merged = {${withs.map(s => `...e.${s}`).join(', ')}};
-// with(merged){
-//     ${this.#jsExpr}
-// }
-// }
-// `;
+
         const JSExpr = `
 document.currentScript['${guid}'] = e => {
     with(e.target){
