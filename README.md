@@ -244,7 +244,7 @@ But sometimes we need to be more explicit because it isn't always transparent wh
 <input name=someCheckbox type=checkbox>
 
 <mood-stone 
-    enh-🔭='of @someCheckbox and set isHappy.'
+    enh-🔭='@someCheckbox and set isHappy.'
     >
 </mood-stone>
 
@@ -433,15 +433,15 @@ So far we've seen 1-1 correspondences and many to 1.  The question is -- Is many
 
 We can write custom JS expressions, and integrate it with our observing statements.
 
-## Locally defined
+## Locally defined [TODO]
 
 ```html
 <div>
     <input id=searchString type=search>
 
     <div defer-🔭 🔭='#searchString and punt.'></div>
-    <script 🏇-on=🔭>document.currentScript.e = 
-        e => e.target.textContent = e.args[0] + ' World';
+    <script nomodule 🏇-on=🔭>
+        e.target.textContent = e.args[0] + ' World';
     <script>
 </div>
 ```

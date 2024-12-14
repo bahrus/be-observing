@@ -26,15 +26,15 @@
   },
   "types":"./ts-refs/be-observing/types.d.ts",
   "dependencies": {
-    "be-enhanced": "0.0.158",
-    "be-hive": "0.0.238",
-    "trans-render": "0.0.867"
+    "be-enhanced": "0.0.159",
+    "be-hive": "0.0.239",
+    "trans-render": "0.0.868"
   },
   "devDependencies": {
     "@playwright/test": "1.49.1",
     "be-eventing": "0.0.4",
     "ssi-server": "0.0.1",
-    "xtal-element": "0.0.620"
+    "xtal-element": "0.0.621"
   },
   "repository": {
     "type": "git",
