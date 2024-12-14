@@ -41,17 +41,23 @@ export class ASMRHandler extends EventTarget{
     #selfRef;
 
     /**
+     * @type {string}
+     */
+    #jsExpr;
+
+    /**
      * @param {import('./ts-refs/be-observing/types').BAP} self
      * @param {aggKeys} aggKey 
      * @param {SharingObject} localSharingObject 
      * @param {{[key: string] : AbsorbingObject}} propToAO
      * @param {boolean} punt 
+     * @param {string} JSExpr
      */
-    constructor(self, aggKey, localSharingObject, propToAO, punt){
+    constructor(self, aggKey, localSharingObject, propToAO, punt, JSExpr){
         super();
         this.#selfRef = new WeakRef(self);
         //this.#aggKey = aggKey;
-        const {customHandlers, enhancedElement, ws} = self;
+        const {customHandlers, ws} = self;
         // if(scopedCustomHandlers !== undefined){
         //     const possibleHandlers = scopedCustomHandlers.get(aggKey);
         //     if(possibleHandlers !== undefined){
@@ -84,6 +90,7 @@ export class ASMRHandler extends EventTarget{
         this.#localSharingObject = localSharingObject;
         this.#propToAO = propToAO;
         this.#punt = punt;
+        this.#jsExpr = JSExpr;
         const ac = this.#ac =  new AbortController;
         const aos = Object.values(propToAO);
         for(const ao of aos){
@@ -117,7 +124,9 @@ export class ASMRHandler extends EventTarget{
             if(self === undefined) return;
             self.channelEvent(new SelfEvent(self, args, obj, self.enhancedElement));
             //console.log({obj, args, self: });
-
+        } else if(this.#jsExpr){
+            console.log(this.#jsExpr);
+        
         }else{
             const inputEvent = new InputEvent(args, obj, this);
             const handlerObj = this.#handlerObj;

@@ -460,7 +460,7 @@ This is utilizing the [be-eventing](https://github.com/bahrus/be-eventing) fello
 <div>
     <input id=searchString type=search>
 
-    <div 🔭='#searchString with js```
+    <div 🔭='#searchString then js```
         textContent = searchString + " world"
     ```'></div>
 </div>

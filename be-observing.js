@@ -125,7 +125,7 @@ class BeObserving extends BE {
              * @type {{[key: string]: AbsorbingObject}}
              */
             const propToAO = {};
-            const {remoteSpecifiers, localPropToSet, aggKey, punt} = statement;
+            const {remoteSpecifiers, localPropToSet, aggKey, punt, JSExpr} = statement;
             for(const remoteSpecifier of remoteSpecifiers){
                 const remoteEl = await find(enhancedElement, remoteSpecifier);
                 if(!(remoteEl instanceof Element)) throw 404;
@@ -149,7 +149,7 @@ class BeObserving extends BE {
             }
             const so = await ASMR.getSO(enhancedElement, {valueProp: localPropToSet});
             //TODO: store asmrh for cleanup purposes
-            const asmrh = new ASMRHandler(self, aggKey, so, propToAO, punt);
+            const asmrh = new ASMRHandler(self, aggKey, so, propToAO, punt, JSExpr);
         }
         return /** @type {PAP} */({
         });
