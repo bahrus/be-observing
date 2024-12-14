@@ -13,7 +13,7 @@ const dependencies = String.raw `^${dependencyPart}`;
 
 const dependenciesAndSetPropToAgg = String.raw `${dependencies} and set (?<localPropToSet>.*) to (?<aggKey>.*)`;
 
-const dependenciesAndPunt = String.raw `${dependencies} and punt`;
+const dependenciesAndPunt = String.raw `${dependencies} then punt`;
 
 const dependenciesThenJS = String.raw `${dependencies} then js\`\`\`(?<JSExpr>.*)\`\`\``;
 

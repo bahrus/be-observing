@@ -445,7 +445,7 @@ By CSP "safe", I mean these solutions should still work if you are patient enoug
 <div>
     <input id=searchString type=search>
 
-    <div defer-🔭 🔭='#searchString and punt.'></div>
+    <div defer-🔭 🔭='#searchString then punt.'></div>
     <script nomodule 🏇=🔭>textContent = e.args[0] + ' World';<script>
 </div>
 ```
