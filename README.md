@@ -435,18 +435,39 @@ So far we've seen 1-1 correspondences and many to 1.  The question is -- Is many
 
 We can write custom JS expressions, and integrate it with our observing statements.
 
-## Locally defined [TODO]
+## Locally defined, inside script element [TODO]
 
 ```html
 <div>
     <input id=searchString type=search>
 
     <div defer-🔭 🔭='#searchString and punt.'></div>
-    <script nomodule 🏇-on=🔭>
-        e.target.textContent = e.args[0] + ' World';
-    <script>
+    <script nomodule 🏇=🔭>textContent = e.args[0] + ' World';<script>
 </div>
 ```
+
+The advantage of this approach compared to the example below:
+
+1.  You get syntax highlighting inside the expression without a plugin.
+2.  Is more "honest" about possible side effects, easier to filter out with trusted types (maybe).
+3.  Can freely use ', "", and ` without breaking anything.
+
+## CSP "safe", inline expression [TODO]
+
+```html
+<div>
+    <input id=searchString type=search>
+
+    <div 🔭='#searchString with js```
+        textContent = searchString + " world"
+    ```'></div>
+</div>
+```
+
+Advantages of this approach:
+
+1.  Locality of behavior, cut/copy/paste easier
+2.  No need for the defer, even in a site that doesn't use bundling.
 
 
 *be-observing* fires an event from the adorned element whose name matches the current name of the enhancement attribute base ('🔭' in this case).  Anyone can subscribe and have a say on what happens then.  The markup below relies on a separate enhancement, [be-eventing](https://github.com/bahrus/be-eventing).  Other ways of attaching the event handler will also work (subject to delicate timing issues), such as from a framework or custom element host.
