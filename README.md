@@ -404,20 +404,6 @@ Can also use addition (+), multiplication (*), division (/) [Untested].
 
 ## Being boolish [TODO]
 
-To use truthy checks:
-
-Option 1:
-
-```html
-<input name=search>
-
-<div 
-    🔭="@search and be Searching\.\.\. if truthy and otherwise be How can I help you today?." 
->
-</div>
-```
-
-Option 2
 
 ```html
 <input name=search>
@@ -428,7 +414,7 @@ Option 2
 }```'></div>
 ```
 
-We need to make the split of sentences ignore triple ticks
+We need to make the split of sentences ignore triple ticks [TODO]
 
 
 # For the power hungry JS-firsters
