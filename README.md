@@ -379,11 +379,11 @@ If only there's only one remote specifier, then that gives us negation.
 ```html
 <input type=checkbox name=isHappy>
 
-<div 🔭='@isHappy then ON```{
+<div 🔭='@isHappy then ON{
     "true": "be joyous",
     "false": "be melanchology",
     ":": "¯\_(ツ)_/¯"
-}```'></div>
+}'></div>
 ```
 
 ON stands for (JS)Object Notation (and "on", kind of).
@@ -408,10 +408,10 @@ Can also use addition (+), multiplication (*), division (/) [Untested].
 ```html
 <input name=search>
 
-<div 🔭='@isHappy then ON```{
+<div 🔭='@isHappy then ON{
     "?": "Searching...",
     ":": "How can I help you today?"
-}```'></div>
+}'></div>
 ```
 
 We need to make the split of sentences ignore triple ticks [TODO]
@@ -451,9 +451,9 @@ This is utilizing the [be-eventing](https://github.com/bahrus/be-eventing) fello
 <div>
     <input id=searchString type=search>
 
-    <div 🔭='#searchString then js```
+    <div 🔭='#searchString then JS{
         textContent = e?.f?.searchString + " world"
-    ```'></div>
+    }'></div>
 </div>
 ```
 
