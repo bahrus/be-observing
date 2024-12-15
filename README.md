@@ -388,12 +388,12 @@ The statement above uses toString on @isHappy if not null.  If it is null or doe
 
 *-be is kind of like the map function of JS.  If *-of is observing more than one 
 
-Option 2
+Option 2 JSON map
 
 ```html
 <input type=checkbox name=isHappy>
 
-<div 🔭='@isHappy then JSONMap```{
+<div 🔭='@isHappy then JSON```{
     "true": "be joyous",
     "false": "be melanchology",
     ":": "¯\_(ツ)_/¯"
@@ -434,7 +434,7 @@ Option 2
 ```html
 <input type=checkbox name=isHappy>
 
-<div 🔭='@isHappy then JSONMap```{
+<div 🔭='@isHappy then JSON```{
     "?": "be joyous",
     ":": "¯\_(ツ)_/¯"
 }```'></div>
