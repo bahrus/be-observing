@@ -260,14 +260,6 @@ The enh- prefix is there to avoid possible conflicts with attributes recognized 
 > [!NOTE]
 > This potentially could allow for a xss attack.  For that reason, *be-observing* blocks setting innerHTML/outerHTML.
 
-<!-- ```html
-<input name=someCheckbox type=checkbox>
-
-<my-peer-element enh-🔭='
-    and set someBoolProp from @someCheckbox.
-    '></my-peer-element>
-
-``` -->
 
 ## Multiple parallel observers
 
@@ -365,6 +357,22 @@ They are:
 
 <mood-stone 
     enh-🔭='@name and @food and set myObjectProp to {}.'>
+
+6.  Or Not
+
+```html
+<mood-stone enh-🔭='@someCheckbox and @someOtherCheckbox and set isHappy to ||!.'>
+```
+
+This is basically !someCheckbox || !someOtherCheckbox
+
+If only there's only one remote specifier, then that gives us negation.
+
+7.  And Not
+
+```html
+<mood-stone enh-🔭='@someCheckbox and @someOtherCheckbox and set isHappy to &&!.'>
+```
 
 ## Observing a single remote endpoint and applying a simple mapping to the value [TODO]
 
