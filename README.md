@@ -9,17 +9,17 @@ Observe properties of peer elements or the host, mostly declaratively.
 <img src="http://img.badgesize.io/https://cdn.jsdelivr.net/npm/be-observing?compression=gzip">
 [![Playwright Tests](https://github.com/bahrus/be-observing/actions/workflows/CI.yml/badge.svg?branch=baseline)](https://github.com/bahrus/be-observing/actions/workflows/CI.yml)
 
-# Alternatives
-
-> [!Note]
-> An extra thin layer can be applied on top of be-observing, so that the original HTML that is streamed from the server can provide the initial values of the properties that *be-observing* observes, and then once that initial handshake is established, lean exclusively on *be-observing* for all subsequent updates.  This is handled by [be-entrusting](https://github.com/bahrus/be-entrusting).
+# Alternative
 
 > [!Note]
 > *be-observing* is very close to [be-calculating](https://github.com/bahrus/be-calculating) as far as feature set.  The two share many common modules.  The significant differences are: 
-> 1.  *be-calculating* only accepts one "statement" of observables, and hands everything over to JavaScript at that point.  
-> 2.  A single *be-observing* enhancement, in contrast, is much more declarative.  It can work with multiple statements / grouped dependencies and provides more avenues to avoid requiring a scripting expression to go along with it, resorting to script expressions as a last resort.
-> ~3.  *be-calculating* is a little more vocal, emitting public events from the adorned element, which frameworks or local script handlers can subscribe to and engage with.  *be-observing* is more "introverted".~  
- 
+> 1.  *be-calculating* only accepts one "statement" of observables, and hands everything over, "cleanly" to JavaScript at that point.  
+> 2.  A single *be-observing* enhancement, in contrast, is much more declarative.  It can work with multiple statements / grouped dependencies and provides more avenues to avoid requiring a scripting expression to go along with it, resorting to script expressions as a last resort, and a little less elegantly.
+
+# Enhancements
+
+> [!Note]
+> An enhancement that inherits from *be-observing* called [be-entrusting](https://github.com/bahrus/be-entrusting) addsn extra thin layer on top.  It allows the original HTML that is streamed from the server to provide the initial values of the properties that *be-observing* observes, and then once that initial handshake is established, passes the buck, and leans exclusively on *be-observing* for all subsequent updates in the opposite direction.  Kind of like two-way binding, where the direction in the "up" direction only happens once, during the initialization.
 
 > [!Note]
 > If you need full two-way binding, consider using [be-bound](https://github.com/bahrus/be-bound).
