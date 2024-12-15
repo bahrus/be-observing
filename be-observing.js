@@ -51,11 +51,6 @@ class BeObserving extends BE {
 
     warn = console.warn;
 
-    // async attach(el, enhancementInfo){
-    //     this.enhancementInfo = enhancementInfo;
-    //     await super.attach(el, enhancementInfo);
-    // }
-
     /**
      * 
      * @param {BAP} self 
