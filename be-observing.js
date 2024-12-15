@@ -25,6 +25,7 @@ class BeObserving extends BE {
             parsedStatements: {},
             customHandlers: {},
             ws: {},
+            enhKey: {},
         },
         actions: {
             noAttrs: {
@@ -50,10 +51,10 @@ class BeObserving extends BE {
 
     warn = console.warn;
 
-    async attach(el, enhancementInfo){
-        this.enhancementInfo = enhancementInfo;
-        await super.attach(el, enhancementInfo);
-    }
+    // async attach(el, enhancementInfo){
+    //     this.enhancementInfo = enhancementInfo;
+    //     await super.attach(el, enhancementInfo);
+    // }
 
     /**
      * 

@@ -187,7 +187,7 @@ export class SelfEvent extends Event{
      * @param {EventTarget} target 
      */
     constructor(self, args, f, target){
-        super(self.enhancementInfo.mountCnfg.enhPropKey);
+        super(self.enhKey);
         this.self = self;
         this.args = args;
         this.f = f;
