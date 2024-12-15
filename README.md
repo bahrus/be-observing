@@ -440,8 +440,7 @@ The advantage of this approach compared to the example below:
 
 1.  You get syntax highlighting inside the expression without a plugin.
 2.  Is more "honest" about possible side effects, easier to filter out with trusted types, server-side xss prevention (maybe).
-3.  Can freely use ', ", `, "." without breaking anything.  
-4.  With the example below, must used chained accessors for dot access.  That is not the case with the approach above.
+3.  Can freely use ', ", ` without breaking anything.  
 
 This is utilizing the [be-eventing](https://github.com/bahrus/be-eventing) fellow enhancement.
 
@@ -452,7 +451,7 @@ This is utilizing the [be-eventing](https://github.com/bahrus/be-eventing) fello
     <input id=searchString type=search>
 
     <div 🔭='#searchString then JS{
-        textContent = e?.f?.searchString + " world"
+        textContent = e.f.searchString + " world"
     }'></div>
 </div>
 ```
