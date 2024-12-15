@@ -376,29 +376,17 @@ If only there's only one remote specifier, then that gives us negation.
 
 ## Observing a single remote endpoint and applying a simple mapping to the value [TODO]
 
-Option 1:
-
 ```html
 <input type=checkbox name=isHappy>
 
-<div 🔭="@isHappy and be joyous if true and be melancholy if false and be ¯\_(ツ)_/¯ if neither."></div>
-```
-
-The statement above uses toString on @isHappy if not null.  If it is null or doesn't match any of the other tests, sets to the value o neither.
-
-*-be is kind of like the map function of JS.  If *-of is observing more than one 
-
-Option 2 JSON map
-
-```html
-<input type=checkbox name=isHappy>
-
-<div 🔭='@isHappy then JSON```{
+<div 🔭='@isHappy then ON```{
     "true": "be joyous",
     "false": "be melanchology",
     ":": "¯\_(ツ)_/¯"
 }```'></div>
 ```
+
+ON stands for (JS)Object Notation (and "on", kind of).
 
 <!--
 ## Example 1e Translation 
@@ -432,13 +420,15 @@ Option 1:
 Option 2
 
 ```html
-<input type=checkbox name=isHappy>
+<input name=search>
 
-<div 🔭='@isHappy then JSON```{
-    "?": "be joyous",
-    ":": "¯\_(ツ)_/¯"
+<div 🔭='@isHappy then ON```{
+    "?": "Searching...",
+    ":": "How can I help you today?"
 }```'></div>
 ```
+
+We need to make the split of sentences ignore triple ticks
 
 
 # For the power hungry JS-firsters
