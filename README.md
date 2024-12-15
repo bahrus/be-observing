@@ -402,13 +402,13 @@ Can also use addition (+), multiplication (*), division (/) [Untested].
 
 -->
 
-## Being boolish [TODO]
+## Being boolish
 
 
 ```html
 <input name=search>
 
-<div 🔭='@isHappy then ON{
+<div 🔭='@search then ON{
     "?": "Searching...",
     ":": "How can I help you today?"
 }'></div>
