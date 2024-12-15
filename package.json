@@ -27,7 +27,7 @@
   "types":"./ts-refs/be-observing/types.d.ts",
   "dependencies": {
     "be-enhanced": "0.0.160",
-    "be-hive": "0.0.240",
+    "be-hive": "0.0.241",
     "trans-render": "0.0.870"
   },
   "devDependencies": {
