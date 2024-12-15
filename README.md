@@ -418,6 +418,8 @@ Can also use addition (+), multiplication (*), division (/) [Untested].
 
 To use truthy checks:
 
+Option 1:
+
 ```html
 <input name=search>
 
@@ -427,6 +429,16 @@ To use truthy checks:
 </div>
 ```
 
+Option 2
+
+```html
+<input type=checkbox name=isHappy>
+
+<div 🔭='@isHappy then JSONMap```{
+    "?": "be joyous",
+    ":": "¯\_(ツ)_/¯"
+}```'></div>
+```
 
 
 # For the power hungry JS-firsters
