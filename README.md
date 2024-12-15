@@ -383,19 +383,12 @@ If only there's only one remote specifier, then that gives us negation.
 <div 🔭="@isHappy and be joyous if true and be melancholy if false and be ¯\_(ツ)_/¯ if neither."></div>
 ```
 
-The statement above uses toString on @isHappy if not null.  If it is null or doesn't match any of the other tests, sets to the else.
+The statement above uses toString on @isHappy if not null.  If it is null or doesn't match any of the other tests, sets to the value o neither.
 
 *-be is kind of like the map function of JS.  If *-of is observing more than one 
 
 
-## Example 1d  Negation [TODO]
 
-```html
-<mood-stone>
-    #shadow
-    <input type=checkbox disabled 🔭='isVegetarian and set to !.'>
-</mood-stone>
-```
 <!--
 ## Example 1e Translation 
 
@@ -416,21 +409,6 @@ To use truthy checks:
 
 ```html
 <input name=search>
-
-<div 
-    🔭="@search and be Searching\.\.\. if truthy and otherwise be How can I help you today?." 
->
-</div>
-```
-
-## Many to many [TODO]
-
-So far we've seen 1-1 correspondences and many to 1.  The question is -- Is many to many too complex to express with English?  Is this a scenario where JavaScript is a must?
-
-
-```html
-<input name=search>
-<input type=checkbox name=feelingLucky>
 
 <div 
     🔭="@search and be Searching\.\.\. if truthy and otherwise be How can I help you today?." 
@@ -484,6 +462,7 @@ Advantages of this approach:
 
 1.  Total locality of behavior, cut/copy/paste easier
 2.  No need for the defer, even in a site that doesn't use bundling.
+3.  Can have multiple statements within the attribute, each with their own side-effect.
 
 
 *be-observing* fires an event from the adorned element whose name matches the current name of the enhancement attribute base ('🔭' in this case).  Anyone can subscribe and have a say on what happens then.  The markup below relies on a separate enhancement, [be-eventing](https://github.com/bahrus/be-eventing).  Other ways of attaching the event handler will also work (subject to delicate timing issues), such as from a framework or custom element host.
