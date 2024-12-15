@@ -56,20 +56,7 @@ export class ASMRHandler extends EventTarget{
     constructor(self, aggKey, localSharingObject, propToAO, punt, JSExpr){
         super();
         this.#selfRef = new WeakRef(self);
-        //this.#aggKey = aggKey;
         const {customHandlers, ws} = self;
-        // if(scopedCustomHandlers !== undefined){
-        //     const possibleHandlers = scopedCustomHandlers.get(aggKey);
-        //     if(possibleHandlers !== undefined){
-        //         for(const possibleHandler of possibleHandlers){
-        //             const [cssQ, handlerObj] = possibleHandler;
-        //             if(enhancedElement.closest(cssQ) !== null){
-        //                 this.#handlerObj = handlerObj;
-        //                 break;
-        //             }
-        //         }
-        //     }
-        // }
         if(ws !== undefined){
             for(const w of ws){
                 const {refs} = w;

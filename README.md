@@ -158,6 +158,8 @@ This sets the span's textContent to the .toString() value of mood-stone's isHapp
 </mood-stone>
 ```
 
+## Precedence with itemprop, name, id
+
 Note that the itemprop attribute takes precedence over the name attribute, which takes precedence over the id attribute.
 
 In the example above, we are mixing inline binding (🔭) with binding from a distance ("xform").
@@ -171,9 +173,6 @@ The syntax adopts what we refer to as the DSS specification, where DSS stands fo
 This is documented in (increasingly) painstaking detail where the [DSS parser library is maintained](https://github.com/bahrus/trans-render/wiki/VIII.--Directed-Scoped-Specifiers-(DSS)).
 
 
-
-
-
 ## Binding to peer elements
 
 Now we will start to see how be-observing provides for more "grass-roots" democratic organism (web component) support.
@@ -182,7 +181,7 @@ Now we will start to see how be-observing provides for more "grass-roots" democr
 
 ```html
 <input name=search type=search>
-
+...
 <div 🔭=@search></div>
 ```
 
@@ -196,13 +195,13 @@ This also works:
 
 ```html
 <input id=searchString type=search>
-
+...
 <div 🔭=#searchString></div>
 ```
 
-The search for element with id=searchString is done within the (shadow)root node, since id's are supposed to be unique with a (shadow)root node.
+The search for element with id=searchString is done within the (shadow)root node, since id's are supposed to be unique within a (shadow)root node.
 
-## By markers
+## By markers with kebob-to-camelCase convention
 
 ```html
 <mood-stone>
@@ -259,7 +258,7 @@ This watches the input element for input events and passes the checked property 
 The enh- prefix is there to avoid possible conflicts with attributes recognized by my-peer-element, in the absence of any [tender loving care from the platform](https://github.com/WICG/webcomponents/issues/1000).
 
 > [!NOTE]
-> This potentially could allow for a xss attack.  For that reason, *be-observing* blocks setting innerHTML to an arbitrary string [TODO].
+> This potentially could allow for a xss attack.  For that reason, *be-observing* blocks setting innerHTML/outerHTML.
 
 <!-- ```html
 <input name=someCheckbox type=checkbox>

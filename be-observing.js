@@ -115,8 +115,6 @@ class BeObserving extends BE {
         const {customHandlers} = self;
         for(const statement of parsedStatements){
 
-
-
             /**
              * @type {{[key: string]: AbsorbingObject}}
              */
@@ -143,7 +141,9 @@ class BeObserving extends BE {
                 });
                 propToAO[prop] = ao;
             }
-            const so = await ASMR.getSO(enhancedElement, {valueProp: localPropToSet});
+            const so = await ASMR.getSO(enhancedElement, {
+                valueProp: localPropToSet
+            });
             //TODO: store asmrh for cleanup purposes
             const asmrh = new ASMRHandler(self, aggKey, so, propToAO, punt, JSExpr);
         }
