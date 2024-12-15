@@ -17,7 +17,7 @@ const dependenciesAndPunt = String.raw `${dependencies} then punt`;
 
 const dependenciesThenJS = String.raw `${dependencies} then JS\{(?<JSExpr>.*)\}`;
 
-const dependenciesThenOn = String.raw `${dependencies} then ON\{(?<JSONExpr>.*)\}`;
+const dependenciesThenOn = String.raw `${dependencies} then ON\{(?<ONExpr>.*)\}`;
 
 const dependenciesThenOnAndSetProp = String.raw `${dependenciesThenOn} and set (?<localPropToSet>.*)`;
 
@@ -44,12 +44,16 @@ export const emc = {
                 parsedStatements: [
                     {
                         regExp: dependenciesThenOnAndSetProp,
-                        defaultVals:{},
+                        defaultVals:{
+                            aggKey: '&&'
+                        },
                         dssArrayKeys
                     },
                     {
                         regExp: dependenciesThenOn,
-                        defaultVals:{},
+                        defaultVals:{
+                            aggKey: '&&'
+                        },
                         dssArrayKeys
                     },                     
                     {

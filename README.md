@@ -374,7 +374,7 @@ If only there's only one remote specifier, then that gives us negation.
 <mood-stone enh-🔭='@someCheckbox and @someOtherCheckbox and set isHappy to &&!.'>
 ```
 
-## Observing a single remote endpoint and applying a simple mapping to the value [TODO]
+## Observing a single remote endpoint and applying a simple mapping to the final value
 
 ```html
 <input type=checkbox name=isHappy>
@@ -382,7 +382,7 @@ If only there's only one remote specifier, then that gives us negation.
 <div 🔭='@isHappy then ON{
     "true": "be joyous",
     "false": "be melanchology",
-    ":": "¯\_(ツ)_/¯"
+    ":": "¯\\_(ツ)_/¯"
 }'></div>
 ```
 

@@ -46,14 +46,20 @@ export class ASMRHandler extends EventTarget{
     #jsExpr;
 
     /**
+     * @type {string}
+     */
+    #onExpr;
+
+    /**
      * @param {import('./ts-refs/be-observing/types').BAP} self
      * @param {aggKeys} aggKey 
      * @param {SharingObject} localSharingObject 
      * @param {{[key: string] : AbsorbingObject}} propToAO
      * @param {boolean} punt 
      * @param {string} JSExpr
+     * @param {string} ONExpr
      */
-    constructor(self, aggKey, localSharingObject, propToAO, punt, JSExpr){
+    constructor(self, aggKey, localSharingObject, propToAO, punt, JSExpr, ONExpr){
         super();
         this.#selfRef = new WeakRef(self);
         const {customHandlers, ws} = self;
@@ -78,6 +84,7 @@ export class ASMRHandler extends EventTarget{
         this.#propToAO = propToAO;
         this.#punt = punt;
         this.#jsExpr = JSExpr;
+        this.#onExpr = ONExpr;
         const ac = this.#ac =  new AbortController;
         const aos = Object.values(propToAO);
         for(const ao of aos){
@@ -102,7 +109,25 @@ export class ASMRHandler extends EventTarget{
         const propToAO = this.#propToAO;
         for(const prop in propToAO){
             const ao = propToAO[prop];
-            const val = await ao.getValue();
+            let val = await ao.getValue();
+            if(this.#onExpr !== undefined){
+                //TODO:  optimize
+                const map = JSON.parse(`{${this.#onExpr}}`);
+                switch(val){
+                    case true:
+                        val = map['true'] || map['?'];
+                        break;
+                    case false:
+                        val = map['false'] || map[':'];
+                        break;
+                    default:
+                        if(val){
+                            val = map['?'];
+                        }else{
+                            val = map[':'];
+                        }
+                }
+            }
             args.push(val)
             obj[prop] = val;
         }

@@ -3,17 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>With Slash</title>
-    <script type=importmap>
-        {
-            "imports": {
-                "be-enhanced/": "/node_modules/be-enhanced/",
-                "be-hive/": "/node_modules/be-hive/",
-                "mount-observer/": "/node_modules/mount-observer/",
-                "trans-render/": "/trans-render/"
-            }
-        }
-    </script>
+    <title>Mapping > by name > boolean checkbox</title>
+    <!-- #include virtual="/imports.html" -->
     <script type=module>
         import '/🔭.js';
     </script>
@@ -21,6 +12,10 @@
 <body>
     <input type=checkbox name=isHappy>
 
-    <div 🔭='of @isHappy and be joyous if true be melancholy if false be ¯\_(ツ)_/¯ if neither.'></div>
+    <div 🔭='@isHappy then ON{
+        "true": "be joyous",
+        "false": "be melancholy",
+        ":": "¯\\_(ツ)_/¯"
+    }'></div>
 </body>
 </html>
