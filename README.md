@@ -414,6 +414,19 @@ Can also use addition (+), multiplication (*), division (/) [Untested].
 }'></div>
 ```
 
+## Being boolish plus special values
+
+
+```html
+<input name=search>
+
+<div 🔭='@search then ON{
+    "?": "Searching...",
+    ":": "How can I help you today?",
+    "hi": "Hello"
+}'></div>
+```
+
 We need to make the split of sentences ignore triple ticks [TODO]
 
 

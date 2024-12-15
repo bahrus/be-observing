@@ -121,11 +121,15 @@ export class ASMRHandler extends EventTarget{
                         val = map['false'] || map[':'];
                         break;
                     default:
-                        if(val){
-                            val = map['?'];
-                        }else{
-                            val = map[':'];
+                        if(map[val]) val = map[val];
+                        else{
+                            if(val){
+                                val = map['?'];
+                            }else{
+                                val = map[':'];
+                            }
                         }
+
                 }
             }
             args.push(val)
