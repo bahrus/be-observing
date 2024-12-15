@@ -376,6 +376,7 @@ If only there's only one remote specifier, then that gives us negation.
 
 ## Observing a single remote endpoint and applying a simple mapping to the value [TODO]
 
+Option 1:
 
 ```html
 <input type=checkbox name=isHappy>
@@ -387,7 +388,17 @@ The statement above uses toString on @isHappy if not null.  If it is null or doe
 
 *-be is kind of like the map function of JS.  If *-of is observing more than one 
 
+Option 2
 
+```html
+<input type=checkbox name=isHappy>
+
+<div 🔭='@isHappy then JSONMap```{
+    "true": "be joyous",
+    "false": "be melanchology",
+    ":": "¯\_(ツ)_/¯"
+}```'></div>
+```
 
 <!--
 ## Example 1e Translation 
