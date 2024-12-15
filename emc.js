@@ -17,6 +17,12 @@ const dependenciesAndPunt = String.raw `${dependencies} then punt`;
 
 const dependenciesThenJS = String.raw `${dependencies} then JS\{(?<JSExpr>.*)\}`;
 
+const dependenciesThenOn = String.raw `${dependencies} then ON\{(?<JSONExpr>.*)\}`;
+
+const dependenciesThenOnAndSetProp = String.raw `${dependenciesThenOn} and set (?<localPropToSet>.*)`;
+
+
+
 const dependenciesAndSetProp = String.raw `${dependencies} and set (?<localPropToSet>.*)`;
 
 const toAggregator = String.raw `${dependencies} and set to (?<aggKey>.*)`;
@@ -36,6 +42,16 @@ export const emc = {
             objValMapsTo: '.',
             regExpExts: {
                 parsedStatements: [
+                    {
+                        regExp: dependenciesThenOnAndSetProp,
+                        defaultVals:{},
+                        dssArrayKeys
+                    },
+                    {
+                        regExp: dependenciesThenOn,
+                        defaultVals:{},
+                        dssArrayKeys
+                    },                     
                     {
                         regExp: dependenciesThenJS,
                         defaultVals:{},
