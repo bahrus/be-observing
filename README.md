@@ -32,6 +32,7 @@ The example below follows the traditional "pass props down" from the host approa
 ```html
 <mood-stone>
     #shadow
+    ...
     <input 
         name=isHappy 
         disabled 
@@ -46,7 +47,6 @@ be-observing is making a few inferences:
 
 1.  The name of the input element ("isHappy") will match with the name of the host property from which we would want to bind it.  Why adopt confusing mappings if we can possibly avoid it? 
 2.  Since the type of input element is of type checkbox, it sets the local "checked" property to match the "isHappy" property from the host. 
-
 
 
 > [!Note]
