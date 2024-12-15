@@ -67,6 +67,7 @@ If this assumption doesn't hold in some cases, then we can specify the name of t
 ```html
 <mood-stone>
     #shadow
+    ...
     <input 
         type=checkbox 
         disabled 
@@ -84,6 +85,7 @@ The slash ("/") symbol indicates to get the value from the host.  If omitted, it
 ```html
 <mood-stone>
     #shadow
+    ...
     <input 
         type=checkbox 
         disabled 

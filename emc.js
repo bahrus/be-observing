@@ -84,7 +84,8 @@ export const emc = {
         return BeObserving;
     },
     ws:[],
-    mapWSTo: 'ws'
+    mapWSTo: 'ws',
+    mapEnhKeyTo: 'enhKey'
 }
 
 const mose = seed(emc);
