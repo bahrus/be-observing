@@ -1,6 +1,6 @@
 {
   "name": "be-observing",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "keywords": [
     "web-components",
     "web-component",
@@ -24,7 +24,7 @@
     "safari": "npx playwright wk http://localhost:8000",
     "update": "ncu -u && npm install"
   },
-  "types":"./ts-refs/be-observing/types.d.ts",
+  "types": "./ts-refs/be-observing/types.d.ts",
   "dependencies": {
     "be-enhanced": "0.0.161",
     "be-hive": "0.0.241",
