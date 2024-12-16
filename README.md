@@ -374,6 +374,14 @@ If only there's only one remote specifier, then that gives us negation.
 <mood-stone enh-🔭='@someCheckbox and @someOtherCheckbox and set isHappy to &&!.'>
 ```
 
+These aggregators actually allow or doing a little math in the expressions.  For instance:
+
+```html
+<input name=age type=number value=90>
+
+<div data-diff=-20 🔭='@age and $0?.dataset?.diff as number and set to +'></div>
+```
+
 ## Observing a single remote endpoint and applying a simple mapping to the final value
 
 ```html
