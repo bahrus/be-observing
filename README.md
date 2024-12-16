@@ -374,7 +374,7 @@ If only there's only one remote specifier, then that gives us negation.
 <mood-stone enh-🔭='@someCheckbox and @someOtherCheckbox and set isHappy to &&!.'>
 ```
 
-These aggregators actually allow or doing a little math in the expressions.  For instance:
+These aggregators actually allow for doing a little math in the expressions.  For instance:
 
 ```html
 <input name=age type=number value=90>
