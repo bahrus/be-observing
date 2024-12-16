@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Inference => Host to Itemprop => span</title>
+    <!-- #include virtual="/imports.html" -->
+    <script type=module>
+        import 'xtal-element/index.js';
+        import '/🔭.js';
+    </script>
+</head>
+<body>
+    <mood-stone>
+        <template shadowrootmode=open>
+            <div itemscope>
+                <span id=test itemprop=isHappy 🔭></span>
+            </div>
+
+            <xtal-element
+                prop-defaults='{
+                    "isHappy": true
+                }'
+
+            ></xtal-element>
+            <be-hive></be-hive>
+        </template>
+    </mood-stone>
+    <div id=target></div>
+    <script>
+        function runTest(){
+            if(document.querySelector('mood-stone').shadowRoot.querySelector('#test').textContent === 'true'){
+                target.setAttribute('mark', 'good');
+            }
+        }
+        setTimeout(() => {
+            runTest();
+        }, 1500);
+    </script>
+</body>
+</html>
