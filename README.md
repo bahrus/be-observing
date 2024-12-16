@@ -339,7 +339,7 @@ They are:
 <mood-stone enh-🔭='@someCheckbox and @someOtherCheckbox and set isHappy to ||.'>
 ```
 
-2.  Sum [Untested]
+2.  Sum
 
 ```html
 <mood-stone enh-🔭='@someNumericInput and @someOtherNumericInput and set mySum to +.'>
