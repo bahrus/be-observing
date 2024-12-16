@@ -643,20 +643,12 @@ This will one-way synchronize *my-peer-element*'s myProp value to the adorned el
 <!-->
 
 
-## Example 5 Mapping [TODO]
-
-## Example 6
-
-<-->
 
 
-
-> [!Note]
-> *be-observing* provides similar functionality to [be-bound](https://github.com/bahrus/be-bound).  The difference is *be-bound* provides *two-way binding* between the adorned element and an upstream element, whereas be-observing is strictly one-way.  Because it is one way, be-observing can apply some declarative adjustments to the value it is observing before applying to the adorned element.
 
 ## Viewing Demos Locally
 
-Any web server that can serve static files will do, but...
+Any web server that can serve static files with server side includes will do, but...
 
 1.  Install git.
 2.  Fork/clone this repo.
