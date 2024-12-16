@@ -396,20 +396,6 @@ These aggregators actually allow for doing a little math in the expressions.  Fo
 
 ON stands for (JS)Object Notation (and "on", kind of).
 
-<!--
-## Example 1e Translation 
-
-```html
-<mood-stone>
-    #shadow
-    <input type=readonly be-observing-of='age - 20.'>
-</mood-stone>
-```
-
-Can also use addition (+), multiplication (*), division (/) [Untested].
-
--->
-
 ## Being boolish
 
 
