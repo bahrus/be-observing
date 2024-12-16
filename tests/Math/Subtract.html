@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer element > by name > search</title>
+    <!-- #include virtual="/imports.html" -->
+
+    <script type=module>
+        import '/🔭.js';
+    </script>
+</head>
+<body>
+    <input name=age type=number value=90>
+
+    <div id=test data-diff=-20 🔭='@age and $0?.dataset?.diff as number and set to +'></div>
+    <div id=target></div>
+    <script>
+        function runTest(){
+            if(test.textContent === '70'){
+                target.setAttribute('mark', 'good');
+            }
+        }
+        setTimeout(() => {
+            runTest();
+        }, 1000);
+    </script>
+
+</body>
+</html>
