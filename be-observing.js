@@ -133,11 +133,11 @@ class BeObserving extends BE {
                         remoteProp = prop;
                         break;
                 }
-
+                const {self, path} = remoteSpecifier;
                 const ao = await ASMR.getAO(remoteEl, {
                     evt: remoteSpecifier.evt || 'input',
-                    selfIsVal: remoteSpecifier.path === '$0',
-                    propToAbsorb: remoteProp,
+                    selfIsVal: self && path === undefined,
+                    propToAbsorb: path || remoteProp,
                 });
                 propToAO[prop] = ao;
             }
