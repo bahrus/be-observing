@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Inference => Host to ID => input</title>
+    <!-- #include virtual="/imports.html" -->
+    <script type=module>
+        import 'xtal-element/index.js';
+        import '/emc.js';
+    </script>
+</head>
+<body>
+    <mood-stone>
+        <template shadowrootmode=open>
+            <div itemscope>
+                <span itemprop=isHappy></span>
+            </div>
+            <input 
+                id=isHappy 
+                disabled 
+                type=checkbox  
+                be-observing
+            >
+            <xtal-element
+                prop-defaults='{
+                    "isHappy": true
+                }'
+                xform='{
+                    "| isHappy": 0
+                }'
+            ></xtal-element>
+            <be-hive></be-hive>
+        </template>
+    </mood-stone>
+    <div id=target></div>
+    <script>
+        function runTest(){
+            if(document.querySelector('mood-stone').shadowRoot.querySelector('#isHappy').checked){
+                target.setAttribute('mark', 'good');
+            }
+        }
+        setTimeout(() => {
+            runTest();
+        }, 1000);
+    </script>
+</body>
+</html>
