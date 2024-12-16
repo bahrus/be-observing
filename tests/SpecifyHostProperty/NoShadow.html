@@ -3,20 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peer Element Binding > By Itemprop > Search</title>
+    <title>With Slash</title>
     <!-- #include virtual="/imports.html" -->
     <script type=module>
+        import 'xtal-element/index.js';
         import '/🔭.js';
     </script>
 </head>
-<body itemscope>
-    <data value=true itemprop=isHappy hidden></data>
-    
-    <input id=test
-        type=checkbox 
-        disabled
-        🔭='|isHappy.'
-    >
+<body>
+    <mood-stone itemscope>
+        <div>
+            <span itemprop=isHappy></span>
+        </div>
+        <input id=test
+            disabled 
+            type=checkbox  
+            🔭='isHappy.'
+        >
+        <xtal-element
+            prop-defaults='{
+                "isHappy": true
+            }'
+            xform='{
+                "| isHappy": 0
+            }'
+        ></xtal-element>
+    </mood-stone>
     <div id=target></div>
     <script>
         function runTest(){
