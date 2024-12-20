@@ -201,7 +201,7 @@ This also works:
 
 The search for element with id=searchString is done within the (shadow)root node, since id's are supposed to be unique within a (shadow)root node.
 
-## By markers with kebob-to-camelCase convention
+## By markers with kebab-to-camelCase convention
 
 ```html
 <mood-stone>
