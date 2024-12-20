@@ -12,7 +12,7 @@
   ],
   "description": "Glue DOM and custom elements together mostly declaratively.",
   "main": "be-observing.js",
-  "module": "be-observint.js",
+  "module": "be-observing.js",
   "exports": {
     ".": "./be-observing.js",
     "./be-observing.js": "./be-observing.js",
