@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <button onclick="alert('iah')">hello</button>
+    <my-component>
+        <div itemprop=likes></div>
+        <button be-modding="click: {likes: h.likes + 1}">Like</button> 
+        <button be-modding="click: {likes: h.likes - 1}">Dislike</button>
+        <button be-modding="click: {likes: 0}">Reset</button>
+        <xtal-element infer-props></xtal-element>
+    </my-component>
 </body>
 </html>
