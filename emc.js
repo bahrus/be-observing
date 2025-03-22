@@ -3,6 +3,7 @@ import { BeHive, seed, MountObserver } from 'be-hive/be-hive.js';
 import {Registry} from 'be-hive/Registry.js';
 import {aggs} from 'be-hive/aggEvt.js';
 import { w as bw } from 'be-hive/w.js';
+
 /** @import {EMC, EventListenerOrFn} from './ts-refs/trans-render/be/types' */
 /** @import {Actions, PAP,  AP} from './ts-refs/be-observing/types' */;
 /** @import {CSSQuery} from './ts-refs/trans-render/types.js' */
@@ -31,6 +32,7 @@ const toAggregator = String.raw `${dependencies} and set to (?<aggKey>.*)`;
  * @type {Array<[string, string]>}
  */
 const dssArrayKeys = [['dependencyPart', 'remoteSpecifiers']];
+
 /**
  * @type {Partial<EMC<any, AP>>}
  */
