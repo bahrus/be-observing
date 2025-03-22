@@ -394,7 +394,7 @@ These aggregators actually allow for doing a little math in the expressions.  Fo
 }'></div>
 ```
 
-ON stands for (JS)Object Notation (and "on", kind of).
+ON stands for (JS)Object Notation (and "on", kind of).  The stuff inside must be parsable via JSON.parse.
 
 ## Being boolish
 
