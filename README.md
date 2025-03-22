@@ -19,10 +19,10 @@ Observes properties of peer elements or the host, mostly declaratively.  Bind fr
 # Enhancements
 
 > [!Note]
-> An enhancement that inherits from *be-observing* called [be-entrusting](https://github.com/bahrus/be-entrusting) addsn extra thin layer on top.  It allows the original HTML that is streamed from the server to provide the initial values of the properties that *be-observing* observes, and then once that initial handshake is established, passes the buck, and leans exclusively on *be-observing* for all subsequent updates in the opposite direction.  Kind of like two-way binding, where the direction in the "up" direction only happens once, during the initialization.
+> An enhancement that inherits from *be-observing* called [be-entrusting](https://github.com/bahrus/be-entrusting) adds an extra thin layer on top.  It allows the original HTML that is streamed from the server to provide the initial values of the properties that *be-observing* observes, and then once that initial handshake is established, passes the buck, and leans exclusively on *be-observing* for all subsequent updates in the opposite direction.  Kind of like two-way binding, where the direction in the "up" direction only happens once, during the initialization.
 
 > [!Note]
-> If you need full two-way binding, consider using [be-bound](https://github.com/bahrus/be-bound).
+> If you need full, permanent two-way binding, consider using [be-bound](https://github.com/bahrus/be-bound).
 
 
 ## The most quintessential example
@@ -96,7 +96,7 @@ The slash ("/") symbol indicates to get the value from the host.  If omitted, it
 
 ## Hosts that do not use shadow DOM.
 
-If Shadow DOM is not used, add the "itemscope" attribute so that *be-observing* knows what to look for:
+If Shadow DOM is not used, add the "itemscope" attribute so that *be-observing* knows how  to locate the host:
 
 ```html
 <mood-stone itemscope>
