@@ -1,6 +1,6 @@
 # be-observing 🔭 [WIP]
 
-Observe properties of peer elements or the host, mostly declaratively.
+Observes properties of peer elements or the host, mostly declaratively.  Bind from the observed peer element to a local property, both progressively as well as during template instantiation.  *be-observing* is a member of the [be-enhanced](https://github.com/bahrus/be-enhaned) family of [behiviors](https://github.com/bahrus/be-hive) that enables both kinds of functionality with one code base.
 
 *be-observing* takes less of a "top-down" approach to binding than traditional frameworks.  It places less emphasis (but certainly not none) on binding exclusively from the (custom element) component container host.  Yes, it can do that, but it can also provide for "Democratic Web Component Organisms" where the host container acts as a very thin "Skin Layer" which can be passed a small number of "stimuli" values into.  Inside the body of the web component, we might have a non visible "brain" component that dispatches events.  *be-observing* allows other peer elements within the "body" to receive messages that the brain component emits, without forcing the outer "skin" layer to have to micromanage this all.
 
