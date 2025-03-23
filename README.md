@@ -570,7 +570,7 @@ The mechanics of 1 is already handled via the underlying infrastructure that sup
 All of which is to say the example above works thanks to code reuse from the supporting packages.
 
 
-## Toggle [TODO]
+## Toggle
 
 To simply toggle a property anytime the observed element changes:
 
@@ -578,7 +578,7 @@ To simply toggle a property anytime the observed element changes:
 <mood-stone>
     #shadow
     
-    <input name=someCheckbox type=checkbox>
+    <input name=search type=search>
 
     <my-peer-element enh-🔭='@someCheckbox::input and toggle someBoolProp.
         '></my-peer-element>
@@ -587,9 +587,15 @@ To simply toggle a property anytime the observed element changes:
 
 ## PlusEq, MinusEq, TimeEq, DivEq [TODO]
 
-## Increment, Decrement [TODO]
+## Increment, Decrement 
 
+```html
+<input name=search type=search>
 
+<input type=number 🔭='@search and increment value.'>
+
+<input type=number 🔭='@search and decrement value.'>
+```
 
 ## Interpolating [TODO]
 

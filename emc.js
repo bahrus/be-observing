@@ -24,7 +24,7 @@ const dependenciesThenOnAndSetProp = String.raw `${dependenciesThenOn} and set (
 
 
 
-const dependenciesAndSetProp = String.raw `${dependencies} and set (?<localPropToSet>.*)`;
+const dependenciesAndSetProp = String.raw `${dependencies} and (?<action>(set|toggle|increment|decrement)) (?<localPropToSet>.*)`;
 
 const toAggregator = String.raw `${dependencies} and set to (?<aggKey>.*)`;
 
