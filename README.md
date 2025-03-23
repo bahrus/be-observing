@@ -623,7 +623,7 @@ To simply toggle a property anytime the observed element changes:
     <input name=myCheckbox type=checkbox>
 
     <my-peer-element enh-🔭='
-        @yourCheckbox and set-class my-class.
+        @yourCheckbox and set-class my-class:my-other-class.
         And @myCheckbox and set-class my-second-class.
         '></my-peer-element>
 </mood-stone>
