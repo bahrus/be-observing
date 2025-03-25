@@ -652,9 +652,7 @@ To simply toggle a property anytime the observed element changes:
 </mood-stone>
 ```
 
-Since we are binding to booleans, adds class if true, otherwise removes.
 
-If we bind to a string, simply sets the class to the value of the string.
 
 Same with SetPart, SetStyle
 
