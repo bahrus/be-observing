@@ -627,6 +627,16 @@ To simply toggle a property anytime the observed element changes:
         And @myCheckbox and set-class my-second-class.
         '></my-peer-element>
 </mood-stone>
+
+<mood-stone>
+    #shadow
+    
+    <input name=myTextInput>
+
+    <my-peer-element enh-🔭='
+        @myTextInput and copy-to-class.
+        '></my-peer-element>
+</mood-stone>
 ```
 
 Since we are binding to booleans, adds class if true, otherwise removes.
