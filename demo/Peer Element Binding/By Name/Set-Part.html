@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer element > by name > set-part</title>
+    <!-- #include virtual="/imports.html" -->
+
+    <script type=module>
+        import '/🔭.js';
+    </script>
+</head>
+<body>
+    <input name=yourCheckbox type=checkbox>
+    <input name=myCheckbox type=checkbox>
+    
+    <div 🔭='
+        @yourCheckbox and set-part my-part:my-other-part.
+        @myCheckbox and set-part my-second-part.
+    '></div>
+</body>
+</html>

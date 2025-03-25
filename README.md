@@ -613,20 +613,33 @@ To simply toggle a property anytime the observed element changes:
 ```
 
 
-## Adding / removing css classes / styles / parts declaratively [TODO]
+## Adding / removing css classes / styles / parts declaratively [WIP]
+
+### set-class
 
 ```html
-<mood-stone>
-    #shadow
-    
-    <input name=yourCheckbox type=checkbox>
-    <input name=myCheckbox type=checkbox>
+<input name=yourCheckbox type=checkbox>
+<input name=myCheckbox type=checkbox>
 
-    <my-peer-element enh-🔭='
-        @yourCheckbox and set-class my-class:my-other-class.
-        And @myCheckbox and set-class my-second-class.
-        '></my-peer-element>
-</mood-stone>
+<div 🔭='
+    @yourCheckbox and set-class my-class:my-other-class.
+    @myCheckbox and set-class my-second-class.
+'></div>
+```
+
+### set-part
+
+```html
+<input name=yourCheckbox type=checkbox>
+<input name=myCheckbox type=checkbox>
+
+<div 🔭='
+    @yourCheckbox and set-part my-part:my-other-part.
+    @myCheckbox and set-part my-second-part.
+'></div>
+```
+
+### copy-to-class [TODO]
 
 <mood-stone>
     #shadow

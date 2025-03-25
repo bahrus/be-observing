@@ -22,7 +22,7 @@ const dependenciesThenOn = String.raw `${dependencies} then ON\{(?<ONExpr>.*)\}`
 
 const dependenciesThenOnAndSetProp = String.raw `${dependenciesThenOn} and set (?<localPropToSet>.*)`;
 
-const dependenciesAndSetProp = String.raw `${dependencies} and (?<action>(set|toggle|increment|decrement|set-class)) (?<localPropToSet>.*)`;
+const dependenciesAndSetProp = String.raw `${dependencies} and (?<action>(set|toggle|increment|decrement|set-class|set-part)) (?<localPropToSet>.*)`;
 
 const toAggregator = String.raw `${dependencies} and set to (?<aggKey>.*)`;
 
