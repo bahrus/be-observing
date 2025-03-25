@@ -612,6 +612,16 @@ To simply toggle a property anytime the observed element changes:
 </mood-stone>
 ```
 
+## Interpolating Index [TODO]
+
+```html
+<table>
+    <tr aria-index=17>
+        <td>
+            <input 🔭="^-aria-index and set id to `my_radio_button_$1`" type=radio name>
+        </td>
+    </tr>
+```
 
 ## Adding / removing css classes / styles / parts declaratively [WIP]
 
