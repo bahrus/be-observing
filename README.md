@@ -612,16 +612,9 @@ To simply toggle a property anytime the observed element changes:
 </mood-stone>
 ```
 
-## Interpolating Index [TODO]
+## Interpolating Index [NOTTODO]
 
-```html
-<table>
-    <tr aria-index=17>
-        <td>
-            <input 🔭="^-aria-index and set id to `my_radio_button_$1`" type=radio name>
-        </td>
-    </tr>
-```
+See [be-joining](https://github.com/bahrus/be-joining).  Outside the scope of *be-observing*.
 
 ## Adding / removing css classes / styles / parts declaratively [WIP]
 
