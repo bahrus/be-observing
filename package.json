@@ -26,9 +26,9 @@
   },
   "types": "./ts-refs/be-observing/types.d.ts",
   "dependencies": {
-    "be-enhanced": "0.0.170",
-    "be-hive": "0.0.250",
-    "trans-render": "0.0.889"
+    "be-enhanced": "0.0.171",
+    "be-hive": "0.0.251",
+    "trans-render": "0.0.890"
   },
   "devDependencies": {
     "@playwright/test": "1.51.1",
