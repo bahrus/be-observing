@@ -641,6 +641,8 @@ See [be-joining](https://github.com/bahrus/be-joining).  Outside the scope of *b
 } and set-class my-class'></div>
 ```
 
+This will add class "my-class" to the div if the search input has value "hi".  Otherwise, it will remove the "my-class" class.
+
 ### set-part
 
 ```html
