@@ -630,6 +630,17 @@ See [be-joining](https://github.com/bahrus/be-joining).  Outside the scope of *b
 '></div>
 ```
 
+### Mapping combined with set-class
+
+```html
+<input name=search type=search>
+
+<div 🔭='@search then ON{
+    "hi": true,
+    ":": false
+} and set-class my-class'></div>
+```
+
 ### set-part
 
 ```html
