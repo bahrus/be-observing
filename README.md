@@ -671,6 +671,10 @@ This will add class "my-class" to the div if the search input has value "hi".  O
 
 use dataset
 
+### set-style [NOTTODO]
+
+use dataset combined with attr()?
+
 
 Same with SetPart, SetStyle
 
