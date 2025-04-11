@@ -655,8 +655,9 @@ This will add class "my-class" to the div if the search input has value "hi".  O
 '></div>
 ```
 
-### copy-to-class [TODO]
+### copy-to-class [NOTTODO]
 
+```html
 <mood-stone>
     #shadow
     
@@ -668,6 +669,7 @@ This will add class "my-class" to the div if the search input has value "hi".  O
 </mood-stone>
 ```
 
+use dataset
 
 
 Same with SetPart, SetStyle
