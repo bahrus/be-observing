@@ -677,18 +677,7 @@ use dataset combined with [attr()](https://caniuse.com/?search=attr)?
 
 
 
-## Observing a specified property [TODO]
 
-```html
-<my-peer-element></my-peer-element>
-
-<your-peer-element enh-🔭="~myPeerElement?.myProp and set yourProp.
-">
-```
-
-This will one-way synchronize *my-peer-element*'s myProp value to the adorned element's yourProp property.
-
-<!-->
 
 
 
