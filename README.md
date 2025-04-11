@@ -585,7 +585,6 @@ To simply toggle a property anytime the observed element changes:
 </mood-stone>
 ```
 
-## PlusEq, MinusEq, TimeEq, DivEq [TODO]
 
 ## Increment, Decrement 
 
@@ -607,7 +606,7 @@ To simply toggle a property anytime the observed element changes:
     <input name=food>
 
     <my-peer-element enh-🔭='
-        @name and @food and set mySecondProp to `$1 eats $2`.
+        @name and @food and set mySecondProp to `{0} eats {1}`.
         '></my-peer-element>
 </mood-stone>
 ```
