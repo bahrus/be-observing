@@ -673,10 +673,9 @@ use dataset
 
 ### set-style [NOTTODO]
 
-use dataset combined with attr()?
+use dataset combined with [attr()](https://caniuse.com/?search=attr)?
 
 
-Same with SetPart, SetStyle
 
 ## Observing a specified property [TODO]
 
