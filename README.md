@@ -54,7 +54,7 @@ be-observing is making a few inferences:
 
 This package also supports a third alternative name suggestion: "o-o" for the emoji phobic.
 
-If you only use this enhancement once in a large application, spelling out the full name (and referencing the canonical emc.js file) would probably make the most sense, for "locality of behavior" reasons, and also tapping into google searches (some day in the distant future).  But I would strongly consider using a (custom) shortcut in any application that intends to rely on this enhancement in a heavy way.
+If you only use this enhancement once in a large application, spelling out the full name (and referencing the canonical emc.js file) would probably make the most sense, for "locality of behavior" reasons, and also tapping into searches (some day in the distant future).  But I would strongly consider using a (custom) shortcut in any application that intends to rely on this enhancement in a heavy way.
 
 ## Back to our quintessential example
 
@@ -349,9 +349,11 @@ They are:
 
 <mood-stone enh-🔭='@someNumericInput and @someOtherNumericInput and set myProduct to *.'>
 
-4.  Interpolation [TODO -- wait for sanitizer api or whatever it is called these days to finally land in all the browsers]
+4.  Interpolation 
 
 <mood-stone enh-🔭='@name and @food and set sentenceProp to `${0} eats ${1}`.'>
+
+[TODO] prevent setting innerHTML/outerHTML.
 
 5.  Object Assignment [Untested]
 
