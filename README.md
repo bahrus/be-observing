@@ -471,11 +471,13 @@ This is utilizing the [be-eventing](https://github.com/bahrus/be-eventing) fello
 </div>
 ```
 
+"e" stands for "event", "f" stands for "factors".
+
 Advantages of this approach:
 
 1.  Total locality of behavior, cut/copy/paste easier
 2.  No need for the defer, even in a site that doesn't use bundling.
-3.  Can have multiple statements within the attribute, each with their own little JS scriptlet if needed.
+3.  Can have multiple statements within the attribute, each with its own little JS scriptlet if needed.
 
 
 *be-observing* fires an event from the adorned element whose name matches the current name of the enhancement attribute base ('🔭' in this case).  Anyone can subscribe and have a say on what happens then.  The markup below relies on a separate enhancement, [be-eventing](https://github.com/bahrus/be-eventing).  Other ways of attaching the event handler will also work (subject to delicate timing issues), such as from a framework or custom element host.
