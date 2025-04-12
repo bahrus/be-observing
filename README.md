@@ -599,16 +599,14 @@ To simply toggle a property anytime the observed element changes:
 ## Interpolating [TODO]
 
 ```html
-<mood-stone>
-    #shadow
-    
-    <input name=name>
-    <input name=food>
 
-    <my-peer-element enh-🔭='
-        @name and @food and set mySecondProp to `{0} eats {1}`.
-        '></my-peer-element>
-</mood-stone>
+<input name=name>
+<input name=food>
+
+<my-peer-element enh-🔭='
+    @name and @food and set mySecondProp to `{0} eats {1}`.
+    '></my-peer-element>
+
 ```
 
 ## Interpolating Index [NOTTODO]

@@ -147,7 +147,7 @@ class BeObserving extends BE {
                 action
             });
             //TODO: store asmrh for cleanup purposes
-            const asmrh = new ASMRHandler(self, aggKey, so, propToAO, punt, JSExpr, ONExpr);
+            const asmrh = new ASMRHandler(self, propToAO, so, statement);
         }
         return /** @type {PAP} */({
         });

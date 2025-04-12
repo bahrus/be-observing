@@ -12,6 +12,8 @@ const dependencyPart = String.raw `(?<dependencyPart>.*)`;
 //const ofDependencyPart = String.raw `of ${dependencyPart}`;
 const dependencies = String.raw `^${dependencyPart}`;
 
+const dependenciesAndSetPropToInterpolatingExpr = String.raw `${dependencies} and set (?<localPropToSet>.*) to \`(?<interpolatingExpr>.*)\``;
+
 const dependenciesAndSetPropToAgg = String.raw `${dependencies} and set (?<localPropToSet>.*) to (?<aggKey>.*)`;
 
 const dependenciesAndPunt = String.raw `${dependencies} then punt`;
@@ -43,6 +45,11 @@ export const emc = {
             regExpExts: {
                 parsedStatements: [
                     {
+                        regExp: dependenciesAndSetPropToInterpolatingExpr,
+                        defaultVals:{},
+                        dssArrayKeys
+                    },
+                    {
                         regExp: dependenciesThenOnAndSetProp,
                         defaultVals:{
                             aggKey: '&&'
@@ -61,6 +68,7 @@ export const emc = {
                         defaultVals:{},
                         dssArrayKeys
                     },
+                    //maybe move this up?
                     {
                         regExp: dependenciesAndSetPropToAgg,
                         defaultVals:{},

@@ -4,7 +4,7 @@ import {AggEvent, rguid} from 'be-hive/aggEvt.js';
 /** @import {aggKeys, Handlers} from './ts-refs/be-hive/types' */
 /** @import {SharingObject, AbsorbingObject} from './ts-refs/trans-render/asmr/types' */
 /** @import {BEAllProps, EventListenerOrFn} from './ts-refs/trans-render/be/types' */
-/** @import {BAP} from './ts-refs/be-observing/types' */
+/** @import {BAP, ObservingParameters} from './ts-refs/be-observing/types' */
 
 /**
  * @implements {EventListenerObject}
@@ -51,16 +51,28 @@ export class ASMRHandler extends EventTarget{
     #onExpr;
 
     /**
-     * @param {import('./ts-refs/be-observing/types').BAP} self
-     * @param {aggKeys} aggKey 
-     * @param {SharingObject} localSharingObject 
-     * @param {{[key: string] : AbsorbingObject}} propToAO
-     * @param {boolean} punt 
-     * @param {string} JSExpr
-     * @param {string} ONExpr
+     * @type {string}
      */
-    constructor(self, aggKey, localSharingObject, propToAO, punt, JSExpr, ONExpr){
+    #interpolatingExpr;
+
+    /**
+     * @param {import('./ts-refs/be-observing/types').BAP} self
+     * @param {{[key: string] : AbsorbingObject}} propToAO
+     * @param {SharingObject} localSharingObject 
+     * @param {ObservingParameters} observingParams
+     * @paramx {aggKeys} aggKey 
+     * @paramx {boolean} punt 
+     * @paramx {string} JSExpr
+     * @paramx {string} ONExpr
+     */
+    constructor(
+        self,
+        propToAO,
+        localSharingObject, 
+        observingParams
+    ){
         super();
+        const {aggKey, punt, JSExpr, ONExpr, interpolatingExpr} = observingParams;
         this.#selfRef = new WeakRef(self);
         const {customHandlers, ws} = self;
         if(ws !== undefined){
@@ -85,6 +97,7 @@ export class ASMRHandler extends EventTarget{
         this.#punt = punt;
         this.#jsExpr = JSExpr;
         this.#onExpr = ONExpr;
+        this.#interpolatingExpr = interpolatingExpr;
         const ac = this.#ac =  new AbortController;
         const aos = Object.values(propToAO);
         for(const ao of aos){
@@ -139,7 +152,7 @@ export class ASMRHandler extends EventTarget{
             const self = this.#selfRef.deref();
             if(self === undefined) return;
             self.channelEvent(new SelfEvent(self, args, obj, self.enhancedElement));
-        } else if(this.#jsExpr){
+        }else if(this.#jsExpr){
             
             const self = this.#selfRef.deref();
             if(self === undefined) return;
@@ -147,8 +160,8 @@ export class ASMRHandler extends EventTarget{
             const handler = activate(this.#jsExpr);
             const se = new SelfEvent(self, args, obj, self.enhancedElement)
             handler(se);
-            
-        
+        }else if(this.#interpolatingExpr){    
+            throw 'NI';
         }else{
             const inputEvent = new InputEvent(args, obj, this);
             const handlerObj = this.#handlerObj;
