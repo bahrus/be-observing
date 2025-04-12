@@ -119,7 +119,10 @@ class BeObserving extends BE {
              * @type {{[key: string]: AbsorbingObject}}
              */
             const propToAO = {};
-            const {remoteSpecifiers, localPropToSet, aggKey, punt, JSExpr, ONExpr, action} = statement;
+            const {remoteSpecifiers, localPropToSet, action, interpolatingExpr} = statement;
+            if(interpolatingExpr !== undefined && localPropToSet?.endsWith('HTML')){
+                throw 403;
+            }
             for(const remoteSpecifier of remoteSpecifiers){
                 const remoteEl = await find(enhancedElement, remoteSpecifier);
                 if(!(remoteEl instanceof Element)) throw 404;

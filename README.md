@@ -347,18 +347,24 @@ They are:
 
 3.  Product [Untested]
 
+```html
 <mood-stone enh-🔭='@someNumericInput and @someOtherNumericInput and set myProduct to *.'>
+```
 
 4.  Interpolation 
 
+```html
 <mood-stone enh-🔭='@name and @food and set sentenceProp to `${0} eats ${1}`.'>
+```
 
-[TODO] prevent setting innerHTML/outerHTML.
+5.  Object Assignment
 
-5.  Object Assignment [Untested]
-
+```html
 <mood-stone 
     enh-🔭='@name and @food and set myObjectProp to {}.'>
+```
+
+This sets myObjectProp to {name: [value of name input element], food: [value of food input element]}.
 
 6.  Or Not
 
@@ -598,18 +604,6 @@ To simply toggle a property anytime the observed element changes:
 <input type=number 🔭='@search and decrement value.'>
 ```
 
-## Interpolating [TODO]
-
-```html
-
-<input name=name>
-<input name=food>
-
-<my-peer-element enh-🔭='
-    @name and @food and set mySecondProp to `{0} eats {1}`.
-    '></my-peer-element>
-
-```
 
 ## Interpolating Index [NOTTODO]
 
