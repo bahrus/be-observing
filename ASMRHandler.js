@@ -5,6 +5,7 @@ import {AggEvent, rguid} from 'be-hive/aggEvt.js';
 /** @import {SharingObject, AbsorbingObject} from './ts-refs/trans-render/asmr/types' */
 /** @import {BEAllProps, EventListenerOrFn} from './ts-refs/trans-render/be/types' */
 /** @import {BAP, ObservingParameters} from './ts-refs/be-observing/types' */
+/** @import {Parts} from './ts-refs/trans-render/froop/types' */
 
 /**
  * @implements {EventListenerObject}
@@ -56,14 +57,15 @@ export class ASMRHandler extends EventTarget{
     #interpolatingExpr;
 
     /**
+     * @type {Parts}
+     */
+    #parsedInterpolation;
+
+    /**
      * @param {import('./ts-refs/be-observing/types').BAP} self
      * @param {{[key: string] : AbsorbingObject}} propToAO
      * @param {SharingObject} localSharingObject 
      * @param {ObservingParameters} observingParams
-     * @paramx {aggKeys} aggKey 
-     * @paramx {boolean} punt 
-     * @paramx {string} JSExpr
-     * @paramx {string} ONExpr
      */
     constructor(
         self,
@@ -160,7 +162,34 @@ export class ASMRHandler extends EventTarget{
             const handler = activate(this.#jsExpr);
             const se = new SelfEvent(self, args, obj, self.enhancedElement)
             handler(se);
-        }else if(this.#interpolatingExpr){    
+        }else if(this.#interpolatingExpr){
+            if(this.#parsedInterpolation === undefined){
+                const {toParts} = await import('trans-render/lib/brace.js');
+                this.#parsedInterpolation = toParts(this.#interpolatingExpr);
+            }
+            const p = this.#parsedInterpolation;
+            /**
+             * @type {Array<string>}
+             */
+            const toBeJoined = [];
+            for(const part of p){
+                if(Array.isArray(part)){
+                    const [NameOfProp] = part;
+                    //check if NameOfProp is a number
+                    const argIndex = Number(NameOfProp);
+                    if(!isNaN(argIndex)){
+                        if(argIndex < args.length){
+                            toBeJoined.push(args[argIndex]);
+                        }else{
+                            throw 'NI';
+                        }
+                    }
+                }else{
+                    toBeJoined.push(part);
+                }
+            }
+            const joined = toBeJoined.join('');
+            console.log({joined});
             throw 'NI';
         }else{
             const inputEvent = new InputEvent(args, obj, this);
