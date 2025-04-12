@@ -189,8 +189,7 @@ export class ASMRHandler extends EventTarget{
                 }
             }
             const joined = toBeJoined.join('');
-            console.log({joined});
-            throw 'NI';
+            this.#localSharingObject.setValue(joined);
         }else{
             const inputEvent = new InputEvent(args, obj, this);
             const handlerObj = this.#handlerObj;
