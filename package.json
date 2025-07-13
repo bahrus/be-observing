@@ -26,12 +26,12 @@
   },
   "types": "./ts-refs/be-observing/types.d.ts",
   "dependencies": {
-    "be-enhanced": "0.0.171",
-    "be-hive": "0.0.251",
-    "trans-render": "0.0.890"
+    "be-enhanced": "0.0.179",
+    "be-hive": "0.0.260",
+    "trans-render": "0.0.908"
   },
   "devDependencies": {
-    "@playwright/test": "1.51.1",
+    "@playwright/test": "1.54.1",
     "be-eventing": "0.0.5",
     "ssi-server": "0.0.1",
     "xtal-element": "0.0.629"
