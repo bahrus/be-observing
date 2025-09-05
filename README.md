@@ -13,7 +13,7 @@ Observes properties of peer elements or the host, mostly declaratively.  Bind fr
 
 > [!Note]
 > *be-observing* is very close to [be-calculating](https://github.com/bahrus/be-calculating) as far as feature set.  The two share many common modules.  The significant differences are: 
-> 1.  *be-calculating* only accepts one "statement" of observables, and hands everything over, "cleanly" to JavaScript at that point.  
+> 1.  *be-calculating* only accepts one "statement" of observables, and hands everything over "cleanly" to JavaScript at that point.  
 > 2.  A single *be-observing* enhancement, in contrast, is much more declarative.  It can work with multiple statements / grouped dependencies and provides more avenues to avoid requiring a scripting expression to go along with it, resorting to script expressions as a last resort, and a little less elegantly.
 
 # Enhancements
@@ -73,7 +73,7 @@ If not specified:
         name=isHappy 
         disabled 
         type=checkbox  
-        be-observing=:host()>
+        🔭=:host()>
 </mood-stone>
 ```
 
@@ -96,7 +96,7 @@ If this assumption doesn't hold in some cases, then we can specify the name of t
     <input 
         type=checkbox 
         disabled 
-        be-observing=?.isHappy.
+        🔭=?.isHappy.
     >
 </mood-stone>
 ```
@@ -216,7 +216,7 @@ The search for element with id=searchString is done within the (shadow)root node
         type=checkbox
         name=someBoolProp 
         disabled 
-        🔭=#my-peer-element
+        🔭=#{{my-peer-element}}
     >
 </mood-stone>
 ```
@@ -258,8 +258,8 @@ This example works, where each observing statement is treated independently:
 <input name=someOtherCheckbox type=checkbox>
 
 <mood-stone
-    enh-🔭="@someCheckbox and set isHappy.
-            @someOtherCheckbox and set isWealthy."
+    enh-🔭="#{{someCheckbox}} and set isHappy.
+            #{{someOtherCheckbox}} and set isWealthy."
 '>
     <template shadowrootmode=open>
         <div itemscope>
@@ -289,11 +289,11 @@ This example works, where each observing statement is treated independently:
 If multiple remote endpoints are observed that map to a single local prop, by default, the "truthy" conjunction (&&) is applied to them all:
 
 ```html
-<input name=someCheckbox type=checkbox>
-<input name=someOtherCheckbox type=checkbox>
+<input data-id={{someCheckbox}} type=checkbox>
+<input data-id={{someOtherCheckbox}} type=checkbox>
 
-<mood-stone 
-    enh-🔭='of @someCheckbox and @someOtherCheckbox and set isHappy.'
+<mood-stone -id
+    enh-🔭='of #{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy.'
 >
     <template shadowrootmode=open>
         <div itemscope>
@@ -324,7 +324,7 @@ They are:
 1.  Union
 
 ```html
-<mood-stone enh-🔭='@someCheckbox and @someOtherCheckbox and set isHappy to ||.'>
+<mood-stone enh-🔭='#{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy to ||.'>
 ```
 
 2.  Sum
@@ -357,33 +357,33 @@ This sets myObjectProp to {name: [value of name input element], food: [value of 
 6.  Or Not
 
 ```html
-<mood-stone enh-🔭='@someCheckbox and @someOtherCheckbox and set isHappy to ||!.'>
+<mood-stone enh-🔭='#{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy to ||!.'>
 ```
 
 This is basically !someCheckbox || !someOtherCheckbox
 
-If only there's only one remote specifier, then that gives us negation.
+If there's only one remote specifier, then that gives us negation.
 
 7.  And Not
 
 ```html
-<mood-stone enh-🔭='@someCheckbox and @someOtherCheckbox and set isHappy to &&!.'>
+<mood-stone enh-🔭='#{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy to &&!.'>
 ```
 
 These aggregators actually allow for doing a little math in the expressions.  For instance:
 
 ```html
-<input name=age type=number value=90>
+<input id=age type=number value=90>
 
-<div data-diff=-20 🔭='@age and $0?.dataset?.diff as number and set to +'></div>
+<div 🔭='#age and `-20` as number and set to +'></div>
 ```
 
 ## Observing a single remote endpoint and applying a simple mapping to the final value
 
 ```html
-<input type=checkbox name=isHappy>
+<input type=checkbox id=isHappy>
 
-<div 🔭='@isHappy then ON{
+<div 🔭='#isHappy then ON{
     "true": "be joyous",
     "false": "be melanchology",
     ":": "¯\\_(ツ)_/¯"
@@ -396,9 +396,9 @@ ON stands for (JS)Object Notation (and "on", kind of).  The stuff inside must be
 
 
 ```html
-<input name=search>
+<input id=search>
 
-<div 🔭='@search then ON{
+<div 🔭='#search then ON{
     "?": "Searching...",
     ":": "How can I help you today?"
 }'></div>
@@ -408,9 +408,9 @@ ON stands for (JS)Object Notation (and "on", kind of).  The stuff inside must be
 
 
 ```html
-<input name=search>
+<input id=search>
 
-<div 🔭='@search then ON{
+<div 🔭='#search then ON{
     "?": "Searching...",
     ":": "How can I help you today?",
     "hi": "Hello"
@@ -490,10 +490,10 @@ What this does:  It sets the div's textContent property to the value of searchSt
 ## Attaching and setting other enhancement values [TODO]
 
 ```html
-<input name=search type=search>
+<input id=search type=search>
 
 <div 🔭='
-    @search and set +beSearching?.forText.
+    #search and set +beSearching?.forText.
 '>
     supercalifragilisticexpialidocious
 </div>
@@ -508,20 +508,19 @@ The example above happens to refer to this [enhancement](https://github.com/bahr
 ```html
 <tr itemscope>
     <td>
-        <my-item-view-model></my-item-view-model>
-        <div 🔭=~myItemViewModel?.myProp1>My First column information</div>
+        <my-item-view-model #></my-item-view-model>
+        <div 🔭=#{{myItemViewModel}}?.myProp1>My First column information</div>
     </td>
-    <td>
-        <div 🔭=~myItemViewModel?.myProp2></div>
+    <td -id>
+        <div 🔭=#{{myItemViewModel}}?.myProp2></div>
     </td>
 </tr>
 ```
 
-The search for the my-item-view-model custom element is done within the closest "itemscope" attribute.
 
 This can be useful for scenarios where we want to display repeated data, and can't use a custom element to host each repeated element (for example, rows of an HTML table), but we want to provide a custom element as the "view model" for each row.
 
-This will one-way synchronize *my-item-view-model*'s myProp 1/2 values to the adorned element's textContent property.
+This will one-way synchronize *my-item-view-model*'s myProp[1/2] values to the adorned element's textContent property.
 
 ## Attaching a "brain" component to the tr element.
 
@@ -576,9 +575,9 @@ To simply toggle a property anytime the observed element changes:
 <mood-stone>
     #shadow
     
-    <input name=search type=search>
+    <input id=search type=search>
 
-    <my-peer-element enh-🔭='@someCheckbox::input and toggle someBoolProp.
+    <my-peer-element enh-🔭='#{{someCheckbox}}::input and toggle someBoolProp.
         '></my-peer-element>
 </mood-stone>
 ```
@@ -587,11 +586,11 @@ To simply toggle a property anytime the observed element changes:
 ## Increment, Decrement 
 
 ```html
-<input name=search type=search>
+<input id=search type=search>
 
-<input type=number 🔭='@search and increment value.'>
+<input type=number 🔭='#search and increment value.'>
 
-<input type=number 🔭='@search and decrement value.'>
+<input type=number 🔭='#search and decrement value.'>
 ```
 
 
@@ -616,9 +615,9 @@ See [be-joining](https://github.com/bahrus/be-joining).  Outside the scope of *b
 ### Mapping combined with set-class
 
 ```html
-<input name=search type=search>
+<input id=search type=search>
 
-<div 🔭='@search then ON{
+<div 🔭='#search then ON{
     "hi": true,
     ":": false
 } and set-class my-class'></div>
