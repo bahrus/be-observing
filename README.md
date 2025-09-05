@@ -73,7 +73,7 @@ If not specified:
         name=isHappy 
         disabled 
         type=checkbox  
-        be-observing=:host>
+        be-observing=:host()>
 </mood-stone>
 ```
 
