@@ -163,34 +163,15 @@ Note that the itemprop attribute takes precedence over the name attribute, which
 
 In the example above, we are mixing inline binding (🔭) with binding from a distance ("xform").
 
-## DSS Specifier Syntax
+## Observing Peer Elements via (auto generated) ID's.
 
 In the example above, we mentioned using the ?. symbol to indicate to observe a property from the host.  But be-observing can also observe peer elements within the ShadowRoot (or outside any shadow root *be-observing* adorns an element sitting outside any ShadowRoot), based on the id of the element
 
-The syntax adopts what we refer to as the DSS specification, where DSS stands for "directed scoped specifier".  It is inspired by CSS selectors, but it is optimized for binding scenarios. 
+Now, heavy reliance of id's causes understandable flinching from web developers, especially outside Shadow DOM, due to the requirement that id's be unique. Fortunately, *be-observing* builds on top of an infrastructure that aids with automatically generating id's in a way that makes binding easy, as we will see.
 
-This is documented in (increasingly) painstaking detail where the [DSS parser library is maintained](https://github.com/bahrus/trans-render/wiki/VIII.--Directed-Scoped-Specifiers-(DSS)).
+## With static id's
 
-
-## Binding to peer elements
-
-Now we will start to see how be-observing provides for more "grass-roots" democratic organism (web component) support.
-
-## By name attribute
-
-```html
-<input name=search type=search>
-...
-<div 🔭=@search></div>
-```
-
-As the user types in the input field, the div's text content reflects the value that was typed.
-
-The search for the element with name=search is done within the closest form element, and if not found, within the (shadow)root node.
-
-## By id
-
-This also works:
+This works:
 
 ```html
 <input id=searchString type=search>
@@ -198,41 +179,24 @@ This also works:
 <div 🔭=#searchString></div>
 ```
 
-The search for element with id=searchString is done within the (shadow)root node, since id's are supposed to be unique within a (shadow)root node.
+The search for element with id=searchString is done within the (shadow)root node.
 
-## By markers with kebab-to-camelCase convention
+## With auto generated id
 
 ```html
 <mood-stone>
     #shadow
-    <my-peer-element -some-bool-prop></my-peer-element>
-    <input 
-        type=checkbox 
+    <my-peer-element #></my-peer-element>
+    <input -id 
+        type=checkbox
+        name=someBoolProp 
         disabled 
-        🔭=-some-bool-prop
+        🔭=#my-peer-element
     >
 </mood-stone>
 ```
 
 This observes the my-peer-element's someBoolProp property for changes and sets the adorned element's checked property based on the current value.
-
-## By itemprop
-
-```html
-<data value=true itemprop=isHappy hidden></data>
-
-...
-
-<input
-    disabled
-    type=checkbox 
-    🔭=|isHappy
->
-```
-
-What this does:  It watches for changes to the value attribute of the data element, and parses the value using JSON.parse and passes the value to the checked property of the input element.
-
-We saw earlier that we can adorn elements with the itemprop attribute with the 🔭 attribute, and it will automatically pull in values from the host.  This allows us to create a code-free "chain" of bindings from the host to Shadow children, and from the Shadow children to peer elements.
 
 # Specifying the property to assign the observed value(s) to.
 
@@ -243,10 +207,10 @@ But sometimes we need to be more explicit because it isn't always transparent wh
 ## Single mapping from what to observe, specifying the property to target.
 
 ```html
-<input name=someCheckbox type=checkbox>
+<input data-id="{{@ someCheckbox}}" type=checkbox>
 
-<mood-stone 
-    enh-🔭='@someCheckbox and set isHappy.'
+<mood-stone -id 
+    enh-🔭='#{{someCheckbox}} and set isHappy.'
     >
 </mood-stone>
 
