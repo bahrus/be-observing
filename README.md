@@ -71,14 +71,13 @@ If this assumption doesn't hold in some cases, then we can specify the name of t
     <input 
         type=checkbox 
         disabled 
-        be-observing=/isHappy.
+        be-observing=?.isHappy.
     >
 </mood-stone>
 ```
 
 Now that we've spelled out the full, canonical name twice (*be-observing*), from now on, we will use "🔭" as our shortcut for "be-observing", but please apply the mental mapping from 🔭 to the full name, for the statements to make the most sense.  
 
-The slash ("/") symbol indicates to get the value from the host.  If omitted, it is assumed:
 
 ## Reducing cryptic syntax
 
@@ -89,7 +88,7 @@ The slash ("/") symbol indicates to get the value from the host.  If omitted, it
     <input 
         type=checkbox 
         disabled 
-        🔭=isHappy
+        🔭=?.isHappy
     >
 </mood-stone>
 ```
@@ -103,7 +102,7 @@ If Shadow DOM is not used, add the "itemscope" attribute so that *be-observing* 
     <input 
         type=checkbox 
         disabled 
-        🔭=isHappy
+        🔭=?.isHappy
     >
 </mood-stone>
 ```
@@ -166,7 +165,7 @@ In the example above, we are mixing inline binding (🔭) with binding from a di
 
 ## DSS Specifier Syntax
 
-In the example above, we mentioned using the / symbol to indicate to observe a property from the host.  But be-observing can also observe peer elements within the ShadowRoot (or outside any shadow root *be-observing* adorns an element sitting outside any ShadowRoot).
+In the example above, we mentioned using the ?. symbol to indicate to observe a property from the host.  But be-observing can also observe peer elements within the ShadowRoot (or outside any shadow root *be-observing* adorns an element sitting outside any ShadowRoot), based on the id of the element
 
 The syntax adopts what we refer to as the DSS specification, where DSS stands for "directed scoped specifier".  It is inspired by CSS selectors, but it is optimized for binding scenarios. 
 
