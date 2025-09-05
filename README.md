@@ -56,6 +56,31 @@ This package also supports a third alternative name suggestion: "o-o" for the em
 
 If you only use this enhancement once in a large application, spelling out the full name (and referencing the canonical emc.js file) would probably make the most sense, for "locality of behavior" reasons, and also tapping into searches (some day in the distant future).  But I would strongly consider using a (custom) shortcut in any application that intends to rely on this enhancement in a heavy way.
 
+<details>
+    <summary>Ambiguous Host scenarios</summary>
+
+If not specified:
+
+1.  Finds closest ancestor with attribute itemscope, that has a dash in the tag name, o where itemscope specifies a name of a class or function prototype.
+2.  If 1. turns up empty, uses $0.getRootNode().host
+3.  To explicitly request going to the host:
+
+```html
+<mood-stone>
+    #shadow
+    ...
+    <input 
+        name=isHappy 
+        disabled 
+        type=checkbox  
+        be-observing=:host>
+</mood-stone>
+```
+
+4.  To specify a higher level itemscope, specify the id
+
+</details>
+
 ## Back to our quintessential example
 
 As we already discussed, in the example above, we made the assumption that if the user gives the input element name "isHappy", that the choice of name will most likely match the identical property name coming from the host web component container.
@@ -207,7 +232,7 @@ But sometimes we need to be more explicit because it isn't always transparent wh
 ## Single mapping from what to observe, specifying the property to target.
 
 ```html
-<input data-id="{{@ someCheckbox}}" type=checkbox>
+<input data-id="{{someCheckbox}}" type=checkbox>
 
 <mood-stone -id 
     enh-🔭='#{{someCheckbox}} and set isHappy.'
