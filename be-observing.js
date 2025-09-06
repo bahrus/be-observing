@@ -112,7 +112,7 @@ class BeObserving extends BE {
         const {find} = await import('trans-render/dss/find.js');
         const {ASMR} = await import('trans-render/asmr/asmr.js');
         const {ASMRHandler} = await import('./ASMRHandler.js');
-        const {customHandlers} = self;
+        //const {customHandlers} = self;
         for(const statement of parsedStatements){
 
             /**
