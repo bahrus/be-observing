@@ -12,12 +12,12 @@
 </head>
 <body>
         
-    <input name=name>
-    <input name=food>
+    <input data-id="{{@ name}}">
+    <input data-id="{{@ food}}">
 
-    <my-peer-element enh-🔭='
-        @name and @food and set mySecondProp to `{0} eats {1}`.
-        '></my-peer-element>
+    <my-peer-element defer-enh-🔭 -id enh-🔭='
+        #{{name}} and #{{food}} and set mySecondProp to `{0} eats {1}`.
+    '></my-peer-element>
 
 </body>
 </html>

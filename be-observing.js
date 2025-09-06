@@ -2,6 +2,7 @@
 import { BE } from 'be-enhanced/BE.js';
 import { propInfo, resolved, rejected } from 'be-enhanced/cc.js';
 import { dispatchEvent as de } from 'trans-render/positractions/dispatchEvent.js';
+import { lispToCamel } from 'trans-render/lib/lispToCamel.js';
 
 /** @import {BEConfig, IEnhancement, BEAllProps} from './ts-refs/be-enhanced/types' */
 /** @import {Actions, PAP, AP, BAP, ObservingParameters} from './ts-refs/be-observing/types' */
@@ -128,15 +129,22 @@ class BeObserving extends BE {
                 const remoteEl = await find(enhancedElement, remoteSpecifier);
                 if(!(remoteEl instanceof EventTarget)) throw 404;
                 const {prop} = remoteSpecifier;
-                if(prop === undefined) throw 'NI';
-                const {path, as} = remoteSpecifier;
+                let scriptingPropName = prop;
+                if(prop === undefined){
+                    if(!(remoteEl instanceof HTMLElement)) throw 'NI';
+                    const remoteIDSrcName = remoteEl.dataset.id;
+                    if(remoteIDSrcName === undefined) throw 'NI';
+                    scriptingPropName = lispToCamel(remoteIDSrcName);
+                }
+                if(scriptingPropName === undefined) throw 500;
+                const {path, as, evtName} = remoteSpecifier;
                 const ao = await ASMR.getAO(remoteEl, {
-                    evt: remoteSpecifier.evt || 'input',
+                    evt: evtName || 'input',
                     selfIsVal: self && path === undefined && prop === undefined,
                     propToAbsorb: path !== undefined ? `?.${prop}?.${path}` : prop,
                     as
                 });
-                propToAO[prop] = ao;
+                propToAO[scriptingPropName] = ao;
             }
             const so = await ASMR.getSO(enhancedElement, {
                 valueProp: localPropToSet,
