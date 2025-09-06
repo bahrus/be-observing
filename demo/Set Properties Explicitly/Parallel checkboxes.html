@@ -12,14 +12,14 @@
     </script>
 </head>
 <body>
-    <input name=someCheckbox type=checkbox>
-    <input name=someOtherCheckbox type=checkbox>
+    <input id=someCheckbox type=checkbox>
+    <input id=someOtherCheckbox type=checkbox>
 
-    <mood-stone enh-🔭='@someCheckbox and set isHappy.
-        @someOtherCheckbox and set isWealthy.
+    <mood-stone enh-🔭='#someCheckbox and set isHappy.
+        #someOtherCheckbox and set isWealthy.
     '>
-        <template shadowrootmode=open>
-            <div itemscope>
+        <template shadowrootmode=open itemscope>
+            <div>
                 is happy
                 <div itemprop=isHappy></div>
                 is wealthy
