@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peer element > by name > search</title>
+    <title>Set-class</title>
     <!-- #include virtual="/imports.html" -->
 
     <script type=module>
@@ -11,8 +11,12 @@
     </script>
 </head>
 <body>
-    <input name=search type=search>
+    <input id=yourCheckbox type=checkbox>
+    <input id=myCheckbox type=checkbox>
 
-    <div 🔭='@search.'></div>
+    <div 🔭='
+        #yourCheckbox and set-class my-class:my-other-class.
+        #myCheckbox and set-class my-second-class.
+    '></div>
 </body>
 </html>
