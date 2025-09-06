@@ -140,7 +140,8 @@ class BeObserving extends BE {
                 const {path, as, evtName} = remoteSpecifier;
                 const ao = await ASMR.getAO(remoteEl, {
                     evt: evtName || 'input',
-                    selfIsVal: self && path === undefined && prop === undefined,
+                    //TODO:  find if this is still applicable somewhere
+                    //selfIsVal: self && path === undefined && prop === undefined,
                     propToAbsorb: path !== undefined ? `?.${prop}?.${path}` : prop,
                     as
                 });
