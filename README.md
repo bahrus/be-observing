@@ -1,6 +1,6 @@
 # be-observing 🔭 [WIP]
 
-Observes properties of peer elements or the host, mostly declaratively.  Bind from the observed peer element to a local property, both progressively as well as during template instantiation.  *be-observing* is a member of the [be-enhanced](https://github.com/bahrus/be-enhaned) family of [behivior enhancements](https://github.com/bahrus/be-hive) that enables both kinds of functionality with one code base.
+Observes properties of peer elements or the host, mostly declaratively.  It binds from the observed peer element to a local property, both progressively as well as during template instantiation.  *be-observing* is a member of the [be-enhanced](https://github.com/bahrus/be-enhaned) family of [behivior enhancements](https://github.com/bahrus/be-hive) that enables both kinds of functionality with one code base.
 
 *be-observing* takes less of a "top-down" approach to binding than traditional frameworks.  It places less emphasis (but certainly not none) on binding exclusively from the (custom element) component container host.  Yes, it can do that, but it can also provide for "Democratic Web Component Organisms" where the host container acts as a very thin "Skin Layer" which can be passed a small number of "stimuli" values into.  Inside the body of the web component, we might have a non visible "brain" component that dispatches events.  *be-observing* allows other peer elements within the "body" to receive messages that the brain component emits, without forcing the outer "skin" layer to have to micromanage this all.
 
@@ -61,9 +61,9 @@ If you only use this enhancement once in a large application, spelling out the f
 
 If not specified:
 
-1.  Finds closest ancestor with attribute itemscope, that has a dash in the tag name, o where itemscope specifies a name of a class or function prototype.
+1.  Finds closest ancestor where the ancestor has the itemscope attribute, which either specifies a name of a class or function prototype to use, or where the ancestor has a dash in the tag name.
 2.  If 1. turns up empty, uses $0.getRootNode().host
-3.  To explicitly request going to the host:
+3.  To explicitly request going to the host and skipping step 1:
 
 ```html
 <mood-stone>
@@ -102,21 +102,6 @@ If this assumption doesn't hold in some cases, then we can specify the name of t
 ```
 
 Now that we've spelled out the full, canonical name twice (*be-observing*), from now on, we will use "🔭" as our shortcut for "be-observing", but please apply the mental mapping from 🔭 to the full name, for the statements to make the most sense.  
-
-
-## Reducing cryptic syntax
-
-```html
-<mood-stone>
-    #shadow
-    ...
-    <input 
-        type=checkbox 
-        disabled 
-        🔭=?.isHappy
-    >
-</mood-stone>
-```
 
 ## Hosts that do not use shadow DOM.
 
