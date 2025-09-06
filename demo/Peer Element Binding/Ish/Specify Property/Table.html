@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peer Element Binding > By CE Name > Infer Property > table</title>
-    <!-- #include virtual="/imports.html" -->
+    <title>Table</title>
+<!-- #include virtual="/imports.html" -->
     <script type=module>
-        import 'xtal-element/index.js';
         import '/🔭.js';
         import {Scope, regIsh} from 'trans-render/froop/Scope.js';
         class Simple extends Scope {
@@ -30,18 +29,18 @@
     <table>
         <tr itemscope=my-item>
             <td>
-                <div itemprop=prop1 🔭></div>
+                <div 🔭="?.prop1"></div>
             </td>
             <td>
-                <div itemprop=prop2 🔭></div>
+                <div 🔭="?.prop2"></div>
             </td>
         </tr>
         <tr itemscope=my-item>
             <td>
-                <div itemprop=prop1 🔭></div>
+                <div 🔭="?.prop1"></div>
             </td>
             <td>
-                <div itemprop=prop2 🔭></div>
+                <div 🔭="?.prop2"></div>
             </td>
         </tr>
     </table>

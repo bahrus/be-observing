@@ -508,15 +508,26 @@ This will one-way synchronize *my-item-view-model*'s myProp[1/2] values to the a
 This also works:
 
 ```html
-<my-item hidden>
-    <xtal-element prop-defaults='{
-        "prop1": "",
-        "prop2": ""
-    }'></xtal-element>
-</my-item>
+<script>
+import {Scope, regIsh} from 'trans-render/froop/Scope.js';
+class Simple extends Scope {
+    static config = {
+        propInfo: {
+            prop1: {
+                def: 'hello'
+            },
+            prop2: {
+                def: 'goodbye'
+            }
+        }
+    }
+}
+Simple.bootUp();
+regIsh(document.body, 'my-item', Simple);
+</script>
 
 <table>
-    <tr itemscope=my-item data-ish='{"prop1": "val1", "prop2": "val2"}'>
+    <tr itemscope=my-item>
         <td>
             <div itemprop=prop1 🔭></div>
         </td>
@@ -524,7 +535,7 @@ This also works:
             <div itemprop=prop2 🔭></div>
         </td>
     </tr>
-    <tr itemscope=my-item data-ish='{"prop1": "val3", "prop2": "val4"}'>
+    <tr itemscope=my-item>
         <td>
             <div itemprop=prop1 🔭></div>
         </td>
