@@ -11,12 +11,12 @@
     </script>
 </head>
 <body>
-    <input name=someCheckbox type=checkbox>
+    <input id=someCheckbox type=checkbox>
 
-    <mood-stone enh-🔭='@someCheckbox and set isHappy.
+    <mood-stone enh-🔭='#someCheckbox and set isHappy.
     '>
-        <template shadowrootmode=open>
-            <div itemscope>
+        <template shadowrootmode=open itemscope>
+            <div>
                 <span itemprop=isHappy></span>
             </div>
             <xtal-element
