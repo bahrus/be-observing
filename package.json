@@ -28,7 +28,7 @@
   "dependencies": {
     "be-enhanced": "0.0.185",
     "be-hive": "0.0.264",
-    "trans-render": "0.0.941"
+    "trans-render": "0.0.943"
   },
   "devDependencies": {
     "@playwright/test": "1.55.0",
