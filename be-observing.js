@@ -76,14 +76,15 @@ class BeObserving extends BE {
          * @type {Specifier}
          */
         const specifier = {
-            s: '/',
-            elS: '*',
-            dss: '^',
-            scopeS: '[itemscope]',
-            rec: true,
-            rnf: true,
-            prop: stdProp(enhancedElement),
-            host: true
+            // s: '/',
+            // elS: '*',
+            // dss: '^',
+            // scopeS: '[itemscope]',
+            // rec: true,
+            // rnf: true,
+            // prop: stdProp(enhancedElement),
+            // host: true
+            prop: stdProp(enhancedElement)
         }
         /**
          * @type {ObservingParameters}
@@ -125,22 +126,14 @@ class BeObserving extends BE {
             }
             for(const remoteSpecifier of remoteSpecifiers){
                 const remoteEl = await find(enhancedElement, remoteSpecifier);
-                if(!(remoteEl instanceof Element)) throw 404;
-                let remoteProp;
+                if(!(remoteEl instanceof EventTarget)) throw 404;
                 const {prop} = remoteSpecifier;
                 if(prop === undefined) throw 'NI';
-                const {s} = remoteSpecifier;
-                switch(s){
-                    case '/':
-                    case '-':
-                        remoteProp = prop;
-                        break;
-                }
-                const {self, path, as} = remoteSpecifier;
+                const {path, as} = remoteSpecifier;
                 const ao = await ASMR.getAO(remoteEl, {
                     evt: remoteSpecifier.evt || 'input',
-                    selfIsVal: self && path === undefined,
-                    propToAbsorb: path || remoteProp,
+                    selfIsVal: self && path === undefined && prop === undefined,
+                    propToAbsorb: path !== undefined ? `?.${prop}?.${path}` : prop,
                     as
                 });
                 propToAO[prop] = ao;

@@ -8,13 +8,16 @@
     <script type=module>
         import 'xtal-element/index.js';
         import '/🔭.js';
-        import { regIsh } from 'mount-observer/refid/regIsh.js';
-        import {Scope} from 'trans-render/froop/Scope.js';
+        import {Scope, regIsh} from 'trans-render/froop/Scope.js';
         class Simple extends Scope {
             static config = {
                 propInfo: {
-                    prop1: 'hello',
-                    prop2: 'goodbye'
+                    prop1: {
+                        def: 'hello'
+                    },
+                    prop2: {
+                        def: 'goodbye'
+                    }
                 }
             }
         }
