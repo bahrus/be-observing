@@ -569,7 +569,7 @@ To simply toggle a property anytime the observed element changes:
     
     <input id=search type=search>
 
-    <my-peer-element enh-🔭='#{{someCheckbox}}::input and toggle someBoolProp.
+    <my-peer-element enh-🔭='#search::input and toggle someBoolProp.
         '></my-peer-element>
 </mood-stone>
 ```

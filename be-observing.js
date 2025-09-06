@@ -132,8 +132,8 @@ class BeObserving extends BE {
                 let scriptingPropName = prop;
                 if(prop === undefined){
                     if(!(remoteEl instanceof HTMLElement)) throw 'NI';
-                    const remoteIDSrcName = remoteEl.dataset.id;
-                    if(remoteIDSrcName === undefined) throw 'NI';
+                    const remoteIDSrcName = remoteEl.dataset.id || remoteEl.id;
+                    if(!remoteIDSrcName) throw 'NI';
                     scriptingPropName = lispToCamel(remoteIDSrcName);
                 }
                 if(scriptingPropName === undefined) throw 500;
