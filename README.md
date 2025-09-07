@@ -59,11 +59,11 @@ If you only use this enhancement once in a large application, spelling out the f
 <details>
     <summary>Ambiguous Host scenarios</summary>
 
-If not specified:
+If not specified, searching for the host is done as follows:
 
 1.  Finds closest ancestor where the ancestor has the itemscope attribute, which either specifies a name of a class or function prototype to use, or where the ancestor has a dash in the tag name.
 2.  If 1. turns up empty, uses $0.getRootNode().host
-3.  To explicitly request going to the host and skipping step 1:
+3.  To explicitly request going to the shadowDOM containing host, and skipping steps 1 and 2:
 
 ```html
 <mood-stone>
@@ -77,7 +77,8 @@ If not specified:
 </mood-stone>
 ```
 
-4.  To specify a higher level itemscope, specify the id
+4.  To specify a higher level itemscope, specify the id.
+5.  If no closet ancestor with itemscope attribute is found, or if such ancestors aren't elements with dashes in the tag name and don't specify the name of a registered class, revert to the $0.getRootNode().host is our final attempt at finding the host.
 
 </details>
 
