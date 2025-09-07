@@ -243,7 +243,7 @@ This example works, where each observing statement is treated independently:
 <input name=someCheckbox type=checkbox>
 <input name=someOtherCheckbox type=checkbox>
 
-<mood-stone
+<mood-stone defer-enh-🔭
     enh-🔭="#{{someCheckbox}} and set isHappy.
             #{{someOtherCheckbox}} and set isWealthy."
 '>
