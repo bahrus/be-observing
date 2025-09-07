@@ -78,7 +78,7 @@ If not specified, searching for the host is done as follows:
 ```
 
 4.  To specify a higher level itemscope, specify the id.
-5.  If no closet ancestor with itemscope attribute is found, or if such ancestors aren't elements with dashes in the tag name and don't specify the name of a registered class, revert to the $0.getRootNode().host is our final attempt at finding the host.
+
 
 </details>
 
@@ -198,7 +198,7 @@ The search for element with id=searchString is done within the (shadow)root node
 <mood-stone>
     #shadow
     <my-peer-element #></my-peer-element>
-    <input -id 
+    <input -id defer-🔭
         type=checkbox
         name=someBoolProp 
         disabled 
@@ -220,7 +220,7 @@ But sometimes we need to be more explicit because it isn't always transparent wh
 ```html
 <input data-id="{{someCheckbox}}" type=checkbox>
 
-<mood-stone -id 
+<mood-stone -id defer-enh-🔭
     enh-🔭='#{{someCheckbox}} and set isHappy.'
     >
 </mood-stone>
@@ -243,7 +243,7 @@ This example works, where each observing statement is treated independently:
 <input name=someCheckbox type=checkbox>
 <input name=someOtherCheckbox type=checkbox>
 
-<mood-stone
+<mood-stone defer-enh-🔭
     enh-🔭="#{{someCheckbox}} and set isHappy.
             #{{someOtherCheckbox}} and set isWealthy."
 '>
