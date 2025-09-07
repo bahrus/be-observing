@@ -220,7 +220,7 @@ But sometimes we need to be more explicit because it isn't always transparent wh
 ```html
 <input data-id="{{someCheckbox}}" type=checkbox>
 
-<mood-stone -id 
+<mood-stone -id defer-enh-🔭
     enh-🔭='#{{someCheckbox}} and set isHappy.'
     >
 </mood-stone>
