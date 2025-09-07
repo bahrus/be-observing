@@ -198,7 +198,7 @@ The search for element with id=searchString is done within the (shadow)root node
 <mood-stone>
     #shadow
     <my-peer-element #></my-peer-element>
-    <input -id 
+    <input -id defer-🔭
         type=checkbox
         name=someBoolProp 
         disabled 
