@@ -24,6 +24,7 @@ class BeObserving extends BE {
         propInfo: {
             ...propInfo,
             parsedStatements: {},
+            rawStatements: {},
             customHandlers: {},
             ws: {},
             enhKey: {},

@@ -62,7 +62,7 @@ export class ASMRHandler extends EventTarget{
     #parsedInterpolation;
 
     /**
-     * @param {import('./ts-refs/be-observing/types').BAP} self
+     * @param {BAP} self
      * @param {{[key: string] : AbsorbingObject}} propToAO
      * @param {SharingObject} localSharingObject 
      * @param {ObservingParameters} observingParams
