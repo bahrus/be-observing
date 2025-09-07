@@ -1,4 +1,4 @@
-# be-observing 🔭 [WIP]
+# be-observing 🔭
 
 Observes properties of peer elements or the host, mostly declaratively.  It binds from the observed peer element to a local property, both progressively as well as during template instantiation.  *be-observing* is a member of the [be-enhanced](https://github.com/bahrus/be-enhaned) family of [behivior enhancements](https://github.com/bahrus/be-hive) that enables both kinds of functionality with one code base.
 
