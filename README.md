@@ -295,7 +295,7 @@ If multiple remote endpoints are observed that map to a single local prop, by de
 <input data-id={{someCheckbox}} type=checkbox>
 <input data-id={{someOtherCheckbox}} type=checkbox>
 
-<mood-stone -id
+<mood-stone -id defer-enh-🔭
     enh-🔭='of #{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy.'
 >
     <template shadowrootmode=open>
@@ -327,32 +327,32 @@ They are:
 1.  Union
 
 ```html
-<mood-stone enh-🔭='#{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy to ||.'>
+<mood-stone defer-enh-🔭 enh-🔭='#{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy to ||.'>
 ```
 
 2.  Sum
 
 ```html
-<mood-stone enh-🔭='@someNumericInput and @someOtherNumericInput and set mySum to +.'>
+<mood-ston  enh-🔭='#someNumericInput and #someOtherNumericInput and set mySum to +.'>
 ```
 
 3.  Product [Untested]
 
 ```html
-<mood-stone enh-🔭='@someNumericInput and @someOtherNumericInput and set myProduct to *.'>
+<mood-stone enh-🔭='#someNumericInput and #someOtherNumericInput and set myProduct to *.'>
 ```
 
 4.  Interpolation 
 
 ```html
-<mood-stone enh-🔭='@name and @food and set sentenceProp to `${0} eats ${1}`.'>
+<mood-stone enh-🔭='#name and #food and set sentenceProp to `${0} eats ${1}`.'>
 ```
 
 5.  Object Assignment
 
 ```html
 <mood-stone 
-    enh-🔭='@name and @food and set myObjectProp to {}.'>
+    enh-🔭='#name and #food and set myObjectProp to {}.'>
 ```
 
 This sets myObjectProp to {name: [value of name input element], food: [value of food input element]}.
@@ -360,7 +360,7 @@ This sets myObjectProp to {name: [value of name input element], food: [value of 
 6.  Or Not
 
 ```html
-<mood-stone enh-🔭='#{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy to ||!.'>
+<mood-stone defer-enh-🔭 enh-🔭='#{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy to ||!.'>
 ```
 
 This is basically !someCheckbox || !someOtherCheckbox
@@ -370,7 +370,7 @@ If there's only one remote specifier, then that gives us negation.
 7.  And Not
 
 ```html
-<mood-stone enh-🔭='#{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy to &&!.'>
+<mood-stone defer-enh-🔭 enh-🔭='#{{someCheckbox}} and #{{someOtherCheckbox}} and set isHappy to &&!.'>
 ```
 
 These aggregators actually allow for doing a little math in the expressions.  For instance:
