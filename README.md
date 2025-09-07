@@ -122,8 +122,8 @@ If Shadow DOM is not used, add the "itemscope" attribute so that *be-observing* 
 
 ```html
 <mood-stone>
-    <template shadowrootmode=open>
-        <div itemscope>
+    <template shadowrootmode=open itemscope>
+        <div>
             <span 🔭 itemprop=isHappy></span>
         </div>
 
@@ -145,8 +145,8 @@ This sets the span's textContent to the .toString() value of mood-stone's isHapp
 
 ```html
 <mood-stone>
-    <template shadowrootmode=open>
-        <div itemscope>
+    <template shadowrootmode=open itemscope>
+        <div>
             <span itemprop=isHappy></span>
         </div>
         <input 
