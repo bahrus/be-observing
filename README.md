@@ -502,7 +502,7 @@ The plus symbol:  + is indicating to tap into a [custom enhancement](https://git
 
 The example above happens to refer to this [enhancement](https://github.com/bahrus/be-searching).
 
-## Observing a specified property of a peer custom element [TODO]
+## Observing a specified property of a peer custom element [Untested]
 
 ```html
 <tr itemscope>
