@@ -78,7 +78,7 @@ If not specified, searching for the host is done as follows:
 ```
 
 4.  To specify a higher level itemscope, specify the id.
-5.  If no closet ancestor with itemscope attribute is found, or if such ancestors aren't elements with dashes in the tag name and don't specify the name of a registered class, revert to the $0.getRootNode().host is our final attempt at finding the host.
+
 
 </details>
 
