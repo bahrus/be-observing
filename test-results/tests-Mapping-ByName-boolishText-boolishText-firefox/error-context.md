@@ -1,5 +1,5 @@
 # Page snapshot
 
 ```yaml
-- spinbutton [ref=e2]: "90"
+- searchbox [ref=e2]
 ```
