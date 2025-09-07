@@ -194,6 +194,8 @@ The search for element with id=searchString is done within the (shadow)root node
 
 ## With auto generated id
 
+Because we don't want *be-observing* to do anything until the id's have been auto generated, we need to add a defer-🔭 attribute.  The auto generator removes such attributes when done.
+
 ```html
 <mood-stone>
     #shadow
@@ -208,6 +210,21 @@ The search for element with id=searchString is done within the (shadow)root node
 ```
 
 This observes the my-peer-element's someBoolProp property for changes and sets the adorned element's checked property based on the current value.
+
+The id auto generator modifies the html above to look like:
+
+```html
+<mood-stone>
+    #shadow
+    <my-peer-element data-id=my-peer-element id=my-unique-id></my-peer-element>
+    <input -id
+        type=checkbox
+        name=someBoolProp 
+        disabled 
+        🔭=#my-unique-id
+    >
+</mood-stone>
+```
 
 # Specifying the property to assign the observed value(s) to.
 
