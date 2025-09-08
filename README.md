@@ -97,7 +97,7 @@ If this assumption doesn't hold in some cases, then we can specify the name of t
     <input 
         type=checkbox 
         disabled 
-        🔭=?.isHappy.
+        🔭=isHappy.
     >
 </mood-stone>
 ```
@@ -113,7 +113,7 @@ If Shadow DOM is not used, add the "itemscope" attribute so that *be-observing* 
     <input 
         type=checkbox 
         disabled 
-        🔭=?.isHappy
+        🔭=isHappy
     >
 </mood-stone>
 ```
