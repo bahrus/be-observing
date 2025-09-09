@@ -26,8 +26,8 @@
   },
   "types": "./ts-refs/be-observing/types.d.ts",
   "dependencies": {
-    "be-enhanced": "0.0.185",
-    "be-hive": "0.0.264",
+    "be-enhanced": "0.0.186",
+    "be-hive": "0.0.265",
     "mount-observer": "0.0.98",
     "trans-render": "0.0.949"
   },
@@ -35,7 +35,7 @@
     "@playwright/test": "1.55.0",
     "be-eventing": "0.0.5",
     "ssi-server": "0.0.1",
-    "xtal-element": "0.0.630"
+    "xtal-element": "0.0.631"
   },
   "repository": {
     "type": "git",
