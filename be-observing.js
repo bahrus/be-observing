@@ -128,7 +128,13 @@ class BeObserving extends BE {
             }
             for(const remoteSpecifier of remoteSpecifiers){
                 const remoteEl = await find(enhancedElement, remoteSpecifier);
-                if(!(remoteEl instanceof EventTarget)) throw 404;
+                //if(!(remoteEl instanceof EventTarget)) throw 404;
+                if(!(remoteEl instanceof EventTarget)){
+                    enhancedElement.setAttribute('data-iah', 'yikes');
+                    enhancedElement.textContent = 'yikes';
+                    console.warn(404, enhancedElement, remoteSpecifier);
+                    continue;
+                }
                 const {prop} = remoteSpecifier;
                 let scriptingPropName = prop;
                 if(prop === undefined){
@@ -148,6 +154,7 @@ class BeObserving extends BE {
                 });
                 propToAO[scriptingPropName] = ao;
             }
+            if(Object.keys(propToAO).length === 0) return;
             const so = await ASMR.getSO(enhancedElement, {
                 valueProp: localPropToSet,
                 action
