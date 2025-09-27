@@ -15,7 +15,23 @@
 
     <form 🔭='#sourceCheckbox and set ?.elements?.destCheckbox?.checked.
     '>
-        <input name=destCheckbox type=checkbox>
+    <label>Original matching checkbox</label>
+        <input id=oldMatchingCheckbox name=destCheckbox type=checkbox>
+    </label>
+
+    <label>New matching checkbox</label>
+        <input id=newMatchingCheckbox type=checkbox>
+    </label>
+        
     </form>
+
+    <button onclick="doSwitch()">Switch input element with name=destCheckbox</button>
+
+    <script>
+        function doSwitch(){
+            oldMatchingCheckbox.removeAttribute('name');
+            newMatchingCheckbox.setAttribute('name', 'destCheckbox');
+        }
+    </script>
 </body>
 </html>
