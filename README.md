@@ -647,6 +647,34 @@ This will add class "my-class" to the div if the search input has value "hi".  O
 '></div>
 ```
 
+### Set inner form element property
+
+```html
+<input id=sourceCheckbox type=checkbox>
+
+<form 🔭='#sourceCheckbox and set ?.elements?.destCheckbox?.checked.'>
+<label>Original matching checkbox</label>
+    <input id=oldMatchingCheckbox name=destCheckbox type=checkbox>
+</label>
+
+<label>New matching checkbox</label>
+    <input id=newMatchingCheckbox type=checkbox>
+</label>
+    
+</form>
+
+<button onclick="doSwitch()">Switch input element with name=destCheckbox</button>
+
+<script>
+    function doSwitch(){
+        oldMatchingCheckbox.removeAttribute('name');
+        newMatchingCheckbox.setAttribute('name', 'destCheckbox');
+    }
+</script>
+```
+
+The target element can switch.  This could be useful for progressive enhancement.
+
 ### copy-to-class [NOTTODO]
 
 ```html
