@@ -28,7 +28,6 @@ class BeObserving {
      * @param {PAP} initVals
      */
     async init(self, enhancedElement, ctx, initVals) {
-        console.log('BeObserving init called', enhancedElement.tagName, initVals);
         const {customData} = /** @type {EMC<any, AllProps, Element, RAConfig<AllProps, Actions>>} */ (ctx.emc);
         /** @type {RoundaboutOptions} */
         const raOptions = {
@@ -55,8 +54,6 @@ class BeObserving {
         if (!parsedStatements) return /** @type {PAP} */ ({didInferring: true});
         const {statements, success} = parsedStatements;
         if (!success || !statements) return /** @type {PAP} */ ({didInferring: true});
-
-        console.log('infer called, statements:', JSON.stringify(statements, null, 2));
 
         for (const statement of statements) {
             const {value} = statement;
