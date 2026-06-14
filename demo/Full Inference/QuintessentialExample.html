@@ -16,6 +16,7 @@
             }
             set isHappy(nv){
                 this.#isHappy = nv;
+                this.shadowRoot.querySelector(`[itemprop="isHappy"]`).textContent = nv;
                 this.propagator.dispatchEvent(new Event('isHappy'));
             }
             connectedCallback(){
