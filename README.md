@@ -15,6 +15,8 @@ Observes properties of peer elements or the host, mostly declaratively.  It bind
 > *be-observing* is very close to [be-calculating](https://github.com/bahrus/be-calculating) as far as feature set.  The two share many common modules.  The significant differences are: 
 > 1.  *be-calculating* only accepts one "statement" of observables, and hands everything over "cleanly" to JavaScript at that point.  
 > 2.  A single *be-observing* enhancement, in contrast, is much more declarative.  It can work with multiple statements / grouped dependencies and provides more avenues to avoid requiring a scripting expression to go along with it, resorting to script expressions as a last resort, and a little less elegantly.
+>
+> *be-observing* also overlaps quite a bit with [be-bound](https://github.com/bahrus/be-bound).  be-bound provides two way binding, whereas be-observing only one way.  But in cases where be-bound is binding to a read only element, that binding also becomes one way.  So be-bound may serve the purpose just fine.  But be-observing, because it is one way, can take more liberties with how the binding takes place, so it is more customizable.
 
 # Enhancements
 
