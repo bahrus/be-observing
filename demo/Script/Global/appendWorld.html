@@ -3,28 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peer Element Binding > By ID > input => plain div</title>
-    <script type=importmap>
-        {
-            "imports": {
-                "be-enhanced/": "/node_modules/be-enhanced/",
-                "be-hive/": "/node_modules/be-hive/",
-                "mount-observer/": "/node_modules/mount-observer/",
-                "trans-render/": "/node_modules/trans-render/"
-            }
-        }
-    </script>
+    <title>Script > Global > append world (custom handler)</title>
+    <!-- #include virtual="/imports.html" -->
+
     <script type=module>
-        import '/🔭.js';
+        import 'be-hive/be-hive.js';
     </script>
 </head>
 <body>
-    <script type=module>
-        import {register} from '/🔭.js';
-        register('appendWorld', e => e.r = e.args[0] + ' World');
-    </script>
+    <be-hive>
+        <script type=emc-parser 
+                src="be-hive/parsers/parse-pattern-statements.js" 
+                parser-name=parse-pattern-statements></script>
+        <script type=emc 
+                src="be-observing/🔭.json" 
+                wait-for-parsers=parse-pattern-statements></script>
+    </be-hive>
     <input id=searchString type=search>
 
-    <div 🔭='#searchString and set to appendWorld.'></div>
+    <div 🔭='#searchString then JS{
+        e.r = e.args[0] + " World"
+    }'></div>
 </body>
 </html>

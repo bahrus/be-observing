@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>With Slash</title>
+    <title>Mapping > boolish text</title>
     <!-- #include virtual="/imports.html" -->
 
     <script type=module>
-        import '/🔭.js';
+        import 'be-hive/be-hive.js';
     </script>
 </head>
 <body>
+    <be-hive>
+        <script type=emc-parser 
+                src="be-hive/parsers/parse-pattern-statements.js" 
+                parser-name=parse-pattern-statements></script>
+        <script type=emc 
+                src="be-observing/🔭.json" 
+                wait-for-parsers=parse-pattern-statements></script>
+    </be-hive>
     <input id=search type=search>
 
     <div 🔭='#search then ON{

@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peer element > by name > search</title>
+    <title>Peer element > by name > math subtract</title>
     <!-- #include virtual="/imports.html" -->
 
     <script type=module>
-        import '/🔭.js';
+        import 'be-hive/be-hive.js';
     </script>
 </head>
 <body>
+    <be-hive>
+        <script type=emc-parser 
+                src="be-hive/parsers/parse-pattern-statements.js" 
+                parser-name=parse-pattern-statements></script>
+        <script type=emc 
+                src="be-observing/🔭.json" 
+                wait-for-parsers=parse-pattern-statements></script>
+    </be-hive>
     <input name=age type=number value=90>
 
-    <div 🔭='#age and `20` as number and set to +'></div>
+    <div 🔭='@age and `20` as number and set to +'></div>
 </body>
 </html>

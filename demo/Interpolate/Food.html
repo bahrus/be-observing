@@ -7,17 +7,22 @@
     <!-- #include virtual="/imports.html" -->
 
     <script type=module>
-        import '/🔭.js';
+        import 'be-hive/be-hive.js';
     </script>
 </head>
 <body>
-        
-    <input data-id="{{@ name}}">
-    <input data-id="{{@ food}}">
+    <be-hive>
+        <script type=emc-parser 
+                src="be-hive/parsers/parse-pattern-statements.js" 
+                parser-name=parse-pattern-statements></script>
+        <script type=emc 
+                src="be-observing/🔭.json" 
+                wait-for-parsers=parse-pattern-statements></script>
+    </be-hive>
 
-    <my-peer-element defer-enh-🔭 -id enh-🔭='
-        #{{name}} and #{{food}} and set mySecondProp to `{0} eats {1}`.
-    '></my-peer-element>
+    <input id=name>
+    <input id=food>
 
+    <div 🔭='#name and #food and set mySecondProp to `{0} eats {1}`.'></div>
 </body>
 </html>
