@@ -1,0 +1,107 @@
+{
+    "enhConfig": {
+        "enhKey": "be-observing",
+        "spawn": "be-observing/be-observing.js",
+        "withAttrs": {
+            "base": "be-observing",
+            "_base": {
+                "mapsTo": "parsedStatements",
+                "parser": "parse-pattern-statements",
+                "instanceOf": "Array",
+                "parserConfig": [
+                    {
+                        "name": "dependenciesAndSetPropToInterpolatingExpr",
+                        "pattern": "^(?<dependencyPart>.*) and set (?<localPropToSet>.*) to \\x60(?<interpolatingExpr>.*)\\x60",
+                        "description": "Dependencies and set property to interpolating expression: #a and #b and set prop to `${0} eats ${1}`",
+                        "defaultVals": {}
+                    },
+                    {
+                        "name": "dependenciesThenOnAndSetProp",
+                        "pattern": "^(?<dependencyPart>.*) then ON\\{(?<ONExpr>.*)\\} and (?<action>set|toggle|increment|decrement|set-class|set-part) (?<localPropToSet>.*)",
+                        "description": "Dependencies then ON mapping and set/toggle/etc property",
+                        "defaultVals": {
+                            "aggKey": "&&"
+                        }
+                    },
+                    {
+                        "name": "dependenciesThenOn",
+                        "pattern": "^(?<dependencyPart>.*) then ON\\{(?<ONExpr>.*)\\}",
+                        "description": "Dependencies then ON{} mapping: #search then ON{\"true\": \"yes\", \"false\": \"no\"}",
+                        "defaultVals": {
+                            "aggKey": "&&"
+                        }
+                    },
+                    {
+                        "name": "dependenciesThenJS",
+                        "pattern": "^(?<dependencyPart>.*) then JS\\{(?<JSExpr>.*)\\}",
+                        "description": "Dependencies then inline JS expression: #search then JS{textContent = e.f.search + \" world\"}",
+                        "defaultVals": {}
+                    },
+                    {
+                        "name": "dependenciesAndSetPropToAgg",
+                        "pattern": "^(?<dependencyPart>.*) and set (?<localPropToSet>.*) to (?<aggKey>.*)",
+                        "description": "Dependencies and set property to aggregator: #a and #b and set prop to ||",
+                        "defaultVals": {}
+                    },
+                    {
+                        "name": "dependenciesAndPunt",
+                        "pattern": "^(?<dependencyPart>.*) then punt",
+                        "description": "Dependencies then punt (dispatch event): #search then punt",
+                        "defaultVals": {
+                            "punt": "true"
+                        }
+                    },
+                    {
+                        "name": "toAggregator",
+                        "pattern": "^(?<dependencyPart>.*) and set to (?<aggKey>.*)",
+                        "description": "Dependencies and set to aggregator (no explicit prop): #a and #b and set to +",
+                        "defaultVals": {}
+                    },
+                    {
+                        "name": "dependenciesAndSetProp",
+                        "pattern": "^(?<dependencyPart>.*) and (?<action>set|toggle|increment|decrement|set-class|set-part) (?<localPropToSet>.*)",
+                        "description": "Dependencies and set/toggle/increment/decrement property: #a and set isHappy",
+                        "defaultVals": {
+                            "aggKey": "&&"
+                        }
+                    },
+                    {
+                        "name": "dependencies",
+                        "pattern": "^(?<dependencyPart>.*)",
+                        "description": "Just dependencies (default conjunction): #someCheckbox",
+                        "defaultVals": {
+                            "aggKey": "&&"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "customData": {
+        "weakRef": {
+            "properties": [
+                "enhancedElement"
+            ]
+        },
+        "actions": {
+            "noAttrs": {
+                "ifNoneOf": [
+                    "parsedStatements"
+                ]
+            },
+            "seek": {
+                "ifAllOf": [
+                    "parsedStatements",
+                    "didInferring",
+                    "enhancedElement"
+                ]
+            }
+        },
+        "defaultPropVals": {
+            "didInferring": false
+        },
+        "compacts": {
+            "when_parsedStatements_changes_call_infer": 0
+        }
+    }
+}

@@ -19,23 +19,25 @@
     "./🔭.js": "./🔭.js"
   },
   "scripts": {
+    "build": "node emc.mjs > emc.json && node 🔭.mjs > 🔭.json",
     "serve": "node ./node_modules/spa-ssi/serve.js",
     "test": "playwright test",
     "safari": "npx playwright wk http://localhost:8000",
     "update": "ncu -u && npm install"
   },
-  "types": "./ts-refs/be-observing/types.d.ts",
+  "types": "./types/be-observing/types.d.ts",
   "dependencies": {
-    "be-enhanced": "0.0.188",
-    "be-hive": "0.0.266",
-    "mount-observer": "0.0.102",
-    "trans-render": "0.0.959"
+    "be-hive": "0.1.14",
+    "inferencer": "0.0.13",
+    "mount-observer": "0.1.40",
+    "roundabout-lib": "0.0.21",
+    "nested-regex-groups": "0.0.6"
   },
   "devDependencies": {
-    "@playwright/test": "1.55.1",
+    "@playwright/test": "1.60.0",
     "be-eventing": "0.0.5",
-    "spa-ssi": "0.0.23",
-    "xtal-element": "0.0.633"
+    "spa-ssi": "0.0.27",
+    "xtal-element": "0.0.637"
   },
   "repository": {
     "type": "git",
