@@ -17,7 +17,7 @@
                     },
                     {
                         "name": "dependenciesThenOnAndSetProp",
-                        "pattern": "^(?<dependencyPart>.*) then ON\\{(?<ONExpr>.*)\\} and (?<action>set|toggle|increment|decrement|set-class|set-part) (?<localPropToSet>.*)",
+                        "pattern": "^(?<dependencyPart>.*?) then ON\\{(?<ONExpr>[\\s\\S]*)\\} and (?<action>set|toggle|increment|decrement|set-class|set-part) (?<localPropToSet>.*)",
                         "description": "Dependencies then ON mapping and set/toggle/etc property",
                         "defaultVals": {
                             "aggKey": "&&"
@@ -25,7 +25,7 @@
                     },
                     {
                         "name": "dependenciesThenOn",
-                        "pattern": "^(?<dependencyPart>.*) then ON\\{(?<ONExpr>.*)\\}",
+                        "pattern": "^(?<dependencyPart>.*?) then ON\\{(?<ONExpr>[\\s\\S]*)\\}",
                         "description": "Dependencies then ON{} mapping: #search then ON{\"true\": \"yes\", \"false\": \"no\"}",
                         "defaultVals": {
                             "aggKey": "&&"
@@ -33,7 +33,7 @@
                     },
                     {
                         "name": "dependenciesThenJS",
-                        "pattern": "^(?<dependencyPart>.*) then JS\\{(?<JSExpr>.*)\\}",
+                        "pattern": "^(?<dependencyPart>.*?) then JS\\{(?<JSExpr>[\\s\\S]*)\\}",
                         "description": "Dependencies then inline JS expression: #search then JS{textContent = e.f.search + \" world\"}",
                         "defaultVals": {}
                     },
@@ -73,7 +73,10 @@
                             "aggKey": "&&"
                         }
                     }
-                ]
+                ],
+                "parserOptions": {
+                    "ignorePeriodInsideBraces": true
+                }
             }
         }
     },

@@ -15,7 +15,7 @@ const parsePatterns = [
     },
     {
         name: 'dependenciesThenOnAndSetProp',
-        pattern: String.raw`^(?<dependencyPart>.*) then ON\{(?<ONExpr>.*)\} and (?<action>set|toggle|increment|decrement|set-class|set-part) (?<localPropToSet>.*)`,
+        pattern: String.raw`^(?<dependencyPart>.*?) then ON\{(?<ONExpr>[\s\S]*)\} and (?<action>set|toggle|increment|decrement|set-class|set-part) (?<localPropToSet>.*)`,
         description: 'Dependencies then ON mapping and set/toggle/etc property',
         defaultVals: {
             aggKey: '&&'
@@ -23,7 +23,7 @@ const parsePatterns = [
     },
     {
         name: 'dependenciesThenOn',
-        pattern: String.raw`^(?<dependencyPart>.*) then ON\{(?<ONExpr>.*)\}`,
+        pattern: String.raw`^(?<dependencyPart>.*?) then ON\{(?<ONExpr>[\s\S]*)\}`,
         description: 'Dependencies then ON{} mapping: #search then ON{"true": "yes", "false": "no"}',
         defaultVals: {
             aggKey: '&&'
@@ -31,7 +31,7 @@ const parsePatterns = [
     },
     {
         name: 'dependenciesThenJS',
-        pattern: String.raw`^(?<dependencyPart>.*) then JS\{(?<JSExpr>.*)\}`,
+        pattern: String.raw`^(?<dependencyPart>.*?) then JS\{(?<JSExpr>[\s\S]*)\}`,
         description: 'Dependencies then inline JS expression: #search then JS{textContent = e.f.search + " world"}',
         defaultVals: {}
     },
@@ -86,7 +86,10 @@ export const emc = {
                 mapsTo: 'parsedStatements',
                 parser: 'parse-pattern-statements',
                 instanceOf: 'Array',
-                parserConfig: parsePatterns
+                parserConfig: parsePatterns,
+                parserOptions: {
+                    ignorePeriodInsideBraces: true
+                }
             }
         }
     },
