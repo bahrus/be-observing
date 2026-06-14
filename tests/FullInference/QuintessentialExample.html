@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quintessential Example</title>
     <!-- #include virtual="/imports.html" -->
+
+    <script type=module>
+        import 'be-hive/be-hive.js';
+        class MoodStone extends HTMLElement{
+            propagator = new EventTarget();
+            #isHappy;
+            get isHappy(){
+                return this.#isHappy;
+            }
+            set isHappy(nv){
+                this.#isHappy = nv;
+                this.propagator.dispatchEvent(new Event('isHappy'));
+            }
+            connectedCallback(){
+                this.isHappy = true;
+            }
+        }
+        customElements.define('mood-stone', MoodStone);
+    </script>
+</head>
+<body>
     <be-hive>
         <script type=emc-parser 
                 src="be-hive/parsers/parse-pattern-statements.js" 
@@ -13,15 +34,9 @@
                 src="be-observing/emc.json" 
                 wait-for-parsers=parse-pattern-statements></script>
     </be-hive>
-    <script type=module>
-        import 'be-hive/be-hive.js';
-        import 'xtal-element/index.js';
-    </script>
-</head>
-<body>
     <mood-stone>
-        <template shadowrootmode=open>
-            <div itemscope>
+        <template shadowrootmode=open itemscope>
+            <div>
                 <span itemprop=isHappy></span>
             </div>
             <input 
@@ -30,14 +45,6 @@
                 type=checkbox  
                 be-observing
             >
-            <xtal-element
-                prop-defaults='{
-                    "isHappy": true
-                }'
-                xform='{
-                    "| isHappy": 0
-                }'
-            ></xtal-element>
             <be-hive></be-hive>
         </template>
     </mood-stone>
@@ -47,7 +54,6 @@
             if(document.querySelector('mood-stone').shadowRoot.querySelector('input').checked){
                 target.setAttribute('mark', 'good');
             }
-            
         }
         setTimeout(() => {
             runTest();

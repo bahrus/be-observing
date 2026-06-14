@@ -5,24 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Set Properties Explicitly > Checkbox to Form Element's element</title>
     <!-- #include virtual="/imports.html" -->
+
     <script type=module>
-        import 'xtal-element/index.js';
-        import '/🔭.js';
+        import 'be-hive/be-hive.js';
     </script>
 </head>
 <body>
+    <be-hive>
+        <script type=emc-parser 
+                src="be-hive/parsers/parse-pattern-statements.js" 
+                parser-name=parse-pattern-statements></script>
+        <script type=emc 
+                src="be-observing/🔭.json" 
+                wait-for-parsers=parse-pattern-statements></script>
+    </be-hive>
     <input id=sourceCheckbox type=checkbox>
 
-    <form 🔭='#sourceCheckbox and set ?.elements?.destCheckbox?.checked.
-    '>
-    <label>Original matching checkbox</label>
-        <input id=oldMatchingCheckbox name=destCheckbox type=checkbox>
-    </label>
+    <form 🔭='#sourceCheckbox and set ?.elements?.destCheckbox?.checked.'>
+        <label>Original matching checkbox
+            <input id=oldMatchingCheckbox name=destCheckbox type=checkbox>
+        </label>
 
-    <label>New matching checkbox</label>
-        <input id=newMatchingCheckbox type=checkbox>
-    </label>
-        
+        <label>New matching checkbox
+            <input id=newMatchingCheckbox type=checkbox>
+        </label>
     </form>
 
     <button onclick="doSwitch()">Switch input element with name=destCheckbox</button>

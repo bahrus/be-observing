@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>With Slash</title>
+    <title>Specify Host Property - No Shadow</title>
     <!-- #include virtual="/imports.html" -->
+
+    <script type=module>
+        import 'be-hive/be-hive.js';
+        class MoodStone extends HTMLElement{
+            propagator = new EventTarget();
+            #isHappy;
+            get isHappy(){
+                return this.#isHappy;
+            }
+            set isHappy(nv){
+                this.#isHappy = nv;
+                this.propagator.dispatchEvent(new Event('isHappy'));
+            }
+            connectedCallback(){
+                this.isHappy = true;
+            }
+        }
+        customElements.define('mood-stone', MoodStone);
+    </script>
+</head>
+<body>
     <be-hive>
         <script type=emc-parser 
                 src="be-hive/parsers/parse-pattern-statements.js" 
@@ -13,12 +34,6 @@
                 src="be-observing/🔭.json" 
                 wait-for-parsers=parse-pattern-statements></script>
     </be-hive>
-    <script type=module>
-        import 'be-hive/be-hive.js';
-        import 'xtal-element/index.js';
-    </script>
-</head>
-<body>
     <mood-stone itemscope>
         <div>
             <span itemprop=isHappy></span>
@@ -28,14 +43,6 @@
             type=checkbox  
             🔭='isHappy.'
         >
-        <xtal-element
-            prop-defaults='{
-                "isHappy": true
-            }'
-            xform='{
-                "| isHappy": 0
-            }'
-        ></xtal-element>
     </mood-stone>
     <div id=target></div>
     <script>

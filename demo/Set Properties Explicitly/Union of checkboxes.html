@@ -7,28 +7,42 @@
     <!-- #include virtual="/imports.html" -->
 
     <script type=module>
-        import 'xtal-element/index.js';
-        import '/🔭.js';
+        import 'be-hive/be-hive.js';
+        class MoodStone extends HTMLElement{
+            propagator = new EventTarget();
+            #isHappy;
+            get isHappy(){
+                return this.#isHappy;
+            }
+            set isHappy(nv){
+                this.#isHappy = nv;
+                this.propagator.dispatchEvent(new Event('isHappy'));
+            }
+            connectedCallback(){
+                this.isHappy = true;
+            }
+        }
+        customElements.define('mood-stone', MoodStone);
     </script>
 </head>
 <body>
+    <be-hive>
+        <script type=emc-parser 
+                src="be-hive/parsers/parse-pattern-statements.js" 
+                parser-name=parse-pattern-statements></script>
+        <script type=emc 
+                src="be-observing/🔭.json" 
+                wait-for-parsers=parse-pattern-statements></script>
+    </be-hive>
     <input id=someCheckbox type=checkbox>
     <input id=someOtherCheckbox type=checkbox>
 
     <mood-stone enh-🔭='#someCheckbox and #someOtherCheckbox and set isHappy to ||.'>
-        <template shadowrootmode=open  itemscope>
+        <template shadowrootmode=open itemscope>
             <div>
                 is happy
                 <div itemprop=isHappy></div>
             </div>
-            <xtal-element 
-                prop-defaults='{
-                    "isHappy": true
-                }'
-                xform='{
-                    "| isHappy": 0
-                }'
-            ></xtal-element>
             <be-hive></be-hive>
         </template>
     </mood-stone>
