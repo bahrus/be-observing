@@ -28,6 +28,7 @@ class BeObserving {
      * @param {PAP} initVals
      */
     async init(self, enhancedElement, ctx, initVals) {
+        console.log('BeObserving init called', enhancedElement.tagName, initVals);
         const {customData} = /** @type {EMC<any, AllProps, Element, RAConfig<AllProps, Actions>>} */ (ctx.emc);
         /** @type {RoundaboutOptions} */
         const raOptions = {
@@ -54,6 +55,8 @@ class BeObserving {
         if (!parsedStatements) return /** @type {PAP} */ ({didInferring: true});
         const {statements, success} = parsedStatements;
         if (!success || !statements) return /** @type {PAP} */ ({didInferring: true});
+
+        console.log('infer called, statements:', JSON.stringify(statements, null, 2));
 
         for (const statement of statements) {
             const {value} = statement;
@@ -380,9 +383,8 @@ class ObservationHandler {
 
         // Handle JS expression
         if (JSExpr) {
-            const {activate} = await import('trans-render/lib/activate.js');
             const fullExpr = `const {f, args} = e;\n${JSExpr}`;
-            const handler = activate(fullExpr);
+            const handler = new Function('e', fullExpr);
             const event = {f: obj, args, target: enhancedElement, r: undefined};
             handler(event);
             if (event.r !== undefined) {
@@ -422,8 +424,7 @@ class ObservationHandler {
         // Handle interpolation
         if (interpolatingExpr) {
             if (!this.#parsedInterpolation) {
-                const {toParts} = await import('trans-render/lib/brace.js');
-                this.#parsedInterpolation = toParts(interpolatingExpr);
+                this.#parsedInterpolation = parseInterpolation(interpolatingExpr);
             }
             /** @type {Array<string>} */
             const toBeJoined = [];
@@ -534,6 +535,32 @@ function aggregate(args, obj, aggKey) {
             if (args.length === 1) return args[0];
             return args.every(v => !!v);
     }
+}
+
+/**
+ * Parse an interpolation expression like "${0} eats ${1}" into parts.
+ * Returns an array of strings (literal text) and arrays (placeholders).
+ * Supports both ${name} and {name} syntax.
+ * @param {string} expr
+ * @returns {Array<string | [string]>}
+ */
+function parseInterpolation(expr) {
+    /** @type {Array<string | [string]>} */
+    const parts = [];
+    const re = /\$?\{([^}]+)\}/g;
+    let lastIndex = 0;
+    let match;
+    while ((match = re.exec(expr)) !== null) {
+        if (match.index > lastIndex) {
+            parts.push(expr.slice(lastIndex, match.index));
+        }
+        parts.push([match[1]]);
+        lastIndex = re.lastIndex;
+    }
+    if (lastIndex < expr.length) {
+        parts.push(expr.slice(lastIndex));
+    }
+    return parts;
 }
 
 /**

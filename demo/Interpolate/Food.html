@@ -3,11 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peer element > by name > interpolate</title>
+    <title>Peer element > by ID > interpolate</title>
     <!-- #include virtual="/imports.html" -->
 
     <script type=module>
         import 'be-hive/be-hive.js';
+        class FoodDisplay extends HTMLElement{
+            propagator = new EventTarget();
+            #myProp;
+            get myProp(){
+                return this.#myProp;
+            }
+            set myProp(nv){
+                this.#myProp = nv;
+                this.shadowRoot.querySelector('#output').textContent = nv ?? '';
+                this.propagator.dispatchEvent(new Event('myProp'));
+            }
+            constructor(){
+                super();
+                this.attachShadow({mode: 'open'});
+                this.shadowRoot.innerHTML = '<span id=output></span>';
+            }
+        }
+        customElements.define('food-display', FoodDisplay);
     </script>
 </head>
 <body>
@@ -20,9 +38,9 @@
                 wait-for-parsers=parse-pattern-statements></script>
     </be-hive>
 
-    <input id=name>
-    <input id=food>
+    <label>name <input id=name></label>
+    <label>food <input id=food></label>
 
-    <div 🔭='#name and #food and set mySecondProp to `{0} eats {1}`.'></div>
+    <food-display enh-🔭='#name and #food and set myProp to `${0} eats ${1}`.'></food-display>
 </body>
 </html>
