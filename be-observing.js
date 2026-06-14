@@ -44,70 +44,16 @@ class BeObserving {
     }
 
     /**
-     * When parsedStatements is not set at all (edge case).
-     * @param {AP} self
-     * @returns {PAP}
-     */
-    noAttrs(self) {
-        const {enhancedElement} = self;
-        const el = /** @type {HTMLElement} */ (enhancedElement);
-        const prop = el.getAttribute('itemprop')
-            || el.getAttribute('name')
-            || el.id;
-        if (!prop) return /** @type {PAP} */ ({didInferring: true});
-        return /** @type {PAP} */ ({
-            parsedStatements: {
-                success: true,
-                statements: [{
-                    pattern: 'inferred',
-                    value: /** @type {ObservingParameters} */ ({
-                        remoteSpecifiers: [{prop}],
-                        aggKey: '&&',
-                        punt: false,
-                        interpolatingExpr: '',
-                        JSExpr: '',
-                        ONExpr: '',
-                    })
-                }]
-            },
-            didInferring: true
-        });
-    }
-
-    /**
      * Pre-processing step for parsed statements.
      * Parses dependencyPart into remoteSpecifiers.
-     * Handles empty parsed statements by inferring from element attributes.
      * @param {AP} self
      * @returns {PAP}
      */
     infer(self) {
-        const {parsedStatements, enhancedElement} = self;
+        const {parsedStatements} = self;
         if (!parsedStatements) return /** @type {PAP} */ ({didInferring: true});
         const {statements, success} = parsedStatements;
-        if (!success) return /** @type {PAP} */ ({didInferring: true});
-        
-        // If statements is empty (boolean attribute with no value), infer from element
-        if (!statements || statements.length === 0) {
-            const el = /** @type {HTMLElement} */ (enhancedElement);
-            const prop = el.getAttribute('itemprop')
-                || el.getAttribute('name')
-                || el.id;
-            if (prop) {
-                statements.push({
-                    pattern: 'inferred',
-                    value: /** @type {any} */ ({
-                        remoteSpecifiers: [{prop}],
-                        aggKey: '&&',
-                        punt: false,
-                        interpolatingExpr: '',
-                        JSExpr: '',
-                        ONExpr: '',
-                    })
-                });
-            }
-            return /** @type {PAP} */ ({didInferring: true});
-        }
+        if (!success || !statements) return /** @type {PAP} */ ({didInferring: true});
 
         for (const statement of statements) {
             const {value} = statement;
@@ -143,12 +89,27 @@ class BeObserving {
         const ac = this.#ac;
 
         const {upSearch} = await import('inferencer/upSearch.js');
+        const {Infer: InferClass} = await import('inferencer/inferencer.js');
+
+        // If no statements (empty/boolean attribute), push an empty one for inference
+        if (statements.length === 0) {
+            statements.push({value: {}});
+        }
+
+        const localInference = new InferClass(enhancedElement);
 
         for (const statement of statements) {
             const {value} = statement;
             if (!value) continue;
-            const {remoteSpecifiers, localPropToSet, action, interpolatingExpr, aggKey, punt, JSExpr, ONExpr} = value;
-            if (!remoteSpecifiers || remoteSpecifiers.length === 0) continue;
+            let {remoteSpecifiers, localPropToSet, action, interpolatingExpr, aggKey, punt, JSExpr, ONExpr} = value;
+
+            // Infer remoteSpecifiers if not provided
+            if (!remoteSpecifiers || remoteSpecifiers.length === 0) {
+                const prop = localInference.defaultRemoteBindingPropName;
+                remoteSpecifiers = [{prop}];
+            }
+            // Default aggKey
+            if (!aggKey) aggKey = '&&';
 
             if (interpolatingExpr && localPropToSet?.endsWith('HTML')) {
                 throw 403; // XSS protection
@@ -156,7 +117,6 @@ class BeObserving {
 
             /** @type {{[key: string]: Infer}} */
             const propToInfer = {};
-            const {Infer: InferClass} = await import('inferencer/inferencer.js');
 
             for (const remoteSpecifier of remoteSpecifiers) {
                 const {id, prop, constVal, as, self: isSelf} = remoteSpecifier;
@@ -218,8 +178,10 @@ class BeObserving {
                 const inferObj = propToInfer[name];
                 if (/** @type {any} */ (inferObj).isConst) continue;
                 const propagator = await inferObj.getPropagator();
-                const valProp = inferObj.valueProperty;
-                propagator.addEventListener(valProp, handler, {signal: ac.signal});
+                // If we have an explicit prop, listen for that; otherwise use inferred valueProperty
+                const inferProp = /** @type {any} */ (inferObj).__prop;
+                const evtName = inferProp || inferObj.valueProperty;
+                propagator.addEventListener(evtName, handler, {signal: ac.signal});
             }
 
             // Initial evaluation
@@ -389,16 +351,17 @@ class ObservationHandler {
                 val = /** @type {any} */ (inferObj).constVal;
             } else {
                 const el = inferObj.enhancedElement;
-                const valProp = inferObj.valueProperty;
                 // Check if the prop used for Infer was a path (contains ?.)
                 const inferProp = /** @type {any} */ (inferObj).__prop;
-                if (inferProp && inferProp.includes('?.')) {
+                if (inferProp && inferProp.includes('.')) {
+                    // dot path like dataset.diff or dataset?.diff
                     val = resolvePath(el, `?.${inferProp}`);
-                } else if (inferProp && inferProp.includes('.')) {
-                    // dot path like dataset.diff
-                    val = resolvePath(el, `?.${inferProp}`);
+                } else if (inferProp) {
+                    // explicit prop name — read directly
+                    val = el[inferProp];
                 } else {
-                    val = el[valProp];
+                    // no explicit prop — use inferred valueProperty
+                    val = el[inferObj.valueProperty];
                 }
                 // Apply coercion if configured
                 const asType = /** @type {any} */ (inferObj).__as;

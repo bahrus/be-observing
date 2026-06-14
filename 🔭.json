@@ -84,11 +84,6 @@
             ]
         },
         "actions": {
-            "noAttrs": {
-                "ifNoneOf": [
-                    "parsedStatements"
-                ]
-            },
             "seek": {
                 "ifAllOf": [
                     "parsedStatements",

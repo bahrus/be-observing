@@ -95,9 +95,6 @@ export const emc = {
             properties: ['enhancedElement']
         },
         actions: {
-            noAttrs: {
-                ifNoneOf: ['parsedStatements']
-            },
             seek: {
                 ifAllOf: ['parsedStatements', 'didInferring', 'enhancedElement']
             }
