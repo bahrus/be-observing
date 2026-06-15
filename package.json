@@ -29,12 +29,12 @@
   "dependencies": {
     "be-hive": "0.1.15",
     "inferencer": "0.0.13",
-    "mount-observer": "0.1.40",
+    "mount-observer": "0.1.41",
     "roundabout-lib": "0.0.21",
     "nested-regex-groups": "0.0.7"
   },
   "devDependencies": {
-    "@playwright/test": "1.60.0",
+    "@playwright/test": "1.61.0",
     "be-eventing": "0.0.5",
     "spa-ssi": "0.0.27"
   },

@@ -443,8 +443,19 @@ class ObservationHandler {
         }
 
         // Handle aggregation
-        const result = aggregate(args, obj, aggKey);
-        await this.#setValue(result, localPropToSet, action);
+        const {get: getAgg} = await import('./registry.js');
+        const aggHandler = getAgg(aggKey);
+        if (aggHandler) {
+            const event = {args, f: obj, target: enhancedElement, r: undefined};
+            aggHandler(event);
+            if (event.r !== undefined) {
+                await this.#setValue(event.r, localPropToSet, action);
+            }
+        } else {
+            // Fallback: single value pass-through
+            const result = args.length === 1 ? args[0] : args.every(v => !!v);
+            await this.#setValue(result, localPropToSet, action);
+        }
     }
 
     /**
@@ -501,36 +512,6 @@ class ObservationHandler {
                 }
             }
         }
-    }
-}
-
-/**
- * Aggregate multiple values using the specified aggregation key.
- * @param {Array<any>} args
- * @param {{[key: string]: any}} obj
- * @param {string} aggKey
- * @returns {any}
- */
-function aggregate(args, obj, aggKey) {
-    switch (aggKey) {
-        case '&&':
-            return args.every(v => !!v);
-        case '||':
-            return args.some(v => !!v);
-        case '+':
-            return args.reduce((sum, v) => sum + Number(v), 0);
-        case '*':
-            return args.reduce((prod, v) => prod * Number(v), 1);
-        case '{}':
-            return {...obj};
-        case '||!':
-            return args.some(v => !v);
-        case '&&!':
-            return args.every(v => !v);
-        default:
-            // Single value pass-through
-            if (args.length === 1) return args[0];
-            return args.every(v => !!v);
     }
 }
 
