@@ -16,6 +16,8 @@
             }
             set isHappy(nv){
                 this.#isHappy = nv;
+                const span = this.shadowRoot.querySelector('#display');
+                if (span) span.textContent = String(nv);
                 this.propagator.dispatchEvent(new Event('isHappy'));
             }
             connectedCallback(){
@@ -37,9 +39,9 @@
     <input id=someCheckbox type=checkbox>
 
     <mood-stone enh-🔭='#someCheckbox and set isHappy.'>
-        <template shadowrootmode=open itemscope>
+        <template shadowrootmode=open>
             <div>
-                <span itemprop=isHappy></span>
+                isHappy: <span id=display></span>
             </div>
             <be-hive></be-hive>
         </template>
