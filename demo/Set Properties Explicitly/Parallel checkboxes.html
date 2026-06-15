@@ -17,6 +17,8 @@
             }
             set isHappy(nv){
                 this.#isHappy = nv;
+                const el = this.shadowRoot.querySelector('#happyDisplay');
+                if (el) el.textContent = String(nv);
                 this.propagator.dispatchEvent(new Event('isHappy'));
             }
             get isWealthy(){
@@ -24,6 +26,8 @@
             }
             set isWealthy(nv){
                 this.#isWealthy = nv;
+                const el = this.shadowRoot.querySelector('#wealthyDisplay');
+                if (el) el.textContent = String(nv);
                 this.propagator.dispatchEvent(new Event('isWealthy'));
             }
             connectedCallback(){
@@ -48,12 +52,12 @@
 
     <mood-stone enh-🔭='#someCheckbox and set isHappy.
         #someOtherCheckbox and set isWealthy.'>
-        <template shadowrootmode=open itemscope>
+        <template shadowrootmode=open>
             <div>
-                is happy
-                <div itemprop=isHappy></div>
-                is wealthy
-                <div itemprop=isWealthy></div>
+                is happy: <span id=happyDisplay></span>
+            </div>
+            <div>
+                is wealthy: <span id=wealthyDisplay></span>
             </div>
             <be-hive></be-hive>
         </template>
