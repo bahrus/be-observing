@@ -16,6 +16,8 @@
             }
             set isHappy(nv){
                 this.#isHappy = nv;
+                const el = this.shadowRoot.querySelector('[itemprop=isHappy]');
+                if (el) el.textContent = String(nv);
                 this.propagator.dispatchEvent(new Event('isHappy'));
             }
             connectedCallback(){
@@ -42,7 +44,7 @@
             <input 
                 disabled 
                 type=checkbox  
-                🔭='isHappy.'
+                🔭='isHappy'
             >
             <be-hive></be-hive>
         </template>
