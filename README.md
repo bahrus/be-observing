@@ -624,6 +624,8 @@ See [be-joining](https://github.com/bahrus/be-joining).  Outside the scope of *b
 '></div>
 ```
 
+The `:` separator works like a ternary — when the observed value is truthy, the first class (`my-class`) is added and the second (`my-other-class`) is removed. When falsy, it's reversed. With a single class name (no `:`), the class is simply toggled based on truthiness.
+
 ### Mapping combined with set-class
 
 ```html
@@ -648,6 +650,8 @@ This will add class "my-class" to the div if the search input has value "hi".  O
     @myCheckbox and set-part my-second-part.
 '></div>
 ```
+
+Same ternary `:` semantics as `set-class` — when truthy, the first part is added and the second removed; when falsy, the reverse.
 
 ### Set inner form element property
 
