@@ -497,8 +497,14 @@ class ObservationHandler {
             }
             case 'set-part': {
                 const parts = (localPropToSet || '').split(':');
-                for (const part of parts) {
-                    if (part) /** @type {HTMLElement} */ (enhancedElement).part.toggle(part.trim(), !!val);
+                if (parts.length === 2) {
+                    // ternary: truthy adds first, falsy adds second
+                    /** @type {HTMLElement} */ (enhancedElement).part.toggle(parts[0].trim(), !!val);
+                    /** @type {HTMLElement} */ (enhancedElement).part.toggle(parts[1].trim(), !val);
+                } else {
+                    for (const part of parts) {
+                        if (part) /** @type {HTMLElement} */ (enhancedElement).part.toggle(part.trim(), !!val);
+                    }
                 }
                 return;
             }
