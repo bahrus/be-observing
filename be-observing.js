@@ -484,8 +484,14 @@ class ObservationHandler {
             }
             case 'set-class': {
                 const classes = (localPropToSet || '').split(':');
-                for (const cls of classes) {
-                    if (cls) enhancedElement.classList.toggle(cls.trim(), !!val);
+                if (classes.length === 2) {
+                    // ternary: truthy adds first, falsy adds second
+                    enhancedElement.classList.toggle(classes[0].trim(), !!val);
+                    enhancedElement.classList.toggle(classes[1].trim(), !val);
+                } else {
+                    for (const cls of classes) {
+                        if (cls) enhancedElement.classList.toggle(cls.trim(), !!val);
+                    }
                 }
                 return;
             }
