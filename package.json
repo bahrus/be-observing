@@ -27,14 +27,14 @@
   },
   "types": "./types/be-observing/types.d.ts",
   "dependencies": {
+    "assign-gingerly": "0.0.64",
     "be-hive": "0.1.15",
-    "inferencer": "0.0.13",
-    "mount-observer": "0.1.41",
-    "roundabout-lib": "0.0.21",
+    "mount-observer": "0.1.43",
+    "roundabout-lib": "0.0.28",
     "nested-regex-groups": "0.0.7"
   },
   "devDependencies": {
-    "@playwright/test": "1.61.0",
+    "@playwright/test": "1.62.0",
     "be-eventing": "0.0.5",
     "spa-ssi": "0.0.27"
   },

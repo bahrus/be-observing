@@ -88,15 +88,15 @@ class BeObserving {
         this.#ac = new AbortController();
         const ac = this.#ac;
 
-        const {upSearch} = await import('inferencer/upSearch.js');
-        const {Infer: InferClass} = await import('inferencer/inferencer.js');
+        const {upSearch} = await import('assign-gingerly/inferencer/upSearch.js');
+        const {Infer} = await import('assign-gingerly/inferencer/inferencer.js');
 
         // If no statements (empty/boolean attribute), push an empty one for inference
         if (statements.length === 0) {
             statements.push({value: {}});
         }
 
-        const localInference = new InferClass(enhancedElement);
+        const localInference = new Infer(enhancedElement);
 
         for (const statement of statements) {
             const {value} = statement;
@@ -159,7 +159,7 @@ class BeObserving {
                 if (id && id.startsWith('@')) scriptingPropName = prop || id.slice(1);
                 if (!scriptingPropName) continue;
 
-                const inferInstance = new InferClass(remoteEl, prop);
+                const inferInstance = new Infer(remoteEl, prop);
                 /** @type {any} */ (inferInstance).__prop = prop;
                 /** @type {any} */ (inferInstance).__as = as;
                 propToInfer[scriptingPropName] = inferInstance;
@@ -518,8 +518,8 @@ class ObservationHandler {
                     }
                 } else {
                     // Infer the property to set
-                    const {Infer: InferClass} = await import('inferencer/inferencer.js');
-                    const inferInstance = new InferClass(enhancedElement);
+                    const {Infer} = await import('assign-gingerly/inferencer/inferencer.js');
+                    const inferInstance = new Infer(enhancedElement);
                     inferInstance.value = val;
                 }
             }
