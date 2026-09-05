@@ -78,7 +78,7 @@ const parsePatterns = [
  */
 export const emc = {
     enhConfig: {
-        enhKey: 'be-observing',
+        enhKey: 'beObserving',
         spawn: 'be-observing/be-observing.js',
         withAttrs: {
             base: 'be-observing',

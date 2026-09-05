@@ -27,16 +27,16 @@
   },
   "types": "./types/be-observing/types.d.ts",
   "dependencies": {
-    "assign-gingerly": "0.0.87",
+    "assign-gingerly": "0.0.93",
     "be-hive": "0.1.18",
     "mount-observer": "0.1.53",
     "roundabout-lib": "0.0.36",
     "nested-regex-groups": "0.0.8"
   },
   "devDependencies": {
-    "@playwright/test": "1.62.1",
+    "@playwright/test": "1.63.0",
     "be-eventing": "0.0.5",
-    "spa-ssi": "0.0.27"
+    "spa-ssi": "0.0.28"
   },
   "repository": {
     "type": "git",
