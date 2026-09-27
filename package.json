@@ -16,7 +16,10 @@
   "exports": {
     ".": "./be-observing.js",
     "./be-observing.js": "./be-observing.js",
-    "./🔭.js": "./🔭.js"
+    "./def.js": "./def.js",
+    "./registry.js": "./registry.js",
+    "./emc.json": "./emc.json",
+    "./🔭.json": "./🔭.json"
   },
   "scripts": {
     "build": "node emc.mjs > emc.json && node 🔭.mjs > 🔭.json",

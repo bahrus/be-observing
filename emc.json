@@ -88,18 +88,19 @@
         },
         "actions": {
             "seek": {
+                "ifKeyIn": [
+                    "observations",
+                    "initialized"
+                ],
                 "ifAllOf": [
-                    "parsedStatements",
-                    "didInferring",
-                    "enhancedElement"
+                    "observations",
+                    "enhancedElement",
+                    "initialized"
                 ]
             }
         },
-        "defaultPropVals": {
-            "didInferring": false
-        },
         "compacts": {
-            "when_parsedStatements_changes_call_infer": 0
+            "when_parsedStatements_changes_call_onParsedStatementsChange": 0
         }
     }
 }

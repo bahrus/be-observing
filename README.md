@@ -701,7 +701,79 @@ use dataset
 
 use dataset combined with [attr()](https://caniuse.com/?search=attr)?
 
+# Programmatic attachment (no attribute)
 
+The attribute syntax shown above shines for server-rendered HTML and progressive enhancement:  the markup alone says what is observed, and what happens when it changes.  But most web development today renders on the client, with a framework (Lit, React, Vue, Svelte, etc.) that already has a JavaScript reference to each element it creates.  In that setting, attaching be-observing programmatically is the better fit:
+
+1.  **A less clunky API.**  Frameworks tend to be awkward about setting arbitrary (let alone emoji) attributes, and composing a string like ``'#search then ON{"hi": true, ":": false} and set-class my-class'`` or ``'@age and `20` as number and set to +'`` from framework state -- with its nested quotes, backticks and braces -- is error prone.  Setting `observations` to an array of plain objects is ordinary JavaScript, which the framework, your editor, and TypeScript all understand.  You can also pass things an attribute can only describe as text:  the aggregator itself as a function (no global registry), the `ON{}` mapping as an actual object, and constants as actual numbers or booleans.
+2.  **Less stringifying and parsing.**  With an attribute, the framework serializes the observations to a string, which be-observing then parses back apart -- a regular expression per statement, a second pass to split the dependency list into `#id`, `@name`, `$0?.path` and `` `constant` as type`` specifiers, and `JSON.parse` for each `ON{}` mapping.  Setting `observations` directly skips all of that.
+3.  **Less overhead monitoring attributes.**  The attribute approach relies on [be-hive](https://github.com/bahrus/be-hive) / [mount-observer](https://github.com/bahrus/mount-observer) watching the DOM for elements that carry (or gain) the attribute, and for changes to its value.  The programmatic approach needs none of that -- `def.js` just registers the enhancement's config, and the enhancement is attached exactly when, and to exactly the elements, your code says.
+
+Both approaches produce the same enhancement, with the same inference rules and aggregators, so you can mix them in one app -- attributes for server-rendered islands, programmatic attachment inside client-rendered components.
+
+First register the enhancement's config once:
+
+```JS
+import { defBeObserving } from 'be-observing/def.js';
+const emc = await defBeObserving(document.body); // or a shadow root's host, for a scoped registry
+```
+
+Then set `observations` -- an array with one object per statement.  An empty array is equivalent to a bare `be-observing` attribute (full inference).
+
+| Statement part                                   | Property            | Notes                                                                 |
+|--------------------------------------------------|---------------------|-----------------------------------------------------------------------|
+| the dependencies (`#a and @b and ...`)           | `remoteSpecifiers`  | Array -- see the next table.  (Or pass the attribute syntax as `dependencyPart`.) |
+| `set myProp`                                     | `localPropToSet`    | Omit to infer the property, as with the attribute.                    |
+| `set`, `toggle`, `increment`, `decrement`, `set-class`, `set-part` | `action` |                                                                   |
+| `to +`, `to \|\|`, `to appendWorld`, ...          | `aggKey`            | Name of a built-in / registered aggregator, or the function itself: `e => e.r = ...`.  Defaults to `'&&'`. |
+| `` to `${0} eats ${1}` ``                        | `interpolatingExpr` | `'${0} eats ${1}'`                                                    |
+| `then ON{"hi": true, ":": false}`                | `ONExpr`            | The object itself: `{hi: true, ':': false}`.                          |
+| `then JS{...}`                                   | `JSExpr`            |                                                                       |
+| `then punt`                                      | `punt`              | `true`.  Dispatches an event named `beObserving` when attached programmatically (`🔭` via the emoji attribute). |
+
+| Dependency           | Remote specifier                        |
+|----------------------|-----------------------------------------|
+| `#search`            | `{id: 'search'}`                        |
+| `#search?.prop`      | `{id: 'search', prop: 'prop'}`          |
+| `@age`               | `{id: '@age'}`                          |
+| `$0?.dataset?.diff`  | `{self: true, prop: 'dataset?.diff'}`   |
+| `` `20` as number ``     | `{constVal: 20}` -- `as` isn't needed when you pass an actual number |
+| `someHostProp`       | `{prop: 'someHostProp'}`                |
+
+## Declarative -- via `enh.set`
+
+```JS
+// equivalent to <span 🔭='#name and #food and set textContent to `${0} eats ${1}`.'>
+span.enh.set.beObserving.observations = [{
+    remoteSpecifiers: [{id: 'name'}, {id: 'food'}],
+    localPropToSet: 'textContent',
+    interpolatingExpr: '${0} eats ${1}',
+}];
+```
+
+This can be done before or after `defBeObserving` has been called.
+
+## Imperative -- via `enh.get()`
+
+```JS
+div.enh.get(emc).observations = [
+    // equivalent to #search then ON{"hi": true, ":": false} and set-class my-class
+    {
+        remoteSpecifiers: [{id: 'search'}],
+        ONExpr: {hi: true, ':': false},
+        action: 'set-class',
+        localPropToSet: 'my-class',
+    },
+    // an aggregator function passed directly -- no registry needed
+    {
+        remoteSpecifiers: [{id: 'search'}],
+        aggKey: e => e.r = e.args[0].toUpperCase(),
+        localPropToSet: 'textContent',
+    },
+];
+```
+
+See [demo/Programmatic](demo/Programmatic/) for runnable examples.
 
 ## Viewing Locally
 
@@ -726,13 +798,7 @@ Any web server that serves static files with server-side includes will do but...
 ## Using from ESM Module:
 
 ```JavaScript
-import 'be-observing/emc.js';
-```
-
-or
-
-```JavaScript
-import 'be-observing/🔭.js';
+import { defBeObserving } from 'be-observing/def.js';
 ```
 
 

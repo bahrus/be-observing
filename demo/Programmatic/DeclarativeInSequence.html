@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmatic declarative in sequence</title>
+    <!-- #include virtual="/imports.html" -->
+</head>
+<body>
+    <label>name <input id=name value=Kermit></label>
+    <label>food <input id=food value=flies></label>
+
+    <span id=span></span>
+    <script type=module>
+        import {defBeObserving} from '/def.js';
+        await defBeObserving(document.body);
+        // equivalent to <span 🔭='#name and #food and set textContent to `${0} eats ${1}`.'>
+        span.enh.set.beObserving.observations = [{
+            remoteSpecifiers: [{id: 'name'}, {id: 'food'}],
+            localPropToSet: 'textContent',
+            interpolatingExpr: '${0} eats ${1}',
+        }];
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmatic imperative</title>
+    <!-- #include virtual="/imports.html" -->
+</head>
+<body>
+    <input id=search type=search>
+
+    <div id=div></div>
+    <div id=target></div>
+    <script type=module>
+        import {defBeObserving} from '/def.js';
+        const emc = await defBeObserving(document.body);
+        const beObserving = div.enh.get(emc);
+        beObserving.observations = [
+            // equivalent to #search then ON{"hi": true, ":": false} and set-class my-class
+            // -- but with the mapping passed as an object
+            {
+                remoteSpecifiers: [{id: 'search'}],
+                ONExpr: {hi: true, ':': false},
+                action: 'set-class',
+                localPropToSet: 'my-class',
+            },
+            // an aggregator function passed directly -- no registry needed
+            {
+                remoteSpecifiers: [{id: 'search'}],
+                aggKey: e => e.r = e.args[0].toUpperCase(),
+                localPropToSet: 'textContent',
+            },
+        ];
+
+        setTimeout(() => {
+            if(div.classList.contains('my-class')) return;
+            search.value = 'hi';
+            search.dispatchEvent(new Event('input'));
+            setTimeout(() => {
+                if(div.classList.contains('my-class') && div.textContent === 'HI') target.setAttribute('mark', 'good');
+            }, 200);
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -99,14 +99,16 @@ export const emc = {
         },
         actions: {
             seek: {
-                ifAllOf: ['parsedStatements', 'didInferring', 'enhancedElement']
+                ifKeyIn: ['observations', 'initialized'],
+                ifAllOf: ['observations', 'enhancedElement', 'initialized']
             }
         },
-        defaultPropVals: {
-            didInferring: false,
-        },
+        // Transfers the attribute-parsed `parsedStatements` into
+        // `observations` — the property `seek` actually reads. Programmatic
+        // callers skip `parsedStatements` entirely and assign `observations`
+        // directly.
         compacts: {
-            when_parsedStatements_changes_call_infer: 0,
+            when_parsedStatements_changes_call_onParsedStatementsChange: 0,
         }
     }
 };

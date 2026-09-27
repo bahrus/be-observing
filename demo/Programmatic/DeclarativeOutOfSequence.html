@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmatic declarative out of sequence</title>
+    <!-- #include virtual="/imports.html" -->
+</head>
+<body>
+    <input name=age type=number value=90>
+
+    <div id=div></div>
+    <script type=module>
+        import {defBeObserving} from '/def.js';
+        // set before the config is registered -- the spawn is deferred until defBeObserving runs.
+        // equivalent to <div 🔭='@age and `20` as number and set to +'>
+        div.enh.set.beObserving.observations = [{
+            remoteSpecifiers: [{id: '@age'}, {constVal: 20, as: 'number'}],
+            aggKey: '+',
+        }];
+        await defBeObserving(document.body);
+    </script>
+</body>
+</html>

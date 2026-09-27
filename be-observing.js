@@ -28,7 +28,7 @@ class BeObserving {
      * @param {PAP} initVals
      */
     async init(self, enhancedElement, ctx, initVals) {
-        const {customData} = /** @type {EMC<any, AllProps, Element, RAConfig<AllProps, Actions>>} */ (ctx.emc);
+        const {customData} = /** @type {EMC<any, AllProps, Element, RAConfig<AllProps, Actions>>} */ (ctx.emc || ctx.config);
         /** @type {RoundaboutOptions} */
         const raOptions = {
             ...customData,
@@ -36,37 +36,36 @@ class BeObserving {
             initialPropVals: {
                 enhancedElement,
                 ...customData?.defaultPropVals,
-                enhKey: ctx.emc?.enhConfig?.enhKey || 'be-observing',
+                enhKey: (ctx.emc?.enhConfig ?? ctx.config)?.enhKey || 'be-observing',
                 ...initVals
             }
         };
-        (await import('roundabout-lib/roundabout.js')).roundabout(raOptions);
+        await (await import('roundabout-lib/roundabout.js')).roundabout(raOptions);
+        self.initialized = true;
     }
 
     /**
-     * Pre-processing step for parsed statements.
-     * Parses dependencyPart into remoteSpecifiers.
+     * Transfers the attribute-parsed `parsedStatements` into `observations` --
+     * the property `seek` actually reads.  Programmatic callers skip
+     * `parsedStatements` entirely and assign `observations` directly.
+     * Invoked via the `when_parsedStatements_changes_call_onParsedStatementsChange`
+     * compact, never called directly.
      * @param {AP} self
      * @returns {PAP}
      */
-    infer(self) {
+    onParsedStatementsChange(self) {
         const {parsedStatements} = self;
-        if (!parsedStatements) return /** @type {PAP} */ ({didInferring: true});
+        if (!parsedStatements) return {};
         const {statements, success} = parsedStatements;
-        if (!success || !statements) return /** @type {PAP} */ ({didInferring: true});
-
+        if (!success || !statements) return {};
+        /** @type {Array<Partial<ObservingParameters>>} */
+        const observations = [];
         for (const statement of statements) {
             const {value} = statement;
-            if (!value) continue;
-            const val = /** @type {any} */ (value);
-            if (val.dependencyPart && !val.remoteSpecifiers) {
-                val.remoteSpecifiers = parseDependencyPart(val.dependencyPart);
-            }
-            if (val.punt === 'true') val.punt = true;
-            if (!val.punt) val.punt = false;
+            if (value) observations.push(value);
         }
         return /** @type {PAP} */ ({
-            didInferring: true
+            observations
         });
     }
 
@@ -79,10 +78,8 @@ class BeObserving {
      * @returns {Promise<PAP>}
      */
     async seek(self) {
-        const {parsedStatements, enhancedElement, enhKey} = self;
-        if (!parsedStatements) return {};
-        const {statements, success} = parsedStatements;
-        if (!success || !statements) return {};
+        const {observations, enhancedElement, enhKey} = self;
+        if (!observations) return {};
 
         if (this.#ac) this.#ac.abort();
         this.#ac = new AbortController();
@@ -91,17 +88,19 @@ class BeObserving {
         const {upSearch} = await import('assign-gingerly/inferencer/upSearch.js');
         const {Infer} = await import('assign-gingerly/inferencer/inferencer.js');
 
-        // If no statements (empty/boolean attribute), push an empty one for inference
-        if (statements.length === 0) {
-            statements.push({value: {}});
-        }
+        // No observations (empty/boolean attribute): a single, fully inferred one
+        /** @type {Array<Partial<ObservingParameters>>} */
+        const rules = observations.length === 0 ? [{}] : observations;
 
         const localInference = new Infer(enhancedElement);
 
-        for (const statement of statements) {
-            const {value} = statement;
-            if (!value) continue;
-            let {remoteSpecifiers, localPropToSet, action, interpolatingExpr, aggKey, punt, JSExpr, ONExpr} = value;
+        for (const value of rules) {
+            let {remoteSpecifiers, dependencyPart, localPropToSet, action, interpolatingExpr, aggKey, punt, JSExpr, ONExpr} = value;
+            if (dependencyPart && !remoteSpecifiers) {
+                remoteSpecifiers = parseDependencyPart(dependencyPart);
+            }
+            // The attribute parser yields punt as the string 'true'
+            punt = punt === true || punt === 'true';
 
             // Infer remoteSpecifiers if not provided
             if (!remoteSpecifiers || remoteSpecifiers.length === 0) {
@@ -394,7 +393,8 @@ class ObservationHandler {
         if (ONExpr) {
             let val = args.length === 1 ? args[0] : args;
             try {
-                const map = JSON.parse(`{${ONExpr}}`);
+                // Programmatic callers may pass the map as an object
+                const map = typeof ONExpr === 'object' ? ONExpr : JSON.parse(`{${ONExpr}}`);
                 switch (val) {
                     case true:
                         val = map['true'] ?? map['?'];
@@ -443,8 +443,10 @@ class ObservationHandler {
         }
 
         // Handle aggregation
-        const {get: getAgg} = await import('./registry.js');
-        const aggHandler = getAgg(aggKey);
+        // Programmatic callers may pass the aggregator function itself
+        const aggHandler = typeof aggKey === 'function'
+            ? aggKey
+            : (await import('./registry.js')).get(aggKey);
         if (aggHandler) {
             const event = {args, f: obj, target: enhancedElement, r: undefined};
             aggHandler(event);
